@@ -1,7 +1,7 @@
 module.exports = function (controller) {
 	             // var request = require('request');
 	 	     //controller.hears( [/(plant)( [a-zA-Z0-9]{1,})|(plants)|(performance)/], 'direct_message,direct_mention', function(bot, message){
-	             controller.hears( [/plant1 performance/], 'direct_message,direct_mention', function(bot, message){
+	             controller.hears( ["plant1 performance"], 'direct_message,direct_mention', function(bot, message){
 	             console.log('message: ',message);
 	              
 	                  
