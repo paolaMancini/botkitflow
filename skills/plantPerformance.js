@@ -51,7 +51,7 @@ module.exports = function (controller) {
 				// go back to the `default` thread after sending this
 				// message.
 				convo.addMessage({
-					text: 'Sorry I did not understand. Plese choose the line: fakeMachine0,fakeMachine1,fakeMachine2,fakeMachine3,fakeMachine4,fakeMachine5,fakeMachine6',
+					text: 'Sorry I did not understand. Please, specify: line <line name>. The known lines are: machine_2, machine_3, machine_4, machine_5, chine_6',
 					action: 'default',
 			    }, 'bad_response');
 	
