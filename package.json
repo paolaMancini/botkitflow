@@ -6,6 +6,10 @@
   "scripts": {
     "start": "node bot.js"
   },
+  "dependencies": {
+    "botkit": "0.6.0",
+    "node-env-file": "0.1.8"
+  },
   "repository": {
     "type": "git",
     "url": "https://github.com/paolaMancini/botkitflow.git"
