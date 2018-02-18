@@ -28,7 +28,7 @@ module.exports = function (controller) {
 	       
 	                    
 	                   
-	                  var lines= ["fakeMachine0","fakeMachine1","fakeMachine2","fakeMachine3","fakeMachine4","fakeMachine5","fakeMachine6"];
+	                  var lines= ["machine_0","machine_1","machine_2","machine_3","machine_4","machine_5","machine_6"];
 		
 		 
 				bot.startConversation(message, function (err, convo) {
@@ -57,7 +57,7 @@ module.exports = function (controller) {
 	
 				// Create a yes/no question in the default thread...
 				convo.ask('Which line are you interested of?', [{
-						 pattern:'fakeMachine0|fakeMachine1|fakeMachine2|fakeMachine3|fakeMachine4|fakeMachine5|fakeMachine6',
+						 pattern:'machine_0|machine_1|machine_2|machine_3|machine_4|machine_5|machine_6',
 						 callback: function (response, convo) {
 							 convo.gotoThread('yes_thread');
 						 },	
