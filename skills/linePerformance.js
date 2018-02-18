@@ -2,7 +2,7 @@ module.exports = function (controller) {
 	
 	// controller.hears(['cheese'], 'direct_message,direct_mention',
 	// function (bot, message) {
-	controller.hears([/performance\s*$/], 'direct_message,direct_mention', function (bot, message) {
+	controller.hears([/line ([a-zA-Z0-9]{1,})| performance/], 'direct_message,direct_mention', function (bot, message) {
 		
 		var lines= ["fakeMachine0","fakeMachine1","fakeMachine2","fakeMachine3","fakeMachine4","fakeMachine5","fakeMachine6"];
 		
