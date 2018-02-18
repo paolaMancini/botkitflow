@@ -9,7 +9,7 @@ module.exports = function (controller, bot) {
     var botcommons = {
 
         // Bot description
-        "description": "It's the Italtel IndyChatBot for Rold SmatFab!",
+        "description": "This is the IndychatBot for ROLD SmartFab, the ready-to-use platform which which allows the SMEs to monitor, analyze and manage data and information coming from production plants."
     }
 
     //
