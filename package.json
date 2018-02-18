@@ -1,0 +1,19 @@
+{
+  "name": "botkitflow",
+  "version": "1.0.0",
+  "description": "Botkit flow for IndyChatBot",
+  "main": "bot.js",
+  "scripts": {
+    "test": "node bot.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/paolaMancini/botkitflow.git"
+  },
+  "author": "Paola Mancini",
+  "license": "",
+  "bugs": {
+    "url": "https://github.com/paolaMancini/botkitflow/issues"
+  },
+  "homepage": "https://github.com/paolaMancini/botkitflow#readme"
+}
