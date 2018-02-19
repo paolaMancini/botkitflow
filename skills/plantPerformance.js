@@ -11,7 +11,27 @@ module.exports = function (controller) {
                        console.log('statusCode:', response && response.statusCode); // Print the response status code if a response was received
                        console.log('body:', body); // Print the HTML for the Google homepage.
        
-                       var jsonData = JSON.parse(body);
+                       //var jsonData = JSON.parse(body);
+		       var jsonData=JSON.stringify(body));
+		       if (jsonData.length == 0) {
+		       		console.log('jsonData vuoto');
+		       }
+             
+
+        		var nb = jsonData.length;
+        
+			if (nb == 1) {
+			  console.log('jsonData con un elemento');
+			}
+			for (var i = 0; i < nb; i++) {
+			    var current = jsonData[i];
+			    //msg += "\n:small_blue_diamond: "
+			    txt += "\n" + (i+1) + ". ";
+			    txt += current.machine + " - " + current.alias   + " - " + current.oee;
+			    
+			}
+ 
+			
 			var macs=[];
 			var aliases=[];	
 			var OEEs=[];	
@@ -20,13 +40,13 @@ module.exports = function (controller) {
 			        
 				var alias = jsonData.machines[i].alias;
 				var oee = jsonData.machines[i].oee;
-				console.log(machine);
-				console.log(alias);
-				console.log(oee);
-			        macs.push(machine);
+				//console.log(machine);
+				//console.log(alias);
+				//console.log(oee);
+			        //macs.push(machine);
 			         aliases.push(alias);
 			         OEEs.push(oee);
-                      }
+                        }
                    
                  	console.log('macs: '+macs.join("|"));
 			patternAliases=aliases.join(", ");
