@@ -10,10 +10,17 @@
                 console.log('body:', body); // Print the HTML for the Google homepage.
 
                 var jsonData = JSON.parse(body);
-                for (var i = 0; i < jsonData.length; i++) {
-                    var counter = jsonData.machines[i];
-                    console.log(counter.machine.oee);
-                }
+               	for (var i = 0; i < 7; i++) {
+			 var machine = jsonData.machines[i].machine;
+			 var oee = jsonData.machines[i].alias;
+			 var alias = jsonData.machines[i].alias;
+
+			 console.log(machine);
+			 console.log(alias);
+			 console.log(oee);
+        
+		}
+
 		 return jsonData;
             });
  }
