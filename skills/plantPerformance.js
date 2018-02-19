@@ -27,9 +27,9 @@ module.exports = function (controller) {
 			for (var i = 0; i < nb; i++) {
 			    var current = jsonData[i];
 			    //msg += "\n:small_blue_diamond: "
-			    txt += "\n" + (i+1) + ". ";
+			   var txt += "\n" + (i+1) + ". ";
 			    txt += current.machine + " - " + current.alias   + " - " + current.oee;
-			    
+			    console.log('txt: ',txt;
 			}
  
 			
