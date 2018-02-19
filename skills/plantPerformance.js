@@ -59,7 +59,7 @@ module.exports = function (controller) {
 				// go back to the `default` thread after sending this
 				// message.
 				 
-				var help = "Please type ***line*** followed by the line name, among: \n***"+ patternAliases+"***";
+				var help = "Please type <br/>**line** followed by the <br/>**line name**, among: \n**"+ patternAliases+"**";
       				convo.addMessage({
 					text: `_${help}_`,
 					action: 'default',
