@@ -62,8 +62,7 @@ module.exports = function (controller) {
 				var text = Sorry I did not understand. Please, specify: ";
 				text += "\n- " +"line ["+patternAliases+"]";
 				 
-        text += "\n- " + bot.appendMention(message, "plant OEEs") + ": Ask to know the OEE value about every line in the plant ";
-				convo.addMessage({
+      				convo.addMessage({
 					text: text;
 					action: 'default',
 			    }, 'bad_response');
