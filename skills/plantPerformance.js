@@ -25,7 +25,8 @@ module.exports = function(controller) {
 
                 macs.push(machine);
                 aliases.push(alias);
-                var currentMsg = alias + ": " + oee + "%;\n";
+                var currentMsg = "<br/>"
+                alias + ": " + oee + "%;\n";
                 OEEs.push(currentMsg);
             }
 
@@ -72,7 +73,7 @@ module.exports = function(controller) {
                         },
                     },
                     {
-                        pattern: 'no-line',
+                        pattern: 'no',
                         callback: function(response, convo) {
                             convo.gotoThread('no_thread');
                         },
