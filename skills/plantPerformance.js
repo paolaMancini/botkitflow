@@ -29,12 +29,12 @@ module.exports = function (controller) {
                       }
                    
                  	console.log('macs: '+macs.join("|"));
-			console.log('aliases: '+aliases.join(","));
+			console.log('aliases: '+aliases.join(", "));
 			console.log('OEEs: '+OEEs.join(","));
 	       
 	                    
 	                   
-	                  var lines= ["machine_0","machine_1","machine_2","machine_3","machine_4","machine_5","machine_6"];
+	                  //var lines= ["machine_0","machine_1","machine_2","machine_3","machine_4","machine_5","machine_6"];
 		
 		 
 				bot.startConversation(message, function (err, convo) {
@@ -57,7 +57,7 @@ module.exports = function (controller) {
 				// go back to the `default` thread after sending this
 				// message.
 				convo.addMessage({
-					text: 'Sorry I did not understand. Please, specify: line <line name>. The known lines are: machine_2, machine_3, machine_4, machine_5, chine_6',
+					text: 'Sorry I did not understand. Please, specify: line <line name>. The known lines are: "+aliases,
 					action: 'default',
 			    }, 'bad_response');
 	
