@@ -1,6 +1,7 @@
 var request = require('request');
 module.exports = function(controller) {
-        controller.hears([/plant1 performance/i], 'direct_message,direct_mention', function(bot, message) {
+    controller.hears([(plant1 | plant) performance) | (performance(plant | plant1))], 'direct_message,direct_mention',
+        function(bot, message) {
             // var request = require('request');
             //controller.hears( [/(plant)( [a-zA-Z0-9]{1,})|(plants)|(performance)/], 'direct_message,direct_mention', function(bot, message){
 
@@ -39,7 +40,7 @@ module.exports = function(controller) {
                 bot.startConversation(message, function(err, convo) {
 
                     // create a path for when a user says YES
-                    var help = "Please, type>:\n<br/>**line 'line name'**\n Choose line name among:\n <br/>***" + patternAliases + "**";
+                    var help = "Please, type>:\n-<br/>**line 'line name'**\n- Choose line name among:\n- <br/>***" + patternAliases + "**";
                     convo.addMessage({
                         text: `_${help}_`,
                     }, 'ask-details');
@@ -90,9 +91,9 @@ module.exports = function(controller) {
                 });
             });
         })
-    }
-    //var help = "Please, type>:\n<br/>**line 'line name'**\n Choose line name among:\n <br/>***" + patternAliases + "**";
-    //                          convo.addMessage({
-    //                            text: `_${help}_`,
-    //                          action: 'default',
-    //                    }, 'bad_response');
+}
+//var help = "Please, type>:\n<br/>**line 'line name'**\n Choose line name among:\n <br/>***" + patternAliases + "**";
+//                          convo.addMessage({
+//                            text: `_${help}_`,
+//                          action: 'default',
+//                    }, 'bad_response');
