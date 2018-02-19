@@ -7,7 +7,7 @@ module.exports = function (controller) {
 
     controller.hears(['hello|hi|good morning'], 'direct_message,direct_mention', function (bot, message) {
         
-        smartfab.machines(function (err, events, text) {
+        smartfab.machines("fakeMachine0",function (err, events, text) {a
         if (err) {
                  console.log("#### ERROR");
             return;
