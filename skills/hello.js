@@ -17,10 +17,11 @@ module.exports = function (controller) {
          if (error) throw new Error(error);
 
              console.log(body);
+             bot.reply(message, "Hello");
         });
 
         
-        bot.reply(message, "Hello");
+       
              
     });
 }
