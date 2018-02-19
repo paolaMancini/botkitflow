@@ -59,7 +59,7 @@ module.exports = function (controller) {
 				// this message has an action field, which directs botkit to
 				// go back to the `default` thread after sending this
 				// message.
-				var text = Sorry I did not understand. Please, specify: ";
+				var text = "Sorry I did not understand. Please, specify: ";
 				text += "\n- " +"line ["+patternAliases+"]";
 				 
       				convo.addMessage({
