@@ -30,7 +30,7 @@ module.exports = function (controller) {
                    
                  	console.log('macs: '+macs.join("|"));
 			patternAliases=aliases.join(", ");
-			lines="/"+aliases.join("|")+"/i";
+			lines="'"+aliases.join("|")+"'";
 			console.log('patternAliases: '+patternAliases);
 			console.log('lines: '+lines);
 			console.log('OEEs: '+OEEs.join(","));
@@ -60,7 +60,7 @@ module.exports = function (controller) {
 				// go back to the `default` thread after sending this
 				// message.
 				convo.addMessage({
-					text: 'Sorry I did not understand. Please, specify: line <line name>. The known lines are: '+patternAliases,
+					text: 'Sorry I did not understand. Please, specify: line <line name>.\nThe known lines are: '+patternAliases,
 					action: 'default',
 			    }, 'bad_response');
 	
