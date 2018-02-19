@@ -29,7 +29,7 @@ module.exports = function (controller) {
 			    //msg += "\n:small_blue_diamond: "
 			   var txt += "\n" + (i+1) + ". ";
 			    txt += current.machine + " - " + current.alias   + " - " + current.oee;
-			    console.log('txt: ',txt;
+			    console.log('txt: ',txt);
 			}
  
 			
