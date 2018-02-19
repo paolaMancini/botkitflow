@@ -29,7 +29,10 @@ module.exports = function (controller) {
                       }
                    
                  	console.log('macs: '+macs.join("|"));
-			console.log('aliases: '+aliases.join(", "));
+			patternAliases=aliases.join(", ");
+			lines=aliases.join("|");
+			console.log('patternAliases: '+patternAliases);
+			console.log('lines: '+lines);
 			console.log('OEEs: '+OEEs.join(","));
 	       
 	                    
@@ -57,13 +60,13 @@ module.exports = function (controller) {
 				// go back to the `default` thread after sending this
 				// message.
 				convo.addMessage({
-					text: 'Sorry I did not understand. Please, specify: line <line name>. The known lines are: "+aliases,
+					text: 'Sorry I did not understand. Please, specify: line <line name>. The known lines are: '+patternAliases,
 					action: 'default',
 			    }, 'bad_response');
 	
 				// Create a yes/no question in the default thread...
 				convo.ask('Which line are you interested of?', [{
-						 pattern:'machine_0|machine_1|machine_2|machine_3|machine_4|machine_5|machine_6',
+						 pattern: aliases,
 						 callback: function (response, convo) {
 							 convo.gotoThread('yes_thread');
 						 },	
