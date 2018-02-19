@@ -59,10 +59,12 @@ module.exports = function (controller) {
 				// this message has an action field, which directs botkit to
 				// go back to the `default` thread after sending this
 				// message.
-				convo.addMessage({
-					text: "Sorry I did not understand. Please, specify: ";
-					text += "\n- " +"line ["+patternAliases+"]";
+				var text = Sorry I did not understand. Please, specify: ";
+				text += "\n- " +"line ["+patternAliases+"]";
 				 
+        text += "\n- " + bot.appendMention(message, "plant OEEs") + ": Ask to know the OEE value about every line in the plant ";
+				convo.addMessage({
+					text: text;
 					action: 'default',
 			    }, 'bad_response');
 	
