@@ -30,7 +30,7 @@ module.exports = function (controller) {
                    
                  	console.log('macs: '+macs.join("|"));
 			patternAliases=aliases.join(", ");
-			lines=aliases.join("|");
+			lines="/"+aliases.join("|")+"/i";
 			console.log('patternAliases: '+patternAliases);
 			console.log('lines: '+lines);
 			console.log('OEEs: '+OEEs.join(","));
