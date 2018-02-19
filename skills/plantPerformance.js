@@ -25,7 +25,7 @@ module.exports = function(controller) {
 
                     macs.push(machine);
                     aliases.push(alias);
-                    var currentMsg = "<br/>" + alias + ": " + oee + "%;\n";
+                    var currentMsg = "<br/>**" + alias + "**: **" + oee + "%**;\n";
                     OEEs.push(currentMsg);
                 }
 
@@ -37,17 +37,36 @@ module.exports = function(controller) {
                 console.log('lines: ' + lines);
 
                 bot.startConversation(message, function(err, convo) {
-                    convo.ask("The performance of plant1 are:\n" + OEEs + "\n Do ypu want furhter more details? (yes/**no**/cancel)", [{
+
+                    // create a path for when a user says YES
+                    var help = "Please, type>:\n<br/>**line 'line name'**\n Choose line name among:\n <br/>***" + patternAliases + "**";
+                    convo.addMessage({
+                        text: `_${help}_`,
+                    }, 'ask-details');
+
+
+                    // create a path where neither option was matched
+                    // this message has an action field, which directs botkit to go back to the `default` thread after sending this message.
+                    convo.addMessage({
+                        text: 'Sorry I did not understand. Say `yes` or `no`',
+                        action: 'default',
+                    }, 'bad_response');
+
+
+
+                    convo.say("The performance of plant1 are:\n" + OEEs + "\n");
+                    convo.ask("Do ypu want furhter more details? (yes/**no**/cancel)", [{
                             pattern: "yes|yeh|sure|oui|si",
                             callback: function(response, convo) {
-                                convo.say("Go, get some !");
-                                convo.next();
+                                convo.gotoThread('ask-details');
                             },
                         },
                         {
                             pattern: "no|neh|non|na|birk",
                             callback: function(response, convo) {
-                                convo.gotoThread('ask-drink');
+                                convo.say("Glad have being helped you!");
+                                convo.next();
+
                             },
                         },
                         {
@@ -64,7 +83,7 @@ module.exports = function(controller) {
                                 convo.repeat();
                                 convo.next();
                             }
-                        }
+                        },
                     ]);
 
 
