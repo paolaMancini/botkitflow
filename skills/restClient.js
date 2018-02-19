@@ -5,7 +5,7 @@
  
 var request = require('request');
 
-module.exports.allData = function() {
+exports.allData = function() {
 	
 			  var url='http://194.79.57.109:8080/SFapi/machines';		
 				request(url, function(error, response, body) {
