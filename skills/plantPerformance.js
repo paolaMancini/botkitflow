@@ -30,7 +30,7 @@ module.exports = function (controller) {
 				//console.log(oee);
 			         macs.push(machine);
 			         aliases.push(alias);
-				var currentMsg=alias+": "+oee+"%\n";
+				var currentMsg=alias+": "+oee+"%;\n";
 			         OEEs.push(currentMsg);
                         }
                    
@@ -40,12 +40,12 @@ module.exports = function (controller) {
 			lines=aliases.join("|");;
 			
 			console.log('lines: '+lines);
-			console.log('OEEs: '+OEEs.join(","));
-			v
+		 
+			 
 	       
 			//QUI restituisci gli OEE ****
 			// {"machine" : [{ "name" : "okCounter", "description" : "number of ok pieces" , "value" : 1044}, {"name" : "koCounter" , "description":"number of ko pieces", "value":19}, {"name":"goal", "description" : "theoric production as p/h", "value":3720}, {"name":"timeWork", "description":"minutes the machine has been working" , "value": 55.18}, {"name" : "performance" , "description":"performance percentage", "value":31.07}, {"name":"availability", "description":"availability percentage", "value":83.38}, {"name":"oee","description":"oee percentage", "value":25.44}, {"name":"quality", "description":"quality percentage", "value":98.21}, {"name":"timeActive", "description":"minutes the machine has been active", "value":66.18}, {"name":"timeStop", "description":"minutes the machine has been stopped", "value":11}]}
-			convo.say(OEEs);
+			convo.say("The performance of plant1 are:\n"+OEEs);
 			
 	                 // jsonLine
 			var jsonLine={"machine" : [{ "name" : "okCounter", "description" : "number of ok pieces" , "value" : 1044}, {"name" : "koCounter" , "description":"number of ko pieces", "value":19}, {"name":"goal", "description" : "theoric production as p/h", "value":3720}, {"name":"timeWork", "description":"minutes the machine has been working" , "value": 55.18}, {"name" : "performance" , "description":"performance percentage", "value":31.07}, {"name":"availability", "description":"availability percentage", "value":83.38}, {"name":"oee","description":"oee percentage", "value":25.44}, {"name":"quality", "description":"quality percentage", "value":98.21}, {"name":"timeActive", "description":"minutes the machine has been active", "value":66.18}, {"name":"timeStop", "description":"minutes the machine has been stopped", "value":11}]};
