@@ -20,7 +20,7 @@ module.exports = function (controller) {
 			var macs=[];
 			var aliases=[];	
 			var OEEs=[];	
-                       for (var i = 0; i < jsonData.machines.length; i++) {
+                        for (var i = 0; i < jsonData.machines.length; i++) {
 				var machine = jsonData.machines[i].machine;
 			        
 				var alias = jsonData.machines[i].alias;
@@ -28,21 +28,24 @@ module.exports = function (controller) {
 				//console.log(machine);
 				//console.log(alias);
 				//console.log(oee);
-			        //macs.push(machine);
+			         macs.push(machine);
 			         aliases.push(alias);
-			         OEEs.push(oee);
+				var currentMsg=alias+": "+oee+"%\n";
+			         OEEs.push(currentMsg);
                         }
                    
                  	console.log('macs: '+macs.join("|"));
 			patternAliases=aliases.join(", ");
-			lines=aliases.join("|");;
 			console.log('patternAliases: '+patternAliases);
+			lines=aliases.join("|");;
+			
 			console.log('lines: '+lines);
 			console.log('OEEs: '+OEEs.join(","));
+			v
 	       
 			//QUI restituisci gli OEE ****
 			// {"machine" : [{ "name" : "okCounter", "description" : "number of ok pieces" , "value" : 1044}, {"name" : "koCounter" , "description":"number of ko pieces", "value":19}, {"name":"goal", "description" : "theoric production as p/h", "value":3720}, {"name":"timeWork", "description":"minutes the machine has been working" , "value": 55.18}, {"name" : "performance" , "description":"performance percentage", "value":31.07}, {"name":"availability", "description":"availability percentage", "value":83.38}, {"name":"oee","description":"oee percentage", "value":25.44}, {"name":"quality", "description":"quality percentage", "value":98.21}, {"name":"timeActive", "description":"minutes the machine has been active", "value":66.18}, {"name":"timeStop", "description":"minutes the machine has been stopped", "value":11}]}
-			bot.reply();
+			convo.say(OEEs);
 			
 	                 // jsonLine
 			var jsonLine={"machine" : [{ "name" : "okCounter", "description" : "number of ok pieces" , "value" : 1044}, {"name" : "koCounter" , "description":"number of ko pieces", "value":19}, {"name":"goal", "description" : "theoric production as p/h", "value":3720}, {"name":"timeWork", "description":"minutes the machine has been working" , "value": 55.18}, {"name" : "performance" , "description":"performance percentage", "value":31.07}, {"name":"availability", "description":"availability percentage", "value":83.38}, {"name":"oee","description":"oee percentage", "value":25.44}, {"name":"quality", "description":"quality percentage", "value":98.21}, {"name":"timeActive", "description":"minutes the machine has been active", "value":66.18}, {"name":"timeStop", "description":"minutes the machine has been stopped", "value":11}]};
