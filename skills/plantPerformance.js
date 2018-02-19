@@ -63,7 +63,7 @@ module.exports = function (controller) {
 				text += "\n- " +"line ["+patternAliases+"]";
 				 
       				convo.addMessage({
-					text: text;
+					text: 'Sorry I did not understand. Please specify line  fakeMachine0,fakeMachine1,fakeMachine2,fakeMachine3,fakeMachine4,fakeMachine5,fakeMachine6',
 					action: 'default',
 			    }, 'bad_response');
 	
