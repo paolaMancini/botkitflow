@@ -25,7 +25,7 @@ module.exports = function(controller) {
 
                     macs.push(machine);
                     aliases.push(alias);
-                    var currentMsg = "<br/>**" + alias + "**: **" + oee + "%**;\n";
+                    var currentMsg = "**" + alias + "**: **" + oee + "%**\n";
                     OEEs.push(currentMsg);
                 }
 
@@ -54,8 +54,8 @@ module.exports = function(controller) {
 
 
 
-                    convo.say("The performance of plant1 are:\n" + OEEs + "\n");
-                    convo.ask("Do ypu want furhter more details? (yes/**no**/cancel)", [{
+                    convo.say("Performance about Plant1 is:\n" + OEEs + "\n");
+                    convo.ask("Do you want furhter more details? (yes/**no**/cancel)", [{
                             pattern: "yes|yeh|sure|oui|si",
                             callback: function(response, convo) {
                                 convo.gotoThread('ask-details');
