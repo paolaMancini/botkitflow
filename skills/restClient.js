@@ -2,27 +2,29 @@
   //  return Date();
 //};
 
- var request = require('request');	       
- exports.allData=function () {
-	 request('http://194.79.57.109:8080/SFapi/machines', function(error, response, body) {
-                console.log('error:', error); // Print the error if one occurred
-                console.log('statusCode:', response && response.statusCode); // Print the response status code if a response was received
-                console.log('body:', body); // Print the HTML for the Google homepage.
+ 	
+var express = require('express');
+var router = express.Router();
+var request = require('request');
 
-                var jsonData = JSON.parse(body);
-               	for (var i = 0; i < 7; i++) {
-			 var machine = jsonData.machines[i].machine;
-			 var oee = jsonData.machines[i].alias;
-			 var alias = jsonData.machines[i].alias;
 
-			 console.log(machine);
-			 console.log(alias);
-			 console.log(oee);
-        
-		}
 
-		 return jsonData;
-            });
- }
+router.get('/', function(req, res, next) {
+  request({
+    uri: 'http://194.79.57.109:8080/SFapi/machines',
+   // qs: {
+     // api_key: '123456',
+     // query: 'World of Warcraft: Legion'
+    //},
+    function(error, response, body) {
+      if (!error && response.statusCode === 200) {
+        console.log(body);
+        res.json(body);
+      } else {
+        res.json(error);
+      }
+    }
+  });
+});
 
-            
+module.exports = router;           
