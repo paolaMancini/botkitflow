@@ -12,23 +12,9 @@ module.exports = function (controller) {
                        console.log('statusCode:', response && response.statusCode); // Print the response status code if a response was received
                        console.log('body:', body); // Print the HTML for the Google homepage.
        
-                       //var jsonData = JSON.parse(body);
-		       var jsonData=JSON.stringify(body);
-		       if (jsonData.length == 0) {
-		       		console.log('jsonData vuoto');
-		       }
-             
-
-        		var nb = jsonData.length;
-        
-			if (nb == 1) {
-			  console.log('jsonData con un elemento');
-			}
-			for (var i = 0; i < nb; i++) {
-			    var current = jsonData[i];
-			    //msg += "\n:small_blue_diamond: "
-			   console.log(current.machine + " - " + current.alias   + " - " + current.oee);
-			}
+                       var jsonData = JSON.parse(body);
+		      
+		      
  
 			
 			var macs=[];
