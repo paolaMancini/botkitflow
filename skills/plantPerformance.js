@@ -25,9 +25,7 @@ module.exports = function (controller) {
 			        
 				var alias = jsonData.machines[i].alias;
 				var oee = jsonData.machines[i].oee;
-				//console.log(machine);
-				//console.log(alias);
-				//console.log(oee);
+				 
 			         macs.push(machine);
 			         aliases.push(alias);
 				var currentMsg=alias+": "+oee+"%;\n";
@@ -40,19 +38,7 @@ module.exports = function (controller) {
 			lines=aliases.join("|");;
 			
 			console.log('lines: '+lines);
-		 	bot.reply();
-			 
-	       
-			//QUI restituisci gli OEE ****
-			// {"machine" : [{ "name" : "okCounter", "description" : "number of ok pieces" , "value" : 1044}, {"name" : "koCounter" , "description":"number of ko pieces", "value":19}, {"name":"goal", "description" : "theoric production as p/h", "value":3720}, {"name":"timeWork", "description":"minutes the machine has been working" , "value": 55.18}, {"name" : "performance" , "description":"performance percentage", "value":31.07}, {"name":"availability", "description":"availability percentage", "value":83.38}, {"name":"oee","description":"oee percentage", "value":25.44}, {"name":"quality", "description":"quality percentage", "value":98.21}, {"name":"timeActive", "description":"minutes the machine has been active", "value":66.18}, {"name":"timeStop", "description":"minutes the machine has been stopped", "value":11}]}
-			 
-			
-	                 // jsonLine
-			var jsonLine={"machine" : [{ "name" : "okCounter", "description" : "number of ok pieces" , "value" : 1044}, {"name" : "koCounter" , "description":"number of ko pieces", "value":19}, {"name":"goal", "description" : "theoric production as p/h", "value":3720}, {"name":"timeWork", "description":"minutes the machine has been working" , "value": 55.18}, {"name" : "performance" , "description":"performance percentage", "value":31.07}, {"name":"availability", "description":"availability percentage", "value":83.38}, {"name":"oee","description":"oee percentage", "value":25.44}, {"name":"quality", "description":"quality percentage", "value":98.21}, {"name":"timeActive", "description":"minutes the machine has been active", "value":66.18}, {"name":"timeStop", "description":"minutes the machine has been stopped", "value":11}]};
-	                   
-	                  //var lines= ["machine_0","machine_1","machine_2","machine_3","machine_4","machine_5","machine_6"];
-		
-		 		 
+		 	 
 				bot.startConversation(message, function (err, convo) {
 	
 				// create a path for when a user says YES
@@ -73,7 +59,7 @@ module.exports = function (controller) {
 				// go back to the `default` thread after sending this
 				// message.
 				 
-				var help = "Please type ***line***'line' followed by the line name, among: \n"+"***"+ atternAliases+"***";
+				var help = "Please type ***line*** followed by the line name, among: \n"***"+ atternAliases+"***";
       				convo.addMessage({
 					text: `_${help}_`,
 					action: 'default',
