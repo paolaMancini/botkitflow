@@ -5,9 +5,10 @@
  
 var request = require('request');
 
-exports.allData = function() {
-	
-			  var url='http://194.79.57.109:8080/SFapi/machines';		
+ 
+
+var machines_get= function () {
+    var url='http://194.79.57.109:8080/SFapi/machines';		
 				request(url, function(error, response, body) {
 						   console.log('error:', error); // Print the error if one occurred
 						   console.log('statusCode:', response && response.statusCode); // Print the response status code if a response was received
@@ -30,5 +31,30 @@ exports.allData = function() {
 								OEEs.push(oee);
 						  }
 				})
-											
-}
+} 
+
+var request = require('request');
+
+ 
+var machStatus_get= function (machine) {
+ var url="http://194.79.57.109:8080/SFapi/status?"+machine;		
+    request(url, function(error, response, body) {
+    console.log('error:', error); // Print the error if one occurred
+    console.log('statusCode:', response && response.statusCode); // Print the response status code if a response was received
+   console.log('body:', body); // Print the HTML for the Google homepage.
+  
+   var jsonData = JSON.parse(body);
+							
+ })
+}  
+
+module.exports = {
+    machines: machines_get,
+    machStaust: machSatus_get,
+};
+
+
+module.exports = {
+    machines: machines_get,
+    machStatus machStatus_get,
+};
