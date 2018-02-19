@@ -22,7 +22,7 @@ module.exports = function (controller) {
 							console.log(alias);
 							console.log(oee);
                       }
-                     return jsonData;
+                   
                  
 	       
 	                    
