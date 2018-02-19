@@ -40,7 +40,7 @@ module.exports = function (controller) {
 			lines=aliases.join("|");;
 			
 			console.log('lines: '+lines);
-		 
+		 	bot.reply();
 			 
 	       
 			//QUI restituisci gli OEE ****
@@ -53,7 +53,7 @@ module.exports = function (controller) {
 	                  //var lines= ["machine_0","machine_1","machine_2","machine_3","machine_4","machine_5","machine_6"];
 		
 		 		 
-				bot.startConversation("The performance of plant1 are:\n"+OEEs", function (err, convo) {
+				bot.startConversation(message, function (err, convo) {
 	
 				// create a path for when a user says YES
 				convo.addMessage({
@@ -72,16 +72,15 @@ module.exports = function (controller) {
 				// this message has an action field, which directs botkit to
 				// go back to the `default` thread after sending this
 				// message.
-				
-				var help = "Sorry I did not understand.";
-				help += "\n- Please, specify: <br>'line ["+patternAliases+"]'</br>";
+				 
+				var help = "Please type ***line***'line' followed by the line name, among: \n"+"***"+ atternAliases+"***";
       				convo.addMessage({
 					text: `_${help}_`,
 					action: 'default',
 			    }, 'bad_response');
 	
 				// Create a yes/no question in the default thread...
-				convo.ask('Which line are you interested of?', [{
+				convo.ask("The performance of plant1 are:\n"+OEEs+"\n Which line are you interested of?", [{
 						 pattern:  lines,
 						 callback: function (response, convo) {
 							 convo.setVar('color', response.text);
