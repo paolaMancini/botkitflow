@@ -19,7 +19,7 @@ module.exports = function (controller) {
 				var machine = jsonData.machines[i].machine;
 			        
 				var alias = jsonData.machines[i].alias;
-				var oee = jsonData.machines[i].alias;
+				var oee = jsonData.machines[i].oee;
 				console.log(machine);
 				console.log(alias);
 				console.log(oee);
