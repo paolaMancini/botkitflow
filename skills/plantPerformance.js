@@ -61,7 +61,7 @@ module.exports = function (controller) {
 				// message.
 				var help = "Sorry I did not understand. Please, specify: 'line ["+patternAliases+"]'"; 
       				convo.addMessage({
-					text: text: `_${help}_`,'
+					text: text: `_${help}_`,
 					action: 'default',
 			    }, 'bad_response');
 	
