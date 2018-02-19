@@ -76,6 +76,8 @@ module.exports = function (controller) {
 				convo.ask('Which line are you interested of?', [{
 						 pattern:  lines,
 						 callback: function (response, convo) {
+							 convo.setVar('color', response.text);
+							 console.log('convo.vars:', convo.vars);
 							 convo.gotoThread('yes_thread');
 						 },	
 				},
