@@ -59,11 +59,9 @@ module.exports = function (controller) {
 				// this message has an action field, which directs botkit to
 				// go back to the `default` thread after sending this
 				// message.
-				var text = "Sorry I did not understand. Please, specify: ";
-				text += "\n- " +"line ["+patternAliases+"]";
-				 
+				var help = "Sorry I did not understand. Please, specify: 'line ["+patternAliases+"]'"; 
       				convo.addMessage({
-					text: 'Sorry I did not understand. Please specify line  fakeMachine0,fakeMachine1,fakeMachine2,fakeMachine3,fakeMachine4,fakeMachine5,fakeMachine6',
+					text: text: `_${help}_`,'
 					action: 'default',
 			    }, 'bad_response');
 	
