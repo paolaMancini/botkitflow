@@ -2,7 +2,7 @@ var request = require('request');
 module.exports = function (controller) {
 	             // var request = require('request');
 	 	     //controller.hears( [/(plant)( [a-zA-Z0-9]{1,})|(plants)|(performance)/], 'direct_message,direct_mention', function(bot, message){
-	             controller.hears(/plant1 performance/i, 'direct_message,direct_mention', function(bot, message){
+	             controller.hears([/plant1 performance/i], 'direct_message,direct_mention', function(bot, message){
 	             console.log('message: ',message);
 	              
 		var url='http://194.79.57.109:8080/SFapi/machines';		
@@ -12,7 +12,7 @@ module.exports = function (controller) {
                        console.log('body:', body); // Print the HTML for the Google homepage.
        
                        //var jsonData = JSON.parse(body);
-		       var jsonData=JSON.stringify(body));
+		       var jsonData=JSON.stringify(body);
 		       if (jsonData.length == 0) {
 		       		console.log('jsonData vuoto');
 		       }
