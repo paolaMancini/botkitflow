@@ -2,7 +2,7 @@
 // Fallback Command
 //
 //var smartfab = require('./restClient.js');
-var smartfab = require("./events.js");
+//var smartfab = require("./events.js");
 var request = require("request");
 
 module.exports = function (controller) {
@@ -19,19 +19,7 @@ module.exports = function (controller) {
              console.log(body);
         });
 
-        smartfab.machines("fakeMachine0",function (err, events, text) {a
-        if (err) {
-                 console.log("#### ERROR");
-            return;
-        }
-
-        if (events.length == 0) {
-            console.log('machines lenght: '+events.mahcines.lenght)
-            return;
-        }
         
-        console.log("smartfab.machines.lenght: "+smartfab.machines.lenght);
-        //console.log("The date and time are currently: " + dt.myDateTime())       
         bot.reply(message, "Hello");
              
     });
