@@ -4,9 +4,7 @@ var fine = require("debug")("samples:fine");
 var request = require("request");
 
 
-module.exports.machines = function (limit
-
-) {
+module.exports.machines = function (limit) {
 
     // Get list of upcoming events
     var options = {
@@ -29,10 +27,7 @@ module.exports.machines = function (limit
 
         var events = JSON.parse(body);
         debug("machines " + events.length + " events");
-        fine(JSON.stringify(
-        
-        
-        ));
+        fine(JSON.stringify(events));
 
         if (events.length == 0) {
            
@@ -46,10 +41,10 @@ module.exports.machines = function (limit
             msg = "**only one upcoming event:**\n";
         }
         for (var i = 0; i < nb; i++) {
-            var current = events[i];
+            var status = events[i];
             //msg += "\n:small_blue_diamond: "
             msg += "\n" + (i+1) + ". ";
-            msg += current.beginDay + " - " + current.endDay + ": [" + current.name + "](" + current.url + "), " + current.city + " (" + current.country + ")";
+            msg +=  "status.name:" + status.name + "status.description:"+ status.description+ "status.value: "+ status.value;
         }
  
     });
