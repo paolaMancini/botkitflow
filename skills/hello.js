@@ -1,7 +1,7 @@
 //
 // Fallback Command
 //
-var smartfab = require('./restClient');
+var smartfab = require('./restClient.js');
 
 module.exports = function (controller) {
 
