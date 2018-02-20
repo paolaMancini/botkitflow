@@ -40,9 +40,8 @@ module.exports = function(controller) {
 
                     bot.startConversation(message, function(err, convo) {
                         // create a path for when a user says YES
-                        var help = "Which line are you interested of?<br>Please, type:<br>**line 'line name'**<br>"
-                        patternAliases + "**";
-                        help += "Choose line name among:  **" + patternAliases + "**\n";
+                        var help = "Which line are you interested of?<br>Please, type: **line 'line name'** "
+                        help += "Choose line name among:<br>**" + patternAliases + "**\n";
                         convo.addMessage({
                             text: `_${help}_`,
                         }, 'ask-details');
