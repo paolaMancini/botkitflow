@@ -17,7 +17,7 @@ module.exports = function(controller) {
                     var jsonData = JSON.parse(body);
 
                     var detailMsg;
-
+                    var alias;
                     var oees = "<br>";
                     var aliases;
                     for (var i = 0; i < jsonData.machines.length; i++) {
@@ -31,7 +31,7 @@ module.exports = function(controller) {
                         aliases += "**" + alias + "**<br>";
                         var currentMsg = alias + ": **" + oee + "**%;";
                         oees += alias + ": **" + oee + "%**;<br>";
-                        var detailMsg = alias + ": **line" + i + "** or **" + machine + " details**;<br>";
+                        detailMsg = alias + ": **line" + i + "** or **" + machine + " details**;<br>";
                     }
 
                     console.log('macs: ' + macs.join("|"));
