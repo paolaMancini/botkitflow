@@ -49,7 +49,7 @@ module.exports = function(controller) {
                 console.log('name: ', name);
                 console.log('description: ', descr);
                 console.log('value: ', value);
-                text += "descr + " **: " + value + " ** ; < br > < br > ";
+                text += descr + " **: " + value + " ** ; < br > < br > ";
 
             }
             if (text === textDef) {
