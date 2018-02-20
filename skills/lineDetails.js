@@ -1,3 +1,4 @@
+var request = require("request");
 module.exports = function(controller) {
 
     // controller.hears(['cheese'], 'direct_message,direct_mention',
@@ -12,7 +13,7 @@ module.exports = function(controller) {
         var plantName = message.match[1];
         //match[1] is the (.*) group. match[0] is the entire group (open the (.*) doors).
 
-        var url = "http://194.79.57.109:8080/SFapi/status?machine=" + lineName;
+        var url = 'http://194.79.57.109:8080/SFapi/status?machine=' + lineName;
         console.log("url:  ", url);
 
         request(url, function(error, response, body) {
