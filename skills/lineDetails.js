@@ -12,7 +12,8 @@ module.exports = function(controller) {
         var plantName = message.match[1];
         //match[1] is the (.*) group. match[0] is the entire group (open the (.*) doors).
 
-        var url = 'http://194.79.57.109:8080/SFapi/status?machine' + lineName;
+        var url = 'http://194.79.57.109:8080/SFapi/status?machine=' + lineName;
+
         request(url, function(error, response, body) {
             console.log('error:', error); // Print the error if one occurred
             console.log('statusCode:', response && response.statusCode); // Print the response status code if a response was received
