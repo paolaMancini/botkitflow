@@ -13,6 +13,7 @@ module.exports = function(controller) {
         //match[1] is the (.*) group. match[0] is the entire group (open the (.*) doors).
 
         var url = 'http://194.79.57.109:8080/SFapi/status?machine=' + lineName;
+        console.log("url:  ", url);
 
         request(url, function(error, response, body) {
             console.log('error:', error); // Print the error if one occurred
