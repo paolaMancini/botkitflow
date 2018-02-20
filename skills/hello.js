@@ -1,6 +1,6 @@
 module.exports = function(controller) {
 
-    controller.hears(['hi', 'hello', 'good morning'], 'message_received', function(bot, message) {
+    controller.hears(/^hi|hello|goodmorning$'/gi, 'message_received', function(bot, message) {
 
         var message_options = [
             "Hello there!",
