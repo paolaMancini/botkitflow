@@ -1,12 +1,15 @@
 var request = require('request');
 module.exports = function(controller) {
-        controller.hears([/plant1 performance/i], 'direct_message,direct_mention',
-            function(bot, message) {
-                // var request = require('request');
-                //controller.hears( [/(plant)( [a-zA-Z0-9]{1,})|(plants)|(performance)/], 'direct_message,direct_mention', function(bot, message){
+    //controller.hears([/plant1 performance/i], 'direct_message,direct_mention',
+    controller.hears(/'Which are the performance data about the plant (.*) doors'/i, 'direct_message,direct_mention',
+        function(bot, message) {
+            // var request = require('request');
+            //controller.hears( [/(plant)( [a-zA-Z0-9]{1,})|(plants)|(performance)/], 'direct_message,direct_mention', function(bot, message){
 
-                console.log('message: ', message);
-
+            console.log('message: ', message);
+            var plantName = message.match[1];
+            //match[1] is the (.*) group. match[0] is the entire group (open the (.*) doors).
+            if (plantName === '1') {
                 var url = 'http://194.79.57.109:8080/SFapi/machines';
                 request(url, function(error, response, body) {
                     console.log('error:', error); // Print the error if one occurred
@@ -26,7 +29,7 @@ module.exports = function(controller) {
 
                         macs.push(machine);
                         aliases.push(alias);
-                        var currentMsg = "**" + alias + "**: **" + oee + "%**\n";
+                        var currentMsg = "\n**" + alias + "**: " + oee + "%\n";
                         OEEs.push(currentMsg);
                     }
 
@@ -55,7 +58,8 @@ module.exports = function(controller) {
 
 
 
-                        convo.say("Performance about Plant1 is:\n" + OEEs + "\n");
+                        convo.say("The performance data is:" + "\n"
+                            OEEs + "\n");
                         convo.ask("Do you want furhter more details? (yes/**no**/cancel)", [{
                                 pattern: "yes|yeh|sure|oui|si",
                                 callback: function(response, convo) {
@@ -90,10 +94,9 @@ module.exports = function(controller) {
 
                     });
                 });
-            })
-    }
-    //var help = "Please, type>:\n<br/>**line 'line name'**\n Choose line name among:\n <br/>***" + patternAliases + "**";
-    //                          convo.addMessage({
-    //                            text: `_${help}_`,
-    //                          action: 'default',
-    //                    }, 'bad_response');
+            } else {
+                bot.reply(message, 'I\'m sorry. I don\'t know this plant');
+            }
+
+        })
+}
