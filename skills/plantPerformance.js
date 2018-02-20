@@ -1,13 +1,13 @@
 var request = require('request');
 module.exports = function(controller) {
-    //controller.hears([/plant1 performance/i], 'direct_message,direct_mention',
-    controller.hears(/'Which are the performance data about the pla(.*) (performance)(.*) (plant) (.*)/i, 'direct_message,direct_mention',
+    //controller.hears([/performance about plant 1/i], 'direct_message,direct_mention',
+    controller.hears(/'performance about plant (.*)/i, 'direct_message,direct_mention',
         function(bot, message) {
             // var request = require('request');
             //controller.hears( [/(plant)( [a-zA-Z0-9]{1,})|(plants)|(performance)/], 'direct_message,direct_mention', function(bot, message){
 
             console.log('message: ', message);
-            var plantName = message.match[5];
+            var plantName = message.match[1];
             //match[1] is the (.*) group. match[0] is the entire group (open the (.*) doors).
             if (plantName === '1') {
                 var url = 'http://194.79.57.109:8080/SFapi/machines';
@@ -58,8 +58,7 @@ module.exports = function(controller) {
 
 
 
-                        convo.say("The performance data is:" + "\n"
-                            OEEs + "\n");
+                        convo.say("The performance data is: \n" + OEEs + "\n");
                         convo.ask("Do you want furhter more details? (yes/**no**/cancel)", [{
                                 pattern: "yes|yeh|sure|oui|si",
                                 callback: function(response, convo) {
