@@ -29,7 +29,7 @@ module.exports = function(controller) {
 
                         macs.push(machine);
                         aliases.push(alias);
-                        var currentMsg = "\n**" + alias + "**: " + oee + "%\n";
+                        var currentMsg = " **" + alias + "**: " + oee + "%\n";
                         OEEs.push(currentMsg);
                     }
 
@@ -43,7 +43,7 @@ module.exports = function(controller) {
                     bot.startConversation(message, function(err, convo) {
 
                         // create a path for when a user says YES
-                        var help = "Please, type>:\n-<br/>**line 'line name'**\n- Choose line name among:\n- <br/>***" + patternAliases + "**";
+                        var help = "Please, type: <br/>**line 'line name'**\n-Choose line name among:\n- <br/>***" + patternAliases + "**";
                         convo.addMessage({
                             text: `_${help}_`,
                         }, 'ask-details');
@@ -58,7 +58,7 @@ module.exports = function(controller) {
 
 
 
-                        convo.say("The performance data is: \n" + OEEs + "\n");
+                        convo.say("The performance data is: \n-" + OEEs + "\-n");
                         convo.ask("Do you want furhter more details? (yes/**no**/cancel)", [{
                                 pattern: "yes|yeh|sure|oui|si",
                                 callback: function(response, convo) {
@@ -94,7 +94,7 @@ module.exports = function(controller) {
                     });
                 });
             } else {
-                bot.reply(message, 'I\'m sorry. I don\'t know this plant');
+                bot.reply(message, 'I\'m sorry. I don\'t know this plant.');
             }
 
         })
