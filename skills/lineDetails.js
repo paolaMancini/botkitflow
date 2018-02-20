@@ -23,24 +23,23 @@ module.exports = function(controller) {
 
             if (error) {
                 console.log("could not retreive list of events, error: " + error);
-                controller(new Error("Could not retreive current events, sorry [SmartFab is not responding]"), null, null);
-                //sparkCallback(new Error("Could not retreive current events, sorry [bad anwser from Events API]"), null, null);
+                bot.reply(message, "The machine is not responding");
                 return;
             }
 
             if ((response < 200) || (response > 299)) {
                 console.log("could not retreive list of events, response: " + response);
-                controller(new Error(" [SmartFab is not responding]"), null, null);
+                bot.reply(message, "The machine is not responding");
                 return;
             }
             if (body.length == 0) {
                 console.log("body is null");
-                controller(new Error(" [SmartFab is not responding]"), null, null);
+                bot.reply(message, "The machine is not responding");
                 return;
             }
             var jsonData = JSON.parse(body);
 
-            var textDef = "The details are:<br>";
+            var textDef = "Details:<br>";
             var text = textDef;
 
             for (var i = 0; i < jsonData.machine.length; i++) {
@@ -50,15 +49,8 @@ module.exports = function(controller) {
                 console.log('name: ', name);
                 console.log('description: ', descr);
                 console.log('value: ', value);
-                text += "**" + descr + "**: " + value + ":<br>";
-                // var alias = jsonData.machines[i].alias;
-                //var oee = jsonData.machines[i].oee;
+                text += "descr + " **: " + value + " ** ; < br > < br > ";
 
-                //macs.push(machine);
-                //aliases.push(alias);
-                //var currentMsg = " **" + alias + "**: " + oee + "%";
-                //OEEs.push(currentMsg);
-                // oees += " **" + alias + "**: " + oee + "%;<br";
             }
             if (text === textDef) {
 
