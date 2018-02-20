@@ -33,8 +33,8 @@ module.exports = function(controller) {
                 controller(new Error(" [SmartFab is not responding]"), null, null);
                 return;
             }
-            if (str.length == 0) {
-                console.log("bosy is null");
+            if (body.length == 0) {
+                console.log("body is null");
                 controller(new Error(" [SmartFab is not responding]"), null, null);
                 return;
             }
