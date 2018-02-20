@@ -41,7 +41,7 @@ module.exports = function(controller) {
 
                     bot.startConversation(message, function(err, convo) {
                         // create a path for when a user says YES
-                        var help = "Which line are you interested of? Please, type<br>" + aliases ";
+                        var help = "Which line are you interested of? Please, type<br>" + aliases;
                         help += detailMsg;
 
 
