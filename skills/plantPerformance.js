@@ -40,9 +40,6 @@ module.exports = function(controller) {
 
                     bot.startConversation(message, function(err, convo) {
 
-
-
-
                         // create a path where neither option was matched
                         // this message has an action field, which directs botkit to go back to the `default` thread after sending this message.
                         convo.addMessage({
