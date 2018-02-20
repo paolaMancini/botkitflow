@@ -16,9 +16,10 @@ module.exports = function(controller) {
 
                     var jsonData = JSON.parse(body);
 
-                    var macs = [];
-                    var aliases = [];
-                    var OEEs = [];
+                    var detailMsg;
+
+                    var oees = "<br>";
+                    var aliases;
                     for (var i = 0; i < jsonData.machines.length; i++) {
                         var machine = jsonData.machines[i].machine;
 
@@ -27,21 +28,23 @@ module.exports = function(controller) {
 
                         macs.push(machine);
                         aliases.push(alias);
-                        var currentMsg = " **" + alias + "**: " + oee + "%<br>";
-                        OEEs.push(currentMsg);
+                        aliases += "**" + alias + "**<br>";
+                        var currentMsg = alias + ": **" + oee + "**%;";
+                        oees += alias + ": **" + oee + "%**;<br>";
+                        var detailMsg = alias + ": **line" + i + "** or **" + machine + " details**;<br>";
                     }
 
                     console.log('macs: ' + macs.join("|"));
-                    patternAliases = aliases.join(",  ");
+                    //patternAliases = aliases.join(",  ");
                     console.log('patternAliases: ' + patternAliases);
-                    lines = aliases.join("|");
 
-                    console.log('lines: ' + lines);
 
                     bot.startConversation(message, function(err, convo) {
                         // create a path for when a user says YES
-                        var help = "Which line are you interested of?<br>Please, specify  :** 'line name' details";
-                        help += "<br> Choose line name among:<br>**" + patternAliases + "**\n";
+                        var help = "Which line are you interested of? Please, type<br>" + aliases ";
+                        help += detailMsg;
+
+
                         convo.addMessage({
                             text: `_${help}_`,
                         }, 'ask-details');
@@ -54,8 +57,7 @@ module.exports = function(controller) {
                         }, 'bad_response');
 
 
-
-                        convo.say("The performance data is:<br>" + OEEs + "\n");
+                        convo.say(oees);
                         convo.ask("Do you want furhter more details? (yes/**no**/cancel)", [{
                                 pattern: "yes|yeh|sure|oui|si",
                                 callback: function(response, convo) {
