@@ -31,7 +31,7 @@ module.exports = function(controller) {
                         aliases += "**" + alias + "**<br>";
                         var currentMsg = alias + ": **" + oee + "**%;";
                         oees += alias + ": **" + oee + "%**;<br>";
-                        detailMsg = alias + ": **line" + i + "** or **" + machine + " details**;<br>";
+                        detailMsg += alias + ": **line" + i + "** or **" + machine + " details**;<br>";
                     }
 
                     //console.log('macs: ' + macs.join("|"));
@@ -57,7 +57,7 @@ module.exports = function(controller) {
                         }, 'bad_response');
 
 
-                        convo.say(oees);
+                        convo.say("The performance data is:<br>" + oees);
                         convo.ask("Do you want furhter more details? (yes/**no**/cancel)", [{
                                 pattern: "yes|yeh|sure|oui|si",
                                 callback: function(response, convo) {
