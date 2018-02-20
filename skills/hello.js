@@ -1,6 +1,6 @@
 module.exports = function(controller) {
 
-    controller.hears(['hello', 'hey', 'hi', 'aloha'], ['direct_message', 'direct_mention', 'mention'], function(bot, message) {
+    controller.hears(['hello', 'hey', 'aloha'], ['direct_message', 'direct_mention', 'mention'], function(bot, message) {
         var message_options = [
             "Hello there!",
             "Hello.",
