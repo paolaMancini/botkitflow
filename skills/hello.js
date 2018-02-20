@@ -1,8 +1,12 @@
 module.exports = function(controller) {
 
-    controller.hears(['/hello|hi|good morning/'], 'direct_message,direct_mention', function(bot, message) {
+    controller.hears([/hello|hi|good morning/], 'message_received', function(bot, message) {
 
-        bot.reply(message, "Hello");
+        if (message.user && message.user.name) {
+            bot.reply(message, 'Hello ' + user.name + '!!');
+        } else {
+            bot.reply(message, 'Hello.');
+        }
 
     });
 }
