@@ -33,7 +33,11 @@ module.exports = function(controller) {
                 controller(new Error(" [SmartFab is not responding]"), null, null);
                 return;
             }
-
+            if (str.length == 0) {
+                console.log("bosy is null");
+                controller(new Error(" [SmartFab is not responding]"), null, null);
+                return;
+            }
             var jsonData = JSON.parse(body);
 
             var textDef = "The details are:<br>";
@@ -42,7 +46,7 @@ module.exports = function(controller) {
             for (var i = 0; i < jsonData.machine.length; i++) {
                 var name = jsonData.machine[i].machine;
                 var descr = jsonData.machine[i].description;
-                var navaluesme = jsonData.machine[i].value;
+                var value = jsonData.machine[i].value;
                 console.log('name: ', name);
                 console.log('description: ', descr);
                 console.log('value: ', value);
