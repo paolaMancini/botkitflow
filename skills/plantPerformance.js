@@ -27,7 +27,7 @@ module.exports = function(controller) {
 
                         macs.push(machine);
                         aliases.push(alias);
-                        var currentMsg = " **" + alias + "**: " + oee + "%\n";
+                        var currentMsg = " **" + alias + "**: " + oee + "%<br>";
                         OEEs.push(currentMsg);
                     }
 
@@ -40,8 +40,8 @@ module.exports = function(controller) {
 
                     bot.startConversation(message, function(err, convo) {
                         // create a path for when a user says YES
-                        var help = "Which line are you interested of?<br>Please, type: **line 'line name'** "
-                        help += "Choose line name among:<br>**" + patternAliases + "**\n";
+                        var help = "Which line are you interested of?<br>Please, specify  :** 'line name' details";
+                        help += "<br> Choose line name among:<br>**" + patternAliases + "**\n";
                         convo.addMessage({
                             text: `_${help}_`,
                         }, 'ask-details');
@@ -55,7 +55,7 @@ module.exports = function(controller) {
 
 
 
-                        convo.say("The performance data is: \n" + OEEs + "\n");
+                        convo.say("The performance data is:<br>" + OEEs + "\n");
                         convo.ask("Do you want furhter more details? (yes/**no**/cancel)", [{
                                 pattern: "yes|yeh|sure|oui|si",
                                 callback: function(response, convo) {
