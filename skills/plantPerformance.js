@@ -40,12 +40,7 @@ module.exports = function(controller) {
 
                     bot.startConversation(message, function(err, convo) {
 
-                        // create a path for when a user says YES
-                        var help = "Please, type: **line 'line name'**";
-                        help += "\nChoose line name among: **" + patternAliases + "**\n";
-                        convo.addMessage({
-                            text: `_${help}_`,
-                        }, 'ask-details');
+
 
 
                         // create a path where neither option was matched
@@ -87,6 +82,14 @@ module.exports = function(controller) {
                                     convo.next();
                                 }
                             },
+                            {
+                                // create a path for when a user says YES
+                                var help = "Please, type: **line 'line name'**";
+                                help += "\nChoose line name among: **" + patternAliases + "**\n";
+                                convo.addMessage({
+                                    text: `_${help}_`,
+                                }, 'ask-details');
+                            }
                         ]);
 
 
