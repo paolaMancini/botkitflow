@@ -41,8 +41,8 @@ module.exports = function(controller) {
                     bot.startConversation(message, function(err, convo) {
 
                         // create a path for when a user says YES
-                        var help = "Please, type: **line 'line name'**;
-                        help += "\n- Choose line name among: **" + patternAliases + "**";
+                        var help = "Please, type: **line 'line name'**";
+                        help += "\nChoose line name among: **" + patternAliases + "**\n";
                         convo.addMessage({
                             text: `_${help}_`,
                         }, 'ask-details');
@@ -57,7 +57,7 @@ module.exports = function(controller) {
 
 
 
-                        convo.say("The performance data is: \n-" + OEEs + "\-n");
+                        convo.say("The performance data is: \n" + OEEs + "\n");
                         convo.ask("Do you want furhter more details? (yes/**no**/cancel)", [{
                                 pattern: "yes|yeh|sure|oui|si",
                                 callback: function(response, convo) {
