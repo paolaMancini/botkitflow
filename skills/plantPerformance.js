@@ -34,9 +34,9 @@ module.exports = function(controller) {
                         detailMsg = alias + ": **line" + i + "** or **" + machine + " details**;<br>";
                     }
 
-                    console.log('macs: ' + macs.join("|"));
+                    //console.log('macs: ' + macs.join("|"));
                     //patternAliases = aliases.join(",  ");
-                    console.log('patternAliases: ' + patternAliases);
+                    //console.log('patternAliases: ' + patternAliases);
 
 
                     bot.startConversation(message, function(err, convo) {
