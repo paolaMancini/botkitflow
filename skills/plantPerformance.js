@@ -26,7 +26,7 @@ module.exports = function(controller) {
                         var alias = jsonData.machines[i].alias;
                         var oee = jsonData.machines[i].oee;
 
-                        macs.push(machine);
+                        //macs.push(machine);
                         aliases.push(alias);
                         aliases += "**" + alias + "**<br>";
                         var currentMsg = alias + ": **" + oee + "**%;";
