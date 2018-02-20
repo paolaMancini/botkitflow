@@ -3,8 +3,6 @@ module.exports = function(controller) {
     //controller.hears([/performance about plant 1/i], 'direct_message,direct_mention',
     controller.hears([/performance data about plant (.*)/i], 'direct_message,direct_mention',
         function(bot, message) {
-            // var request = require('request');
-            //controller.hears( [/(plant)( [a-zA-Z0-9]{1,})|(plants)|(performance)/], 'direct_message,direct_mention', function(bot, message){
 
             console.log('message: ', message);
             var plantName = message.match[1];
@@ -43,7 +41,8 @@ module.exports = function(controller) {
                     bot.startConversation(message, function(err, convo) {
 
                         // create a path for when a user says YES
-                        var help = "Please, type: <br/>**line 'line name'**\n-Choose line name among:\n- <br/>***" + patternAliases + "**";
+                        var help = "Please, type: **line 'line name'**;
+                        help += "\n- Choose line name among: **" + patternAliases + "**";
                         convo.addMessage({
                             text: `_${help}_`,
                         }, 'ask-details');
