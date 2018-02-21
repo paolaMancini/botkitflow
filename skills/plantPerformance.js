@@ -1,4 +1,5 @@
 var request = require('request');
+var Events = require("./events");
 module.exports = function(controller) {
     //controller.hears([/performance about plant 1/i], 'direct_message,direct_mention',
     controller.hears([/performance data about plant (.*)/i], 'direct_message,direct_mention',
