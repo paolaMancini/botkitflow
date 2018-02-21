@@ -1,104 +1,100 @@
-var debug = require("debug")("samples");
-var fine = require("debug")("samples:fine");
+var request = require('request');
+module.exports = function(controller) {
+    //controller.hears([/performance about plant 1/i], 'direct_message,direct_mention',
+    controller.hears([/performance data about plant (.*)/i], 'direct_message,direct_mention',
+        function(bot, message) {
 
-module.exports.fetchMachines = function(cb) {
-    var request = require("request");
-    // Get list of upcoming events
-    var options = {
-        method: 'GET',
-        url: "http://194.79.57.109:8080//SFapi/machines"
-    };
+            console.log('message: ', message);
+            var plantName = message.match[1];
+            //match[1] is the (.*) group. match[0] is the entire group (open the (.*) doors).
+            if (plantName === '1') {
+                var url = 'http://194.79.57.109:8080/SFapi/machines';
+                request(url, function(error, response, body) {
+                    console.log('error:', error); // Print the error if one occurred
+                    console.log('statusCode:', response && response.statusCode); // Print the response status code if a response was received
+                    console.log('body:', body); // Print the HTML for the Google homepage.
 
-    request(options, function(error, response, body) {
-        if (error) {
-            debug("1 could not retreive list of events, error: " + error);
-            //cb(new Error("Could not retreive current events, sorry [Events API not responding]"), null, null);
-            return;
-        }
+                    var jsonData = JSON.parse(body);
 
-        if ((response < 200) || (response > 299)) {
-            debug("1 could not retreive list of events, response: " + response);
-            //sparkCallback(new Error("Could not retreive current events, sorry [bad anwser from Events API]"), null, null);
-            return;
-        }
+                    var macs = [];
+                    var aliases = [];
+                    var OEEs = [];
+                    for (var i = 0; i < jsonData.machines.length; i++) {
+                        var machine = jsonData.machines[i].machine;
 
-        var events = JSON.parse(body);
-        debug("fetched " + events.machines.length + " events");
-        fine(JSON.stringify(events));
+                        var alias = jsonData.machines[i].alias;
+                        var oee = jsonData.machines[i].oee;
 
-        if (events.length == 0) {
-            cb(null, events, "**Found no event currently going on.**");
-            return;
-        }
+                        macs.push(machine);
+                        aliases.push(alias);
+                        var currentMsg = " **" + alias + "**: " + oee + "%\n";
+                        OEEs.push(currentMsg);
+                    }
 
-        var nb = events.length;
-        var msg = "**" + nb + " events are running now:**";
-        if (nb == 1) {
-            msg = "**only one event is running now:**";
-        }
-        for (var i = 0; i < nb; i++) {
-            var current = events[i];
-            //msg += "\n:small_blue_diamond: "
-            msg += "\n" + (i + 1) + ". ";
-            msg += current.machine + " - " + current.description + +" - " + current.value;
-            debug("msg= ", msg);
-        }
+                    console.log('macs: ' + macs.join("|"));
+                    patternAliases = aliases.join(",  ");
+                    console.log('patternAliases: ' + patternAliases);
+                    lines = aliases.join("|");
+
+                    //console.log('lines: ' + lines);
+
+                    bot.startConversation(message, function(err, convo) {
+
+                        // create a path for when a user says YES
+                        var help = "Please, type:  **line 'line name'**<br>";
+                        help += "Lines available:  **" + patternAliases + "**\n";
+                        convo.addMessage({
+                            text: `_${help}_`,
+                        }, 'ask-details');
 
 
+                        // create a path where neither option was matched
+                        // this message has an action field, which directs botkit to go back to the `default` thread after sending this message.
+                        convo.addMessage({
+                            text: 'Sorry I did not understand. Say `yes` or `no`',
+                            action: 'default',
+                        }, 'bad_response');
 
-        cb(null, events, msg);
-    });
-}
 
-module.exports.fetchMachDetails = function(machine, cb) {
-    var request = require("request");
-    // Get list of upcoming events
-    var options = {
-        method: 'GET',
-        url: "http://194.79.57.109:8080/SFapi/status?machine=" + machine
-    };
 
-    request(options, function(error, response, body) {
-        if (error) {
-            debug("1 could not retreive list of events, error: " + error);
-            //cb(new Error("Could not retreive current events, sorry [Events API not responding]"), null, null);
-            return;
-        }
+                        convo.say("The performance data is: \n" + OEEs + "\n");
+                        convo.ask("Do you want furhter more details? (yes/**no**/cancel)", [{
+                                pattern: "yes|yeh|sure|oui|si",
+                                callback: function(response, convo) {
+                                    convo.gotoThread('ask-details');
+                                },
+                            },
+                            {
+                                pattern: "no|neh|non|na|birk",
+                                callback: function(response, convo) {
+                                    convo.say("Glad have being helped you!");
+                                    convo.next();
 
-        if ((response < 200) || (response > 299)) {
-            debug("1 could not retreive list of events, response: " + response);
-            //sparkCallback(new Error("Could not retreive current events, sorry [bad anwser from Events API]"), null, null);
-            return;
-        }
+                                },
+                            },
+                            {
+                                pattern: "cancel|stop|exit",
+                                callback: function(response, convo) {
+                                    convo.say("Got it, cancelling...");
+                                    convo.next();
+                                },
+                            },
+                            {
+                                default: true,
+                                callback: function(response, convo) {
+                                    convo.say("Sorry, I did not understand.");
+                                    convo.repeat();
+                                    convo.next();
+                                }
+                            },
+                        ]);
 
-        var events = JSON.parse(body);
-        debug("fetched " + events.machine.length + " events");
-        fine(JSON.stringify(events));
 
-        if (events.machine.length == 0) {
-            cb(null, events, "**Found no event currently going on.**");
-            return;
-        }
-
-        var nb = events.machine.length;
-        var msg = "Details:<br>";
-        if (nb == 1) {
-            msg = "No details found";
-        }
-        for (var i = 0; i < nb; i++) {
-            var current = events.machine[i];
-            //msg += "\n:small_blue_diamond: "
-            //msg += "\n" + (i + 1) + ". ";
-            if (i > 0) {
-                msg += ";<br>";
+                    });
+                });
+            } else {
+                bot.reply(message, 'I\'m sorry. I don\'t know this plant.');
             }
-            //msg += current.machine + " - " + current.description + +" - " +  current.machine;
-            msg += current.description + ": **" + current.value + " **;<br>";
-            debug("msg= ", msg);
-        }
 
-
-
-        cb(null, events, msg);
-    });
+        })
 }
