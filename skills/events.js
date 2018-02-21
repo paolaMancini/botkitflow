@@ -81,7 +81,7 @@ module.exports.fetchMachDetails = function(machine, cb) {
         }
 
         var nb = events.machine.length;
-        var msg = "<br>Details related the "+machine+" line: <br>";
+        var msg = "<br>Details related the **"+machine+"** line: <br>";
         if (nb == 1) {
             msg = "No details found";
         }
@@ -90,7 +90,7 @@ module.exports.fetchMachDetails = function(machine, cb) {
             //msg += "\n:small_blue_diamond: "
             //msg += "\n" + (i + 1) + ". ";
             if (i > 0) {
-                msg += ";<br>";
+                msg += "<br>";
             }
             //msg += current.machine + " - " + current.description + +" - " +  current.machine;
             msg += current.description + ": **" + current.value + " **";
