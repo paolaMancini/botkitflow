@@ -23,10 +23,6 @@ module.exports = function(controller) {
                 return;
             }
 
-
-
-
-
             console.log("plant.lenght= " + plant.machines.length);
 
 
@@ -36,6 +32,7 @@ module.exports = function(controller) {
             for (var i = 0; i < plant.machines.length; i++) {
 
                 if (plant.machines[i].alias == lineName) {
+
                     machineName = plant.machines[i].machine;
                 }
                 mpattern += "**" + plant.machines[i].alias + "**<br>";
@@ -52,20 +49,20 @@ module.exports = function(controller) {
 
                 console.log('machineName: ', machineName);
 
-                Events.fetchMachDetails(lineName, function(err, events, text) {
-                    if (err) {
+                Events.fetchMachDetails(lineName, function(errMach, events, textMach) {
+                    if (errMach) {
                         bot.reply(message, "*sorry, could not contact the organizers :-(*");
                         return;
                     }
 
                     if (events.length == 0) {
-                        bot.reply(message, text + "\n\n_Type next for upcoming events_");
+                        bot.reply(message, textMach + "\n\n_Type next for upcoming events_");
                         return;
                     }
 
                     // Store events
-                    console.log("text: ", text);
-                    bot.reply(message, text);
+                    console.log("text: ", textMach);
+                    bot.reply(message, textMach);
 
                     askForFurtherLines(plant, mpattern, controller, bot, message);
 
