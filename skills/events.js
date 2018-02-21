@@ -71,7 +71,8 @@ module.exports.fetchMachDetails = function(machine, cb) {
             //sparkCallback(new Error("Could not retreive current events, sorry [bad anwser from Events API]"), null, null);
             return;
         }
-
+        
+        debug("body: ",body );
         var events = JSON.parse(body);
         debug("fetched " + events.machine.length + " events");
         fine(JSON.stringify(events));
