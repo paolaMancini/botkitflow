@@ -10,7 +10,7 @@ module.exports = function(controller) {
             //match[1] is the (.*) group. match[0] is the entire group (open the (.*) doors).
             if (plantName === '1') {
 
-                Events.fetchMachines(lineName, function(err, events, text) {
+                Events.fetchMachines(function(err, events, text) {
                     if (err) {
                         bot.reply(message, "*sorry, could not contact the organizers :-(*");
                         return;
