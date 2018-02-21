@@ -1,3 +1,5 @@
+var debug = require("debug")("samples");
+var fine = require("debug")("samples:fine");
 module.exports.fetchCurrent = function(cb) {
     var request = require("request");
     // Get list of upcoming events
