@@ -72,9 +72,9 @@ module.exports.fetchMachDetails = function(machine, cb) {
             return;
         }
         
-        debug("body: ",body );
+        //debug("body: ",body );
         var events = JSON.parse(body);
-        debug("fetched " + events.machine.length + " events");
+        //debug("fetched " + events.machine.length + " events");
         fine(JSON.stringify(events));
 
         if (events.machine.length == 0) {
@@ -96,7 +96,7 @@ module.exports.fetchMachDetails = function(machine, cb) {
             }
             //msg += current.machine + " - " + current.description + +" - " +  current.machine;
             msg += current.description + ": **" + current.value + " **";
-            debug("msg= ", msg);
+            //debug("msg= ", msg);
         }
 
 
