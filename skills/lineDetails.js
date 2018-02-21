@@ -49,7 +49,7 @@ module.exports = function(controller) {
 
                 console.log('machineName: ', machineName);
 
-                Events.fetchMachDetails(lineName, function(errMach, events, textMach) {
+                Events.fetchMachDetails(machineName, function(errMach, events, textMach) {
                     if (errMach) {
                         bot.reply(message, "*sorry, could not contact the organizers :-(*");
                         return;
