@@ -19,7 +19,7 @@ module.exports = function(controller) {
             }
 
             // Store events
-            controller.log("text: ", text);
+            console.log("text: ", text);
 
         });
         console.log("fine");
