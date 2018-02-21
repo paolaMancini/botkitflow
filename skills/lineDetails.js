@@ -1,5 +1,6 @@
 var request = require("request");
 var Events = require("./events");
+
 module.exports = function(controller) {
 
     // controller.hears(['cheese'], 'direct_message,direct_mention',
