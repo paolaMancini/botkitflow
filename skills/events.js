@@ -40,9 +40,10 @@ module.exports.fetchCurrent = function(cb) {
             //msg += "\n:small_blue_diamond: "
             msg += "\n" + (i + 1) + ". ";
             msg += current.machine + " - " + current.description + +" - " + current.value;
+            debug("msg= ", msg);
         }
-        msg += current.machine + " - " + current.description + +" - " + current.value;
-        debug("msg= ", msg);
+
+
 
         cb(null, events, msg);
     });
