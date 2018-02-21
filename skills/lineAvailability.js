@@ -65,7 +65,7 @@ module.exports = function(controller) {
 
                             mex  += current.alias + ": **" + current.value + "**";
                         }
-                        mpattern += "**" + plant.machines[i].alias + "**<br>";
+                        mpattern += "**" + current.alias + "**<br>";
 
                     }
 
