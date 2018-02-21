@@ -86,14 +86,14 @@ module.exports.fetchMachDetails = function(machine, cb) {
             msg = "No details found";
         }
         for (var i = 0; i < nb; i++) {
-            var current = events[i];
+            var current = events.machine[i];
             //msg += "\n:small_blue_diamond: "
             //msg += "\n" + (i + 1) + ". ";
             if (i > 0) {
                 msg += ";<br>";
             }
             //msg += current.machine + " - " + current.description + +" - " +  current.machine;
-            msg += current.description + ": **" + current.machine + " **;<br>";
+            msg += current.description + ": **" + current.value + " **;<br>";
             debug("msg= ", msg);
         }
 
