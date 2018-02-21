@@ -54,7 +54,7 @@ module.exports.fetchMachines = function(cb) {
         // Get list of upcoming events
         var options = {
             method: 'GET',
-            url: "http://194.79.57.109:8080//SFapi/machines=" + machine;
+            url: "http://194.79.57.109:8080/SFapi/status?machine=" + machine
         };
 
         request(options, function(error, response, body) {
