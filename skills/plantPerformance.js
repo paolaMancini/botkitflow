@@ -32,49 +32,20 @@ module.exports = function(controller) {
 
                         var alias = events.machines[i].alias;
                         var oee = events.machines[i].oee;
-                        mpattern.push(machine);
+                        mpattern.push();
                         aliases += "**" + alias + "**<br>";
                         var currentMsg = alias + ": **" + oee + "**%;";
                         oees += alias + ": **" + oee + "%**;<br>";
                         detailMsg += alias + ": **line" + i + "** or **" + machine + " details**;<br>";
                     }
-                    mpattern.join(" ");
-                    //  var url = 'http://194.79.57.109:8080/SFapi/machines';
-                    //  request(url, function(error, response, body) {
-                    //     console.log('error:', error); // Print the error if one occurred
-                    //     console.log('statusCode:', response && response.statusCode); // Print the response status code if a response was received
-                    //     console.log('body:', body); // Print the HTML for the Google homepage.
-
-                    //     var jsonData = JSON.parse(body);
-
-                    //    var detailMsg;
-                    //    var alias;
-                      
-                    //    for (var i = 0; i < jsonData.machines.length; i++) {
-                    //      var machine = jsonData.machines[i].machine;
-
-                    //       var alias = jsonData.machines[i].alias;
-                    //var oee = jsonData.machines[i].oee;
-                    //
-                    //macs.push(machine);
-                    //aliases.push(alias);
-                    //  aliases += "**" + alias + "**<br>";
-                    ////var currentMsg = alias + ": **" + oee + "**%;";
-                    //oees += alias + ": **" + oee + "%**;<br>";
-                    //detailMsg += alias + ": **line" + i + "** or **" + machine + " details**;<br>";
-                    // }
-
-                    //console.log('macs: ' + macs.join("|"));
-                    //patternAliases = aliases.join(",  ");
-                    //console.log('patternAliases: ' + patternAliases);
-
-
+                    //mpattern.join(" ");
+                     
                     bot.startConversation(message, function(err, convo) {
                         // create a path for when a user says YES
                         var help = "Which line are you interested of? Please, type:<br>";
                         help += "**'machine' details**<br>";
                         help +="Choose machine the name from the following list: <br>";
-                        help +="**"+mpattern+"**";
+                        help +="**"+aliases+"**";
                    
 
                         convo.addMessage({
@@ -90,7 +61,7 @@ module.exports = function(controller) {
 
 
                         convo.say("The performance data is:" + oees);
-                        convo.ask("Do you want furhter more details? (yes/**no**/cancel)<br>", [{
+                        convo.ask("<br>Do you want furhter more details? (yes/**no**/cancel)<br>", [{
                                 pattern: "yes|yeh|sure|oui|si",
                                 callback: function(response, convo) {
                                     convo.gotoThread('ask-details');
