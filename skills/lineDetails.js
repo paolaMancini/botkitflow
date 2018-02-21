@@ -35,14 +35,14 @@ module.exports = function(controller) {
             var mpattern = "<br>";
             for (var i = 0; i < plant.machines.length; i++) {
 
-                if (plant.machines[i].alias === lineName) {
+                if (plant.machines[i].alias == lineName) {
                     machineName += plant.machines[i].machine;
                 }
                 mpattern += "**" + plant.machines[i].alias + "**<br>";
 
             }
             console.log('mpattern: ', mpattern);
-            if (typeof machineName === "undefined") {
+            if (typeof machineName == "undefined") {
                 text = "Sorry, I don't know this line. Please, type:<br>";
                 text += "**'machine' details**<br>";
                 text += "Choose machine the name from the following list: <br>";
