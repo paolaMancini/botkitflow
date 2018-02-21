@@ -9,7 +9,9 @@ module.exports = function(controller) {
 
         console.log('message: ', message);
         var lineName = message.match[1];
+
         console.log("lineName received: ", lineName);
+
 
         Events.fetchMachDetails(lineName, function(err, events, text) {
             if (err) {
@@ -24,14 +26,14 @@ module.exports = function(controller) {
 
             // Store events
             console.log("text: ", text);
-            bot.say(message, text);
+            bot.reply(message, text);
 
 
             bot.startConversation(message, function(err, convo) {
 
                 // create a path for when a user says YES
                 var help = "Which line are you interested of? Please, type<br>" + mpattern;
-                help += detailMsg;
+
 
                 convo.addMessage({
                     text: `_${help}_`,
@@ -84,5 +86,97 @@ module.exports = function(controller) {
 
 
         });
+    });
+}
+
+function askForFurtherLines(controller, bot, message, userId) {
+    bot.startConversation(message, function(err, convo) {
+        //var help = "Which line are you interested of? Please, type<br>" + mpattern;
+        Events.fetchMachines(function(err, events, text) {
+            if (err) {
+                bot.reply(message, "*sorry, could not contact the organizers :-(*");
+                return;
+            }
+
+            if (events.length == 0) {
+                bot.reply(message, text + "\n\n_Type next for upcoming events_");
+                return;
+            }
+
+            // Store events
+            console.log("text: ", text);
+            var oees = "<br>";
+            var aliases;
+            var mpattern = "<br>";
+            var detailMsg;
+
+            for (var i = 0; i < events.machines.length; i++) {
+                var machine = events.machines[i].machine;
+                var alias = events.machines[i].alias;
+                var oee = events.machines[i].oee;
+                mpattern += "**" + machine + "**<br>";
+                //aliases += "**" + alias + "**<br>";
+                //var currentMsg = alias + ": **" + oee + "**%;";
+
+
+            }
+            mpattern.join("|");
+            console.log('mpattern: ', mpattern);
+
+            bot.startConversation(message, function(err, convo) {
+                // create a path for when a user says YES
+                var help = "Which line are you interested of? Please, type:<br>";
+                help += "**'machine' details**<br>";
+                help += "Choose machine the name from the following list: <br>";
+                help += "**" + mpattern + "**";
+
+                convo.addMessage({
+                    text: `_${help}_`,
+                }, 'ask-details');
+
+                // create a path where neither option was matched
+                // this message has an action field, which directs botkit to go back to the `default` thread after sending this message.
+                convo.addMessage({
+                    text: 'Sorry I did not understand. Say `yes` or `no`',
+                    action: 'default',
+                }, 'bad_response');
+
+
+                convo.ask("Are you interested on  monitoring an other further line? (yes/**no**/cancel)<br>", [{
+                        pattern: "yes|yeh|sure|oui|si",
+                        callback: function(response, convo) {
+                            convo.gotoThread('ask-details');
+                        },
+                    },
+                    {
+                        pattern: "no|neh|non|na|birk",
+                        callback: function(response, convo) {
+                            convo.say("Glad have being helped you!");
+                            convo.next();
+
+                        },
+                    },
+                    {
+                        pattern: "cancel|stop|exit",
+                        callback: function(response, convo) {
+                            convo.say("Got it, cancelling...");
+                            convo.next();
+                        },
+                    },
+                    {
+                        default: true,
+                        callback: function(response, convo) {
+                            convo.say("Sorry, I did not understand.");
+                            convo.repeat();
+                            convo.next();
+                        }
+                    },
+                ]);
+
+
+            });
+
+
+        })
     })
 }
