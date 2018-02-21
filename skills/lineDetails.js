@@ -1,10 +1,28 @@
 var request = require("request");
+var Events = require("./events");
 module.exports = function(controller) {
 
     // controller.hears(['cheese'], 'direct_message,direct_mention',
     // function (bot, message) {
     controller.hears([/(.*) details/i], 'direct_message,direct_mention', function(bot, message) {
 
+        console.log("inizio");
+        Events.fetchCurrent(function(err, events, text) {
+            if (err) {
+                bot.reply(message, "*sorry, could not contact the organizers :-(*");
+                return;
+            }
+
+            if (events.length == 0) {
+                bot.reply(message, text + "\n\n_Type next for upcoming events_");
+                return;
+            }
+
+            // Store events
+            controller.log("text: ", text);
+
+        });
+        console.log("fine");
         console.log('message: ', message);
         var lineName = message.match[1];
         console.log("lineName received: ", lineName);
@@ -49,7 +67,7 @@ module.exports = function(controller) {
                 console.log('name: ', name);
                 console.log('description: ', descr);
                 console.log('value: ', value);
-                text += descr + " **: " + value + " ** ; < br > < br > ";
+                text += descr + ": **" + value + " **;<br><br>";
 
             }
             if (text === textDef) {
