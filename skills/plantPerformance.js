@@ -44,8 +44,8 @@ module.exports = function(controller) {
                         // create a path for when a user says YES
                         var help = "Which line are you interested of? Please, type:<br>";
                         help += "**'machine' details**<br>";
-                        help +="Choose machine the name from the following list: <br>";
-                        help +="**"+aliases+"**";
+                        help +="Choose machine the name from the following list:";
+                        help +=aliases;
                    
 
                         convo.addMessage({
