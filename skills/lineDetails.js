@@ -42,7 +42,7 @@ module.exports = function(controller) {
 
             }
             console.log('mpattern: ', mpattern);
-            if (typeof machineName == "undefined") {
+            if (typeof machineName == undefined) {
                 text = "Sorry, I don't know this line. Please, type:<br>";
                 text += "**'machine' details**<br>";
                 text += "Choose machine the name from the following list: <br>";
