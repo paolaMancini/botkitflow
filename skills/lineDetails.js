@@ -25,53 +25,55 @@ module.exports = function(controller) {
 
 
 
-        });
-
-        console.log("plant.lenght= " + plant.machines.length);
 
 
+            console.log("plant.lenght= " + plant.machines.length);
 
-        var machineName;
-        var mpattern = "<br>";
-        for (var i = 0; i < plant.machines.length; i++) {
 
-            if (plant.machines[i].alias === lineName) {
-                machineName += plant.machines[i].machine;
+
+            var machineName;
+            var mpattern = "<br>";
+            for (var i = 0; i < plant.machines.length; i++) {
+
+                if (plant.machines[i].alias === lineName) {
+                    machineName += plant.machines[i].machine;
+                }
+                mpattern += "**" + machine + "**<br>";
+
             }
-            mpattern += "**" + machine + "**<br>";
-
-        }
-        console.log('mpattern: ', mpattern);
-        if (typeof machineName === "undefined") {
-            text = "Sorry, I don't know this line. Please, type:<br>";
-            text += "**'machine' details**<br>";
-            text += "Choose machine the name from the following list: <br>";
-            text += "**" + mpattern + "**";
-            bot.reply(message, text);
-        } else {
-
-            console.log('machineName: ', machineName);
-
-            Events.fetchMachDetails(lineName, function(err, events, text) {
-                if (err) {
-                    bot.reply(message, "*sorry, could not contact the organizers :-(*");
-                    return;
-                }
-
-                if (events.length == 0) {
-                    bot.reply(message, text + "\n\n_Type next for upcoming events_");
-                    return;
-                }
-
-                // Store events
-                console.log("text: ", text);
+            console.log('mpattern: ', mpattern);
+            if (typeof machineName === "undefined") {
+                text = "Sorry, I don't know this line. Please, type:<br>";
+                text += "**'machine' details**<br>";
+                text += "Choose machine the name from the following list: <br>";
+                text += "**" + mpattern + "**";
                 bot.reply(message, text);
+            } else {
 
-                askForFurtherLines(plant, mpattern, controller, bot, message);
+                console.log('machineName: ', machineName);
 
-            });
+                Events.fetchMachDetails(lineName, function(err, events, text) {
+                    if (err) {
+                        bot.reply(message, "*sorry, could not contact the organizers :-(*");
+                        return;
+                    }
 
-        };
+                    if (events.length == 0) {
+                        bot.reply(message, text + "\n\n_Type next for upcoming events_");
+                        return;
+                    }
+
+                    // Store events
+                    console.log("text: ", text);
+                    bot.reply(message, text);
+
+                    askForFurtherLines(plant, mpattern, controller, bot, message);
+
+                });
+
+            };
+
+        });
     });
 }
 
