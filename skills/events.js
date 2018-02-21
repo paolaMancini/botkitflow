@@ -81,7 +81,7 @@ module.exports.fetchMachDetails = function(machine, cb) {
         }
 
         var nb = events.machine.length;
-        var msg = "Details:<br>";
+        var msg = machine+" details are:<br>";
         if (nb == 1) {
             msg = "No details found";
         }
