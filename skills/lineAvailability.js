@@ -86,14 +86,7 @@ module.exports = function(controller) {
 }
 
 function askForFurtherLines(plant, mpattern, controller, bot, message) {
-
-    // Store events
-    console.log("text: ", text);
-
-    bot.startConversation(message, function(err, convo) {
-
-        // create a path for when a user says YES
-
+        bot.startConversation(message, function(err, convo) {
 
         var help = "Which line are you interested of? Please, type:<br>";
         help += "**availability value about line 'machine'**<br>";
