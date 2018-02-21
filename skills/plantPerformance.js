@@ -38,7 +38,7 @@ module.exports = function(controller) {
                         oees += alias + ": **" + oee + "%**;<br>";
                         detailMsg += alias + ": **line" + i + "** or **" + machine + " details**;<br>";
                     }
-                    mpattern.join("<br>");
+                    mpattern.join(" ");
                     //  var url = 'http://194.79.57.109:8080/SFapi/machines';
                     //  request(url, function(error, response, body) {
                     //     console.log('error:', error); // Print the error if one occurred
@@ -72,9 +72,9 @@ module.exports = function(controller) {
                     bot.startConversation(message, function(err, convo) {
                         // create a path for when a user says YES
                         var help = "Which line are you interested of? Please, type:<br>";
-                        help += "** details 'machine'**<br>";
+                        help += "**'machine' details**<br>";
                         help +="Choose machine the name from the following list: <br>";
-                        help +=mpattern;
+                        help +="**"+mpattern+"**";
                    
 
                         convo.addMessage({
