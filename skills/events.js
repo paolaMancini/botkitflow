@@ -22,7 +22,7 @@ module.exports.fetchCurrent = function(cb) {
         }
 
         var events = JSON.parse(body);
-        debug("fetched " + events.length + " events");
+        debug("fetched " + events.machines.length + " events");
         fine(JSON.stringify(events));
 
         if (events.length == 0) {
