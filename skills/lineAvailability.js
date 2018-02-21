@@ -3,7 +3,7 @@ var Events = require("./events");
 
 module.exports = function(controller) {
  
-    controller.hears([/availability value about line (.*)/i], 'direct_message,direct_mention', function(bot, message) {
+    controller.hears([/availability line (.*)/i], 'direct_message,direct_mention', function(bot, message) {
 
         console.log('message: ', message);
         var lineName = message.match[1];
@@ -103,7 +103,7 @@ function askForFurtherLines(plant, mpattern, controller, bot, message) {
         }, 'bad_response');
 
 
-        convo.ask("Are you interested on monitoring the OEE value about an other further line? (yes/**no**/cancel)", [{
+        convo.ask("Are you interested on monitoring the availability value about an other further line? (yes/**no**/cancel)", [{
                 pattern: "yes|yeh|sure|oui|si",
                 callback: function(response, convo) {
                     convo.gotoThread('ask-other');
