@@ -83,7 +83,7 @@ module.exports.fetchMachDetails = function(machine, cb) {
         }
 
         var nb = events.machine.length;
-        var msg = "<br>Nitty gritty about the line is:<br>";
+        var msg = "<br>Nitty-gritty of the line:<br>";
         if (nb == 1) {
             msg = "No details found";
         }
@@ -95,9 +95,10 @@ module.exports.fetchMachDetails = function(machine, cb) {
                 msg += "<br>";
             }
             //msg += current.machine + " - " + current.description + +" - " +  current.machine;
-            msg += current.name + ": **" + current.value + " **";
+            msg += current.name + ": **" + current.value + "**";
             //debug("msg= ", msg);
         }
+        msg+="br>";
 
 
 
