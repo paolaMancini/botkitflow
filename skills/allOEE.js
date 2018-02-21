@@ -6,10 +6,7 @@ module.exports = function(controller) {
         function(bot, message) {
 
             console.log('message: ', message);
-            var plantName = message.match[1];
-            //match[1] is the (.*) group. match[0] is the entire group (open the (.*) doors).
-            if (plantName === '1') {
-
+             
                 Events.fetchMachines(function(err, events, text) {
                     if (err) {
                         bot.reply(message, "*sorry, could not contact the organizers :-(*");
@@ -95,9 +92,7 @@ module.exports = function(controller) {
 
                     });
                 });
-            } else {
-                bot.reply(message, 'I\'m sorry. I don\'t know this plant.');
-            }
+            
 
         })
 }
