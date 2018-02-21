@@ -86,7 +86,7 @@ function askForFurtherLines(controller, bot, message) {
             }, 'bad_response');
 
 
-            convo.say("The performance data is:<br>" + oees);
+            
             convo.ask("Are you interested on  monitoring an other further line? (yes/**no**/cancel)", [{
                     pattern: "yes|yeh|sure|oui|si",
                     callback: function(response, convo) {
