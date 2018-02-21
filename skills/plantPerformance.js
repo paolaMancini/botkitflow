@@ -1,4 +1,6 @@
 var request = require('request');
+var ld = rewuire('lineDetails');
+
 module.exports = function(controller) {
     //controller.hears([/performance about plant 1/i], 'direct_message,direct_mention',
     controller.hears([/performance data about plant (.*)/i], 'direct_message,direct_mention',
@@ -29,7 +31,7 @@ module.exports = function(controller) {
                         //macs.push(machine);
                         //aliases.push(alias);
                         aliases += "**" + alias + "**<br>";
-                        var currentMsg = alias + ": **" + oee + "**%;";
+                        //var currentMsg = alias + ": **" + oee + "**%;";
                         oees += alias + ": **" + oee + "%**;<br>";
                         detailMsg += alias + ": **line" + i + "** or **" + machine + " details**;<br>";
                     }
