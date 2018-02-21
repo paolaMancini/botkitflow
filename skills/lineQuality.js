@@ -96,7 +96,7 @@ function askForFurtherLines(plant, mpattern, controller, bot, message) {
 
 
         var help = "Which line are you interested of? Please, type:<br>";
-        help += "**'machine' details**<br>";
+        help += "**quality value about line 'machine'**<br>";
         help += "Choose machine the name from the following list: <br>";
         help += "**" + mpattern + "**";
 
