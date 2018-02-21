@@ -65,7 +65,7 @@ function askForFurtherLines(controller, bot, message) {
 
 
         }
-        mpattern.join("|");
+        
         console.log('mpattern: ', mpattern);
 
         bot.startConversation(message, function(err, convo) {
