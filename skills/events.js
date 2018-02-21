@@ -49,12 +49,12 @@ module.exports.fetchMachines = function(cb) {
         cb(null, events, msg);
     });
 
-    module.exports.fetchMachDetails = function(cb) {
+    module.exports.fetchMachDetails = function(machine, cb) {
         var request = require("request");
         // Get list of upcoming events
         var options = {
             method: 'GET',
-            url: "http://194.79.57.109:8080//SFapi/machines"
+            url: "http://194.79.57.109:8080//SFapi/machines=" + machine;
         };
 
         request(options, function(error, response, body) {
