@@ -23,8 +23,10 @@ module.exports = function(controller) {
 
                     // Store events
                     console.log("text: ", text);
-
+                      var oees = "<br>";
+                      var aliases;
                     var mpattern = [];
+                    var detailMsg;
                     for (var i = 0; i < events.machines.length; i++) {
                         var machine = events.machines[i].machine;
 
@@ -47,8 +49,7 @@ module.exports = function(controller) {
 
                     //    var detailMsg;
                     //    var alias;
-                    //     var oees = "<br>";
-                    //     var aliases;
+                      
                     //    for (var i = 0; i < jsonData.machines.length; i++) {
                     //      var machine = jsonData.machines[i].machine;
 
