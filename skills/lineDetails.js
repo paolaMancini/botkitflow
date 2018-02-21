@@ -38,7 +38,7 @@ module.exports = function(controller) {
                 if (plant.machines[i].alias === lineName) {
                     machineName += plant.machines[i].machine;
                 }
-                mpattern += "**" + machine + "**<br>";
+                mpattern += "**" + plant.machines[i].alias + "**<br>";
 
             }
             console.log('mpattern: ', mpattern);
