@@ -91,10 +91,7 @@ function askForFurtherLines(plant, mpattern, controller, bot, message) {
     console.log("text: ", text);
 
     bot.startConversation(message, function(err, convo) {
-
-        // create a path for when a user says YES
-
-
+ 
         var help = "Which line are you interested of? Please, type:<br>";
         help += "**OEE value about line 'machine'**<br>";
         help += "Choose machine the name from the following list: <br>";
