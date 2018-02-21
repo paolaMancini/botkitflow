@@ -89,8 +89,8 @@ module.exports = function(controller) {
                         }, 'bad_response');
 
 
-                        convo.say("The performance data is:<br>" + oees);
-                        convo.ask("Do you want furhter more details? (yes/**no**/cancel)", [{
+                        convo.say("The performance data is:" + oees);
+                        convo.ask("Do you want furhter more details? (yes/**no**/cancel)<br>", [{
                                 pattern: "yes|yeh|sure|oui|si",
                                 callback: function(response, convo) {
                                     convo.gotoThread('ask-details');
