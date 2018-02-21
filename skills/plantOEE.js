@@ -23,8 +23,8 @@ module.exports = function(controller) {
 
                     // Store events
                     console.log("text: ", text);
-                      var oees = "<br>";
-                      var aliases;
+                    var oees = "<br>";
+                    var aliases="<br>";
                     var mpattern = [];
                     var detailMsg;
                     for (var i = 0; i < events.machines.length; i++) {
@@ -43,13 +43,13 @@ module.exports = function(controller) {
                     bot.startConversation(message, function(err, convo) {
                         // create a path for when a user says YES
                         var help = "Which line are you interested of? Please, type:<br>";
-                        help += "**'machine' details**<br>";
+                        help += "**'machine' details**. ";
                         help +="Choose machine the name from the following list:";
                         help +=aliases;
                    
 
                         convo.addMessage({
-                            text: `_${help}_`,
+                            text: `${help}`,
                         }, 'ask-details');
 
                         // create a path where neither option was matched
