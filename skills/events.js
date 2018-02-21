@@ -1,0 +1,45 @@
+module.exports.fetchCurrent = function(cb) {
+    var request = require("request");
+    // Get list of upcoming events
+    var options = {
+        method: 'GET',
+        url: "http://194.79.57.109:8080//SFapi/machines"
+    };
+
+    request(options, function(error, response, body) {
+        if (error) {
+            console.log("1 could not retreive list of events, error: " + error);
+            //cb(new Error("Could not retreive current events, sorry [Events API not responding]"), null, null);
+            return;
+        }
+
+        if ((response < 200) || (response > 299)) {
+            console.log("1 could not retreive list of events, response: " + response);
+            //sparkCallback(new Error("Could not retreive current events, sorry [bad anwser from Events API]"), null, null);
+            return;
+        }
+
+        var events = JSON.parse(body);
+        console.log("fetched " + events.length + " events");
+        fine(JSON.stringify(events));
+
+        if (events.length == 0) {
+            cb(null, events, "**Found no event currently going on.**");
+            return;
+        }
+
+        var nb = events.length;
+        var msg = "**" + nb + " events are running now:**";
+        if (nb == 1) {
+            msg = "**only one event is running now:**";
+        }
+        for (var i = 0; i < nb; i++) {
+            var current = events[i];
+            //msg += "\n:small_blue_diamond: "
+            msg += "\n" + (i + 1) + ". ";
+            msg += current.machine + " - " + current.description + +" - " + current.value;
+        }
+
+        cb(null, events, msg);
+    });
+}
