@@ -70,8 +70,8 @@ module.exports = function(controller) {
                     }
 
                     // Store events
-                    console.log("text: ", textMach);
-                    bot.reply(message, textMach);
+                    console.log("text: ", mex);
+                    bot.reply(message, mex);
 
                     askForFurtherLines(plant, mpattern, controller, bot, message);
 
@@ -89,7 +89,7 @@ function askForFurtherLines(plant, mpattern, controller, bot, message) {
         var help = "Which line are you interested of? Please, type:<br>";
         help += "**availability value about line 'machine'**<br>";
         help += "Choose machine the name from the following list: <br>";
-        help += "**" + mpattern + "**";
+        help += mpattern;
 
         convo.addMessage({
             text: `_${help}_`,
