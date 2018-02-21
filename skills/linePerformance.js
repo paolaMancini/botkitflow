@@ -65,15 +65,15 @@ module.exports = function(controller) {
 
                         if (events.machine[i].name == "performance") {
 
-                            mex = msg += current.name + ": **" + current.value + "**";
+                            mex  += current.name + ": **" + current.value + "**";
                         }
                         mpattern += "**" + plant.machines[i].alias + "**<br>";
 
                     }
 
                     // Store events
-                    console.log("text: ", textMach);
-                    bot.reply(message, textMach);
+                    console.log("text: ", mex);
+                    bot.reply(message, mex);
 
                     askForFurtherLines(plant, mpattern, controller, bot, message);
 
