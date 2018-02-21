@@ -58,7 +58,7 @@ module.exports = function(controller) {
                         return;
                     }
                     var mex = "The availability value is:";
-                    for (var i = 0; i < events.machines.length; i++) {
+                    for (var i = 0; i < events.machine.length; i++) {
                         var current = events.machine[i];
 
                         if (events.machine[i].name == "availability") {
