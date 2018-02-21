@@ -63,7 +63,7 @@ module.exports = function(controller) {
 
                         if (events.machine[i].name == "availability") {
 
-                            mex = msg += current.name + ": **" + current.value + "**";
+                            mex  += current.name + ": **" + current.value + "**";
                         }
                         mpattern += "**" + plant.machines[i].alias + "**<br>";
 
