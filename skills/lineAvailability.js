@@ -58,12 +58,12 @@ module.exports = function(controller) {
                         return;
                     }
                     var mex = "The availability value is:";
-                    for (var i = 0; i < events.machineslength; i++) {
+                    for (var i = 0; i < events.machines.length; i++) {
                         var current = events.machine[i];
 
                         if (events.machine[i].name == "availability") {
 
-                            mex  += current.name + ": **" + current.value + "**";
+                            mex  += current.alias + ": **" + current.value + "**";
                         }
                         mpattern += "**" + plant.machines[i].alias + "**<br>";
 
