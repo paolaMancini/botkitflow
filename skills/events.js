@@ -10,19 +10,19 @@ module.exports.fetchCurrent = function(cb) {
 
     request(options, function(error, response, body) {
         if (error) {
-            console.log("1 could not retreive list of events, error: " + error);
+            debug("1 could not retreive list of events, error: " + error);
             //cb(new Error("Could not retreive current events, sorry [Events API not responding]"), null, null);
             return;
         }
 
         if ((response < 200) || (response > 299)) {
-            console.log("1 could not retreive list of events, response: " + response);
+            debug("1 could not retreive list of events, response: " + response);
             //sparkCallback(new Error("Could not retreive current events, sorry [bad anwser from Events API]"), null, null);
             return;
         }
 
         var events = JSON.parse(body);
-        console.log("fetched " + events.length + " events");
+        debug("fetched " + events.length + " events");
         fine(JSON.stringify(events));
 
         if (events.length == 0) {
@@ -41,6 +41,8 @@ module.exports.fetchCurrent = function(cb) {
             msg += "\n" + (i + 1) + ". ";
             msg += current.machine + " - " + current.description + +" - " + current.value;
         }
+        msg += current.machine + " - " + current.description + +" - " + current.value;
+        debug("msg= ", msg);
 
         cb(null, events, msg);
     });
