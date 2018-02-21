@@ -3,8 +3,8 @@ var Events = require("./events");
 
 module.exports = function(controller) {
  
-    controller.hears([/availability value about line (.*)/i], 'direct_message,direct_mention', function(bot, message) {
-
+    //controller.hears([/availability value about line (.*)/i], 'direct_message,direct_mention', function(bot, message) {
+   controller.hears([/line (.*) availability/i], 'direct_message,direct_mention', function(bot, message) {
         console.log('message: ', message);
         var lineName = message.match[1];
 
@@ -87,7 +87,7 @@ function askForFurtherLines(plant, mpattern, controller, bot, message) {
         bot.startConversation(message, function(err, convo) {
 
         var help = "Which line are you interested of? Please, type:<br>";
-        help += "**availability value about line 'machine'**<br>";
+        help += "**line 'machine' availability**<br>";
         help += "Choose machine the name from the following list: <br>";
         help += mpattern;
 
