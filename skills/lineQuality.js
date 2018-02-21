@@ -59,7 +59,7 @@ module.exports = function(controller) {
                         bot.reply(message, textMach + "\n\n_Type next for upcoming events_");
                         return;
                     }
-                    var mex = "The OEE value is:";
+                    var mex = "The quality value is:";
                     for (var i = 0; i < events.machineslength; i++) {
                         var current = events.machine[i];
 
