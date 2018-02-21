@@ -87,9 +87,6 @@ module.exports = function(controller) {
 
 function askForFurtherLines(plant, mpattern, controller, bot, message) {
 
-    // Store events
-    console.log("text: ", text);
-
     bot.startConversation(message, function(err, convo) {
  
         var help = "Which line are you interested of? Please, type:<br>";
