@@ -8,31 +8,59 @@ module.exports = function(controller) {
             var plantName = message.match[1];
             //match[1] is the (.*) group. match[0] is the entire group (open the (.*) doors).
             if (plantName === '1') {
-                var url = 'http://194.79.57.109:8080/SFapi/machines';
-                request(url, function(error, response, body) {
-                    console.log('error:', error); // Print the error if one occurred
-                    console.log('statusCode:', response && response.statusCode); // Print the response status code if a response was received
-                    console.log('body:', body); // Print the HTML for the Google homepage.
 
-                    var jsonData = JSON.parse(body);
+                Events.fetchMachines(lineName, function(err, events, text) {
+                    if (err) {
+                        bot.reply(message, "*sorry, could not contact the organizers :-(*");
+                        return;
+                    }
 
-                    var detailMsg;
-                    var alias;
-                    var oees = "<br>";
-                    var aliases;
-                    for (var i = 0; i < jsonData.machines.length; i++) {
-                        var machine = jsonData.machines[i].machine;
+                    if (events.length == 0) {
+                        bot.reply(message, text + "\n\n_Type next for upcoming events_");
+                        return;
+                    }
 
-                        var alias = jsonData.machines[i].alias;
-                        var oee = jsonData.machines[i].oee;
+                    // Store events
+                    console.log("text: ", text);
 
-                        //macs.push(machine);
-                        //aliases.push(alias);
+                    var mpattern = [];
+                    for (var i = 0; i < events.machines.length; i++) {
+                        var machine = events.machines[i].machine;
+
+                        var alias = events.machines[i].alias;
+                        var oee = events.machines[i].oee;
+                        mpattern.push(alias);
                         aliases += "**" + alias + "**<br>";
-                        //var currentMsg = alias + ": **" + oee + "**%;";
+                        var currentMsg = alias + ": **" + oee + "**%;";
                         oees += alias + ": **" + oee + "%**;<br>";
                         detailMsg += alias + ": **line" + i + "** or **" + machine + " details**;<br>";
                     }
+                    mpattern.join("|");
+                    //  var url = 'http://194.79.57.109:8080/SFapi/machines';
+                    //  request(url, function(error, response, body) {
+                    //     console.log('error:', error); // Print the error if one occurred
+                    //     console.log('statusCode:', response && response.statusCode); // Print the response status code if a response was received
+                    //     console.log('body:', body); // Print the HTML for the Google homepage.
+
+                    //     var jsonData = JSON.parse(body);
+
+                    //    var detailMsg;
+                    //    var alias;
+                    //     var oees = "<br>";
+                    //     var aliases;
+                    //    for (var i = 0; i < jsonData.machines.length; i++) {
+                    //      var machine = jsonData.machines[i].machine;
+
+                    //       var alias = jsonData.machines[i].alias;
+                    var oee = jsonData.machines[i].oee;
+                    //
+                    //macs.push(machine);
+                    //aliases.push(alias);
+                    //  aliases += "**" + alias + "**<br>";
+                    ////var currentMsg = alias + ": **" + oee + "**%;";
+                    //oees += alias + ": **" + oee + "%**;<br>";
+                    //detailMsg += alias + ": **line" + i + "** or **" + machine + " details**;<br>";
+                    // }
 
                     //console.log('macs: ' + macs.join("|"));
                     //patternAliases = aliases.join(",  ");
@@ -41,10 +69,34 @@ module.exports = function(controller) {
 
                     bot.startConversation(message, function(err, convo) {
                         // create a path for when a user says YES
-                        var help = "Which line are you interested of? Please, type<br>" + aliases;
+                        var help = "Which line are you interested of? Please, type<br>" + mpattern;
                         help += detailMsg;
-
-
+                        convo.ask("What about coffee (yes/**no**/cancel)", [{
+                            pattern: "yes|yeh|sure|oui|si",
+                            callback: function(response, convo) {
+                                convo.say("Go, get some !");
+                                convo.setVar('drink', "coffee");
+                                convo.next();
+                            },
+                        }, {
+                            pattern: "no|neh|non|na|birk",
+                            callback: function(response, convo) {
+                                convo.gotoThread('ask-drink');
+                            },
+                        }, {
+                            pattern: "cancel|stop|exit",
+                            callback: function(response, convo) {
+                                convo.say("Got it, cancelling...");
+                                convo.next();
+                            },
+                        }, {
+                            default: true,
+                            callback: function(response, convo) {
+                                convo.say("Sorry, I did not understand.");
+                                convo.repeat();
+                                convo.next();
+                            }
+                        }]);
                         convo.addMessage({
                             text: `_${help}_`,
                         }, 'ask-details');
