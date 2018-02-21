@@ -2,16 +2,14 @@ ar request = require("request");
 var Events = require("./events");
 
 module.exports = function(controller) {
-
-    // controller.hears(['cheese'], 'direct_message,direct_mention',
-    // function (bot, message) {
+ 
     controller.hears([/availability value about line (.*)/i], 'direct_message,direct_mention', function(bot, message) {
 
         console.log('message: ', message);
         var lineName = message.match[1];
 
         console.log("lineName received: ", lineName);
-        //var help = "Which line are you interested of? Please, type<br>" + mpattern;
+ 
         Events.fetchMachines(function(err, plant, text) {
             if (err) {
                 bot.reply(message, "*sorry, could not contact the organizers :-(*");
