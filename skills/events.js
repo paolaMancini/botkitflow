@@ -95,7 +95,7 @@ module.exports.fetchMachDetails = function(machine, cb) {
                 msg += "<br>";
             }
             //msg += current.machine + " - " + current.description + +" - " +  current.machine;
-            msg += current.description + ": **" + current.value + " **";
+            msg += current.name + ": **" + current.value + " **";
             //debug("msg= ", msg);
         }
 
