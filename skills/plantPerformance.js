@@ -71,32 +71,7 @@ module.exports = function(controller) {
                         // create a path for when a user says YES
                         var help = "Which line are you interested of? Please, type<br>" + mpattern;
                         help += detailMsg;
-                        convo.ask("What about coffee (yes/**no**/cancel)", [{
-                            pattern: "yes|yeh|sure|oui|si",
-                            callback: function(response, convo) {
-                                convo.say("Go, get some !");
-                                convo.setVar('drink', "coffee");
-                                convo.next();
-                            },
-                        }, {
-                            pattern: "no|neh|non|na|birk",
-                            callback: function(response, convo) {
-                                convo.gotoThread('ask-drink');
-                            },
-                        }, {
-                            pattern: "cancel|stop|exit",
-                            callback: function(response, convo) {
-                                convo.say("Got it, cancelling...");
-                                convo.next();
-                            },
-                        }, {
-                            default: true,
-                            callback: function(response, convo) {
-                                convo.say("Sorry, I did not understand.");
-                                convo.repeat();
-                                convo.next();
-                            }
-                        }]);
+
                         convo.addMessage({
                             text: `_${help}_`,
                         }, 'ask-details');
