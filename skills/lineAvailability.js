@@ -57,15 +57,15 @@ module.exports = function(controller) {
                         bot.reply(message, textMach + "\n\n_Type next for upcoming events_");
                         return;
                     }
-                    var mex = "The availability value is:";
+                    var mex;
                     for (var i = 0; i < events.machine.length; i++) {
                         var current = events.machine[i];
 
                         if (events.machine[i].name == "availability") {
 
-                            mex  += current.alias + ": **" + current.value + "**";
+                            mex=current.descritpion + ": **" + current.value + "**";
                         }
-                        mpattern += "**" + current.alias + "**<br>";
+                      
 
                     }
 
