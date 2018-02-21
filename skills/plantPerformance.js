@@ -73,7 +73,7 @@ module.exports = function(controller) {
                         // create a path for when a user says YES
                         var help = "Which line are you interested of? Please, type:<br>";
                         help += "** details 'machine'**<br>";
-                        help +="List of available machine:<br>";
+                        help +="Choose machine the name from the following list: <br>";
                         help +=mpattern;
                    
 
