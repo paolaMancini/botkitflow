@@ -63,7 +63,7 @@ module.exports = function(controller) {
 
                         if (events.machine[i].name == "availability") {
 
-                            mex=current.descritpion + ": **" + current.value + "**";
+                            mex=current.description + ": **" + current.value + "**";
                         }
                       
 
