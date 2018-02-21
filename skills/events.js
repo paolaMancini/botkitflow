@@ -47,7 +47,7 @@ module.exports.fetchMachines = function(cb) {
 
 
         cb(null, events, msg);
-        return events;
+      
     });
 }
 
