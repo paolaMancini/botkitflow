@@ -77,7 +77,7 @@ module.exports = function(controller) {
 function askForFurtherLines(plant, mpattern, controller, bot, message) {
 
     // Store events
-    console.log("text: ", text);
+   // console.log("text: ", text);
 
     bot.startConversation(message, function(err, convo) {
 
