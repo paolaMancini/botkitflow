@@ -32,7 +32,7 @@ module.exports = function(controller) {
 
                         var alias = events.machines[i].alias;
                         var oee = events.machines[i].oee;
-                        mpattern.push(alias);
+                        mpattern.push(machine);
                         aliases += "**" + alias + "**<br>";
                         var currentMsg = alias + ": **" + oee + "**%;";
                         oees += alias + ": **" + oee + "%**;<br>";
