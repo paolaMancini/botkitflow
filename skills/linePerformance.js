@@ -2,16 +2,14 @@ var request = require("request");
 var Events = require("./events");
 
 module.exports = function(controller) {
-
-    // controller.hears(['cheese'], 'direct_message,direct_mention',
-    // function (bot, message) {
-    controller.hears([/OEE value about line (.*)/i], 'direct_message,direct_mention', function(bot, message) {
-
+ 
+    //controller.hears([/availability value about line (.*)/i], 'direct_message,direct_mention', function(bot, message) {
+   controller.hears([/line (.*) performance/i], 'direct_message,direct_mention', function(bot, message) {
         console.log('message: ', message);
         var lineName = message.match[1];
 
         console.log("lineName received: ", lineName);
-        //var help = "Which line are you interested of? Please, type<br>" + mpattern;
+ 
         Events.fetchMachines(function(err, plant, text) {
             if (err) {
                 bot.reply(message, "*sorry, could not contact the organizers :-(*");
@@ -59,15 +57,15 @@ module.exports = function(controller) {
                         bot.reply(message, textMach + "\n\n_Type next for upcoming events_");
                         return;
                     }
-                    var mex = "The performance value is:";
-                    for (var i = 0; i < events.machines.length; i++) {
+                    var mex;
+                    for (var i = 0; i < events.machine.length; i++) {
                         var current = events.machine[i];
 
                         if (events.machine[i].name == "performance") {
 
-                            mex  += current.alias + ": **" + current.value + "**";
+                            mex=current.description + ": **" + current.value + "**";
                         }
-                        mpattern += "**" + plant.machines[i].alias + "**<br>";
+                      
 
                     }
 
@@ -86,13 +84,12 @@ module.exports = function(controller) {
 }
 
 function askForFurtherLines(plant, mpattern, controller, bot, message) {
+        bot.startConversation(message, function(err, convo) {
 
-    bot.startConversation(message, function(err, convo) {
- 
         var help = "Which line are you interested of? Please, type:<br>";
-        help += "**OEE value about line 'machine'**<br>";
+        help += "**line 'machine' performance**<br>";
         help += "Choose machine the name from the following list: <br>";
-        help += "**" + mpattern + "**";
+        help += mpattern;
 
         convo.addMessage({
             text: `_${help}_`,
@@ -106,7 +103,7 @@ function askForFurtherLines(plant, mpattern, controller, bot, message) {
         }, 'bad_response');
 
 
-        convo.ask("Are you interested on monitoring the OEE value about an other further line? (yes/**no**/cancel)", [{
+        convo.ask("Are you interested on monitoring the performance value about an other further line? (yes/**no**/cancel)", [{
                 pattern: "yes|yeh|sure|oui|si",
                 callback: function(response, convo) {
                     convo.gotoThread('ask-other');
