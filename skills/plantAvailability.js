@@ -11,7 +11,7 @@ module.exports = function(controller) {
             if (plantName === 'plant1') {
 
                 console.log('message: ', message);
-                bot.reply(message, "The availability values are:");
+
                 Events.fetchMachines(function(err, plant, text) {
                     if (err) {
                         bot.reply(message, "The machine is not responding");
@@ -54,8 +54,7 @@ module.exports = function(controller) {
 
                 });
 
-
-
+                console.log ("Before bot.startConversation");
                 bot.startConversation(message, function(err, convo) {
                     // create a path for when a user says YES
                     var help = "Which line are you interested of? Please, type:<br>";
@@ -75,7 +74,7 @@ module.exports = function(controller) {
                     }, 'bad_response');
 
 
-                    convo.say("The OEE values are:" + oees);
+                    convo.say("The availability values are:" + textMach);
                     convo.ask("<br>Do you want furhter more details? (yes/**no**/cancel)<br>", [{
                             pattern: "yes|yeh|sure|oui|si",
                             callback: function(response, convo) {
