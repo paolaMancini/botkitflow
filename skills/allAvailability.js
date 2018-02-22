@@ -6,15 +6,15 @@ module.exports = function(controller) {
         function(bot, message) {
 
             console.log('message: ', message);
-            
+            bot.reply(message, "The availability values are:");               
                Events.fetchMachines(function(err, plant, text) {
                     if (err) {
-                        bot.reply(message, "*sorry, could not contact the organizers :-(*");
+                         bot.reply(message, "The machine is not responding");
                         return;
                     }
 
                     if (plant.length == 0) {
-                        bot.reply(message, text + "\n\n_Type next for upcoming events_");
+                         bot.reply(message, "The machine is not responding");
                         return;
                     }
 
@@ -32,12 +32,12 @@ module.exports = function(controller) {
                         //Fetch availability value for every machine
                         Events.fetchMachDetails1(mach,aliasM,"availability",function(errMach, events, textMach) {
                             if (errMach) {
-                                bot.reply(message, "*sorry, could not contact the organizers :-(*");
+                                bot.reply(message, "The machine is not responding");
                                 return;
                             }
 
                             if (plant.length == 0) {
-                                bot.reply(message, textMach + "\n\n_Type next for upcoming events_");
+                                bot.reply(message, "The machine is not responding");
                                 return;
                             }
                             console.log("textMach: ", textMach);
