@@ -26,7 +26,7 @@ module.exports.fetchMachines = function(cb) {
         //debug("fetched " + events.machines.length + " events");
         //fine(JSON.stringify(events));
 
-        if (events.length == 0) {
+        if (plants.length == 0) {
             cb(null, plants, "**Found no event currently going on.**");
             return;
         }
