@@ -45,7 +45,7 @@ module.exports = function(controller) {
                                 var current = events.machine[i];
 
                                 if (events.machine[i].name == "availability") {
-                                    mex= + "aliasM: **" + current.value + "**";
+                                    mex= aliasM+ ": **" + current.value + "**";
                                 }
                             }
                             console.log("text: ", mex);
