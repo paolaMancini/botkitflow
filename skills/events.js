@@ -26,7 +26,7 @@ module.exports.fetchMachines = function(cb) {
         //debug("fetched " + events.machines.length + " events");
         //fine(JSON.stringify(events));
 
-        if (plants.length == 0) {
+        if (plants.machines.length == 0) {
             cb(null, plants, "**Found no event currently going on.**");
             return;
         }
@@ -37,7 +37,7 @@ module.exports.fetchMachines = function(cb) {
             msg = "**only one event is running now:**";
         }
         for (var i = 0; i < nb; i++) {
-            var current = plants[i].machines;
+            var current = plants.machines[i];
             //msg += "\n:small_blue_diamond: "
             msg += "\n" + (i + 1) + ". ";
             msg += current.machine + " - " + current.description + +" - " + current.value;
