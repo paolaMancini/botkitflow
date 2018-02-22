@@ -7,7 +7,7 @@ module.exports = function(controller) {
             var machine="fakeMachine0";
             console.log('message: ', message);
             var msg ="The list of parameter descriptions is:<br>";
-            bot.reply(message, );       
+            bot.reply(message,msg );       
         
              Events.fetchMachDetails(machine, function(errMach, events, textMach) {
                     if (errMach) {
