@@ -41,7 +41,8 @@ module.exports = function(controller) {
                            
                             for (var i = 0; i < events.machine.length; i++) {
                                 var current = events.machine[i];
-                                if (events.machine[i].name == "performance") {
+                                console.log("events.machine[i].name= ",events.machine[i].name);
+                                if (events.machine[i].name == "availability") {
                                     mex = aliasM+ ": **" + current.value + "**%<br>";
                                     console.log("text: ", mex);
                                     bot.reply(message, mex);
