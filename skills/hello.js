@@ -12,7 +12,7 @@ module.exports = function(controller) {
         var chosen_message = message_options[random_index];
        
         bot.reply(message, chosen_message);
-        bot.reply('[📞](Contact Center: //pmr?sip=sip:paola.mancini@italtel.call.ciscospark.com)');
+       // bot.reply('[📞](Contact Center: //pmr?sip=sip:paola.mancini@italtel.call.ciscospark.com)');
 
     });
 
