@@ -9,70 +9,131 @@ module.exports = function(controller) {
 
         console.log('message: ', message);
         var lineName = message.match[1];
-        console.log("lineName received: ", lineName);
 
-        Events.fetchMachDetails(lineName, function(err, events, text) {
+        console.log("lineName received: ", lineName);
+        //var help = "Which line are you interested of? Please, type<br>" + mpattern;
+        Events.fetchMachines(function(err, plant, text) {
             if (err) {
                 bot.reply(message, "*sorry, could not contact the organizers :-(*");
                 return;
             }
 
-            if (events.length == 0) {
+            if (plant.length == 0) {
                 bot.reply(message, text + "\n\n_Type next for upcoming events_");
                 return;
             }
 
-            // Store events
-            console.log("text: ", text);
-
-            // });
+            console.log("plant.lenght= " + plant.machines.length);
 
 
 
-            //  var url = 'http://194.79.57.109:8080/SFapi/status?machine=' + lineName;
-            //  console.log("url:  ", url);
+            var machineName;
+            var mpattern = "<br>";
+            for (var i = 0; i < plant.machines.length; i++) {
 
-            //  request(url, function(error, response, body) {
-            //    console.log('error:', error); // Print the error if one occurred
-            //    console.log('statusCode:', response && response.statusCode); // Print the response status code if a response was received
-            //    console.log('body:', body); // Print the HTML for the Google homepage.
+                if (plant.machines[i].alias == lineName) {
 
-            //   if (error) {
-            //       console.log("could not retreive list of events, error: " + error);
-            //      bot.reply(message, "The machine is not responding");
-            //      return;
-            //  }
+                    machineName = plant.machines[i].machine;
+                }
+                mpattern += "**" + plant.machines[i].alias + "**<br>";
 
-            //  if ((response < 200) || (response > 299)) {
-            //       console.log("could not retreive list of events, response: " + response);
-            //      bot.reply(message, "The machine is not responding");
-            //      return;
-            //  }
-            //  if (body.length == 0) {
-            //     console.log("body is null");
-            //     bot.reply(message, "The machine is not responding");
-            //     return;
-            //  }
-            //  var jsonData = JSON.parse(body);
+            }
+            console.log('mpattern: ', mpattern);
+            if (typeof machineName == undefined) {
+                text = "Sorry, I don't know this line. Please, type:<br>";
+                text += "**'machine' details**<br>";
+                text += "Choose machine the name from the following list: <br>";
+                text += "**" + mpattern + "**";
+                bot.reply(message, text);
+            } else {
 
-            // var textDef = "Details:<br>";
-            //   var text = textDef;
+                console.log('machineName: ', machineName);
 
-            //  for (var i = 0; i < jsonData.machine.length; i++) {
-            //    var name = jsonData.machine[i].machine;
-            //    var descr = jsonData.machine[i].description;
-            //    var value = jsonData.machine[i].value;
-            //     console.log('name: ', name);
-            //     console.log('description: ', descr);
-            //     console.log('value: ', value);
-            //   text += descr + ": **" + value + " **;<br>";
+                Events.fetchMachDetails(machineName, function(errMach, events, textMach) {
+                    if (errMach) {
+                        bot.reply(message, "*sorry, could not contact the organizers :-(*");
+                        return;
+                    }
 
-            // }
-            //  if (text === textDef) {
+                    if (events.length == 0) {
+                        bot.reply(message, textMach + "\n\n_Type next for upcoming events_");
+                        return;
+                    }
 
-            //  }
-            bot.reply(message, text);
+                    // Store events
+                    console.log("text: ", textMach);
+                    bot.reply(message, textMach);
+
+                    askForFurtherLines(plant, mpattern, controller, bot, message);
+
+                });
+
+            };
 
         });
-    })
+    });
+}
+
+function askForFurtherLines(plant, mpattern, controller, bot, message) {
+
+    // Store events
+   // console.log("text: ", text);
+
+    bot.startConversation(message, function(err, convo) {
+
+        // create a path for when a user says YES
+
+
+        var help = "Which line are you interested of? Please, type:<br>";
+        help += "**'machine' details**<br>";
+        help += "Choose machine the name from the following list: <br>";
+        help += "**" + mpattern + "**";
+
+        convo.addMessage({
+            text: `_${help}_`,
+        }, 'ask-other');
+
+        // create a path where neither option was matched
+        // this message has an action field, which directs botkit to go back to the `default` thread after sending this message.
+        convo.addMessage({
+            text: 'Sorry I did not understand. Say `yes` or `no`',
+            action: 'default',
+        }, 'bad_response');
+
+
+        convo.ask("Are you interested on  monitoring an other further line? (yes/**no**/cancel)", [{
+                pattern: "yes|yeh|sure|oui|si",
+                callback: function(response, convo) {
+                    convo.gotoThread('ask-other');
+                },
+            },
+            {
+                pattern: "no|neh|non|na|birk",
+                callback: function(response, convo) {
+                    convo.say("Glad have being helped you!");
+                    convo.next();
+
+                },
+            },
+            {
+                pattern: "cancel|stop|exit",
+                callback: function(response, convo) {
+                    convo.say("Got it, cancelling...");
+                    convo.next();
+                },
+            },
+            {
+                default: true,
+                callback: function(response, convo) {
+                    convo.say("Sorry, I did not understand.");
+                    convo.repeat();
+                    convo.next();
+                }
+            },
+        ]);
+
+
+    });
+
+
 }

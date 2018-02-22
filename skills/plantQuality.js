@@ -2,15 +2,14 @@ var request = require('request');
 var Events = require("./events");
 module.exports = function(controller) {
 
-    controller.hears([/performance data about plant (.*)/i], 'direct_message,direct_mention',
+    controller.hears([/quality data about plant (.*)/i], 'direct_message,direct_mention',
         function(bot, message) {
 
             console.log('message: ', message);
             var plantName = message.match[1];
             //match[1] is the (.*) group. match[0] is the entire group (open the (.*) doors).
 
-            if (plantName === '1') {
-
+            if (plantName == '1') {
                 Events.fetchMachines(function(err, plant, text) {
                     if (err) {
                         bot.reply(message, "*sorry, could not contact the organizers :-(*");
@@ -23,15 +22,14 @@ module.exports = function(controller) {
                     }
 
                     var num = plant.machines.length;
-
                     console.log("Machines number: ", num);
-              
                     for (var i = 0; i < num; i++) {
                         var mach = plant.machines[i].machine;
+
                         var aliasM = plant.machines[i].alias;
                     
                         //Fetch availability value for every machine
-                        Events.fetchMachDetails1(mach,aliasM,"performance",function(errMach, events, textMach) {
+                        Events.fetchMachDetails1(mach,aliasM,"quality",function(errMach, events, textMach) {
                             if (errMach) {
                                 bot.reply(message, "The machine is not repsonding");
                                 return;
@@ -47,6 +45,7 @@ module.exports = function(controller) {
                         })
 
                     }
+
                    
                 });
             } else {
