@@ -12,7 +12,7 @@ module.exports.fetchMachines = function(cb) {
     request(options, function(error, response, body) {
         if (error) {
             debug("1 could not retreive list of events, error: " + error);
-            //cb(new Error("Could not retreive current events, sorry [Events API not responding]"), null, null);
+            cb(new Error("Could not retreive current events, sorry [Backend Events API not responding]"), null, null);
             return;
         }
 
@@ -62,7 +62,7 @@ module.exports.fetchMachDetails = function(machine, cb) {
     request(options, function(error, response, body) {
         if (error) {
             debug("1 could not retreive list of events, error: " + error);
-            //cb(new Error("Could not retreive current events, sorry [Events API not responding]"), null, null);
+            cb(new Error("Could not retreive current events, sorry [Backend Events API not responding]"), null, null);
             return;
         }
 
