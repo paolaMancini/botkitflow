@@ -39,6 +39,7 @@ module.exports = function(controller) {
                                 return;
                             }
                             console.log("textMach: ", textMach);
+                            bot.reply(message, "The quality values are:<br>")
                             bot.reply(message, textMach);                          
                              
                         })
