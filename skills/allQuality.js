@@ -38,6 +38,7 @@ module.exports = function(controller) {
 
                             for (var i = 0; i < events.machine.length; i++) {
                                 var current = events.machine[i];
+                                console.log("current.name: ", current.name);
                                 if (events.machine[i].name == "quality") {
                                     mex += current.name + ": **" + current.value + "**%<br>";
                                 }
