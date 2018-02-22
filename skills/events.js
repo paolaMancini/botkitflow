@@ -154,7 +154,7 @@ module.exports.fetchMachDetails1 = function(machine,alias,param, cb) {
            
             //debug("msg= ", msg);
         }
-        msg+="<br>";
+        
         cb(null, events, msg);
     });
 }
