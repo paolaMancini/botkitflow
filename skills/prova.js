@@ -1,13 +1,14 @@
-module.exports = function (controller) {
+ 
+module.exports = function(controller) {
 
-    controller.hears([/^storage$/], 'direct_message,direct_mention', function (bot, message) {
+    controller.hears(['prova'], ['direct_message', 'direct_mention', 'mention'], function(bot, message) {
+        
+        var chosen_message = "'[📞](Contact Center: //pmr?sip=sip:paola.mancini@italtel.call.ciscospark.com)'" ;
+       
+        bot.reply(message, chosen_message);
+        bot.reply();
 
-        bot.startConversation(message, function (err, convo) {
-            bot.reply('This is a BotKit conversation sample.');
-            bot.reply ("- [Oh yea!](http://194.79.57.109:8080/SFnotify/mainChart)");
-               
-            });
-        });
+    });
 
-    
-};
+
+}
