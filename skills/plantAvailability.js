@@ -13,48 +13,37 @@ module.exports = function(controller) {
 
                 Events.fetchMachines(function(err, plant, text) {
                     if (err) {
-                        bot.reply(message, "*sorry, could not contact the organizers :-(*");
+                        bot.reply(message, "The machine is not repsonding");
                         return;
                     }
 
                     if (plant.machines.length == 0) {
-                        bot.reply(message, text + "\n\nThe machine is not responding");
+                        bot.reply(message, "The machine is not repsonding");
                         return;
                     }
 
                     var num = plant.machines.length;
                     console.log("Machines number: ", num);
                     var mex = "The availability values are:<br>";
-                    var aliasM;
                     for (var i = 0; i < num; i++) {
+                        var mach = plant.machines[i].machine;
 
-                       
-                        aliasM=plant.machines[i].alias;
-                        console.log("plant.machines[i].alias "+ aliasM+ " i= "+ i);
-                        console.log("plant.machines[i].machine "+plant.machines[i].machine);
+                        var aliasM = plant.machines[i].alias;
+                    
                         //Fetch availability value for every machine
-                        Events.fetchMachDetails(plant.machines[i].machine, function(errMach, events, textMach) {
-                     
-                            
+                        Events.fetchMachDetails1(mach,aliasM,"availability",function(errMach, events, textMach) {
                             if (errMach) {
-                                bot.reply(message, "The machine is not responding");
-                                return;
-                            }
-                            if (events.length == 0) {
-                                bot.reply(message, "The machine is not responding");
+                                bot.reply(message, "The machine is not repsonding");
                                 return;
                             }
 
-
-                            for (var j = 0; j < events.machine.length; i++) {
-                                var current = events.machine[i];
-
-                                if (events.machine[j].name == "availability") {
-                                    mex = aliasM + ": **" + current.value + "**";
-                                }
+                            if (plant.length == 0) {
+                                bot.reply(message, "The machine is not repsonding");
+                                return;
                             }
-                            console.log("text: ", mex);
-                            bot.reply(message, mex);
+                            console.log("textMach: ", textMach);
+                            bot.reply(message, textMach);                          
+                             
                         })
 
                     }
