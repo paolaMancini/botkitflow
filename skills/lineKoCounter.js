@@ -56,7 +56,7 @@ module.exports = function(controller) {
                                 return;
                             }
                             console.log("textMach: ", textMach);
-                            bot.reply(message, textMach");                          
+                            bot.reply(message, textMach);                          
                              
                         })
              
