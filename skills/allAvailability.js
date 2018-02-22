@@ -42,7 +42,10 @@ module.exports = function(controller) {
                             for (var i = 0; i < events.machine.length; i++) {
                                 var current = events.machine[i];
                                 if (events.machine[i].name == "performance") {
-                                    mex += aliasM+ ": **" + current.value + "**%<br>";
+                                    mex = aliasM+ ": **" + current.value + "**%<br>";
+                                    console.log("text: ", mex);
+                                    bot.reply(message, mex);
+                                    
                                 }
                             }
                             console.log("text: ", mex);
@@ -51,8 +54,7 @@ module.exports = function(controller) {
                         })
 
                     }
-                   console.log("text: ", mex);
-                   bot.reply(message, mex);
+                   
 
                 });
             
