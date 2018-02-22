@@ -9,12 +9,12 @@ module.exports = function(controller) {
              
                Events.fetchMachines(function(err, plant, text) {
                     if (err) {
-                        bot.reply(message, "*sorry, could not contact the organizers :-(*");
+                        bot.reply(message, "The machine is not responding");
                         return;
                     }
 
                     if (plant.length == 0) {
-                        bot.reply(message, text + "\n\n_Type next for upcoming events_");
+                        bot.reply(message, "The machine is not responding");
                         return;
                     }
 
@@ -23,8 +23,6 @@ module.exports = function(controller) {
                     console.log("Machines number: ", num);
 
                     var mex = "The performance values are:<br>";
-                    var aliasM;
-                   
                     for (var i = 0; i < num; i++) {
                         var mach = plant.machines[i].machine;
 
