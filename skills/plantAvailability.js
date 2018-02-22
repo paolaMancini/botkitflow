@@ -25,9 +25,9 @@ module.exports = function(controller) {
                     var num = plant.machines.length;
                     console.log("Machines number: ", num);
                     var mex = "The availability values are:<br>";
-
+                      
                     for (var i = 0; i < num; i++) {
-                     
+                        var aliasM=plant.machines[i].alias;
                         //Fetch availability value for every machine
                         Events.fetchMachDetails(plant.machines[i].machine, function(errMach, events, textMach) {
                             if (errMach) {
@@ -45,8 +45,7 @@ module.exports = function(controller) {
                                 var current = events.machine[i];
 
                                 if (events.machine[i].name == "availability") {
-
-                                    mex=plant.machines[i].alias + ": **" + current.value + "**";
+                                    mex= + "aliasM: **" + current.value + "**";
                                 }
                             }
                             console.log("text: ", mex);
