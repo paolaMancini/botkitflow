@@ -2,7 +2,7 @@ var request = require('request');
 var Events = require("./events");
 module.exports = function(controller) {
 
-    controller.hears([/availability data about all machines/i], 'direct_message,direct_mention',
+    controller.hears([/all availabilities/i], 'direct_message,direct_mention',
         function(bot, message) {
 
             console.log('message: ', message);
@@ -24,7 +24,7 @@ module.exports = function(controller) {
 
 
                     for (var i = 0; i < num; i++) {
-                        var mex = "The availability values are:<br>";
+                        
                         
                         //Fetch availability value for every machine
                         Events.fetchMachDetails(plant.machines[i].machine, function(errMach, events, textMach) {
@@ -37,7 +37,7 @@ module.exports = function(controller) {
                                 bot.reply(message, textMach + "\n\n_Type next for upcoming events_");
                                 return;
                             }
-
+                            var mex = "The availability values are:<br>";
                             for (var i = 0; i < events.machine.length; i++) {
                                 var current = events.machine[i];
                                 if (events.machine[i].name == "performance") {
