@@ -7,9 +7,9 @@ module.exports = function(controller) {
    controller.hears([/line (.*) availability/i], 'direct_message,direct_mention', function(bot, message) {
         console.log('message: ', message);
         var lineName = message.match[1];
-
+        var param = "availability";
         console.log("lineName received: ", lineName);
- 
+        bot.reply(message,"The "+param+" value is:<br>");
         Events.fetchMachines(function(err, plant, text) {
             if (err) {
                  bot.reply(message, "The machine is not responding");
@@ -22,9 +22,6 @@ module.exports = function(controller) {
             }
 
             console.log("plant.lenght= " + plant.machines.length);
-
-
-
             var machineName;
             var mpattern = "<br>";
             for (var i = 0; i < plant.machines.length; i++) {
@@ -65,7 +62,7 @@ module.exports = function(controller) {
              
               
 
-                    askForFurtherLines(plant, mpattern, controller, bot, message);
+                    askForFurtherLines(plant,param, mpattern, controller, bot, message);
 
                
 
@@ -75,11 +72,11 @@ module.exports = function(controller) {
     });
 }
 
-function askForFurtherLines(plant, mpattern, controller, bot, message) {
+function askForFurtherLines(plant,param, mpattern, controller, bot, message) {
         bot.startConversation(message, function(err, convo) {
 
         var help = "Which line are you interested of? Please, type:<br>";
-        help += "**line 'machine' availability**<br>";
+        help += "**line 'machine' "+param+"**<br>";
         help += "Choose machine the name from the following list: <br>";
         help += mpattern;
 
@@ -95,7 +92,7 @@ function askForFurtherLines(plant, mpattern, controller, bot, message) {
         }, 'bad_response');
 
 
-        convo.ask("Are you interested on monitoring the availability value about an other further line? (yes/**no**/cancel)", [{
+        convo.ask("Are you interested on monitoring the "+param+" value about an other further line? (yes/**no**/cancel)", [{
                 pattern: "yes|yeh|sure|oui|si",
                 callback: function(response, convo) {
                     convo.gotoThread('ask-other');
