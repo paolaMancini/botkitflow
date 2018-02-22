@@ -11,24 +11,25 @@ module.exports = function(controller) {
 
             if (plantName === '1') {
 
-                Events.fetchMachines(function(err, events, text) {
+                Events.fetchMachines(function(err, plant, text) {
                     if (err) {
                         bot.reply(message, "*sorry, could not contact the organizers :-(*");
                         return;
                     }
 
                     if (events.length == 0) {
-                        bot.reply(message, text + "\n\n_Type next for upcoming events_");
+                        bot.reply(message, text + "\n\nThe machine is not responding");
                         return;
                     }
 
                     var num = events.machines.length;
-
+                    console.log("Machines number: ", num);
+                    var mex = "The availability values are:<br>";
 
                     for (var i = 0; i < num; i++) {
-                        var mex = "The availability values are:<br>";
+                     
                         //Fetch availability value for every machine
-                        Events.fetchMachDetails(events.machine[i].name, function(errMach, events, textMach) {
+                        Events.fetchMachDetails(events.machine[i].machine, function(errMach, events, textMach) {
                             if (errMach) {
                                 bot.reply(message, "*sorry, could not contact the organizers :-(*");
                                 return;
