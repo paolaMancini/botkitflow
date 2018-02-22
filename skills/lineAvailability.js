@@ -2,22 +2,22 @@ var request = require("request");
 var Events = require("./events");
 
 module.exports = function(controller) {
- 
+
     //controller.hears([/availability value about line (.*)/i], 'direct_message,direct_mention', function(bot, message) {
-   controller.hears([/line (.*) availability/i], 'direct_message,direct_mention', function(bot, message) {
+    controller.hears([/line (.*) availability/i], 'direct_message,direct_mention', function(bot, message) {
         console.log('message: ', message);
         var lineName = message.match[1];
         var param = "availability";
         console.log("lineName received: ", lineName);
-        bot.reply(message,"The "+param+" value is:<br>");
+        bot.reply(message, "The " + param + " value is:<br>");
         Events.fetchMachines(function(err, plant, text) {
             if (err) {
-                 bot.reply(message, "The machine is not responding");
+                bot.reply(message, "The machine is not responding");
                 return;
             }
 
             if (plant.length == 0) {
-               bot.reply(message, "The machine is not responding");
+                bot.reply(message, "The machine is not responding");
                 return;
             }
 
@@ -43,28 +43,28 @@ module.exports = function(controller) {
             } else {
 
                 console.log('machineName: ', machineName);
-             
-             
-                        Events.fetchMachDetails1(machineName,lineName,param,function(errMach, events, textMach) {
-                            if (errMach) {
-                                bot.reply(message, "The machine is not responding");
-                                return;
-                            }
 
-                            if (plant.length == 0) {
-                                bot.reply(message, "The machine is not responding");
-                                return;
-                            }
-                            console.log("textMach: ", textMach);
-                            bot.reply(message, textMach+"%");                          
-                             
-                        })
-             
-              
 
-                    askForFurtherLines(plant,param, mpattern, controller, bot, message);
+                Events.fetchMachDetails1(machineName, lineName, param, function(errMach, events, textMach) {
+                    if (errMach) {
+                        bot.reply(message, "The machine is not responding");
+                        return;
+                    }
 
-               
+                    if (plant.length == 0) {
+                        bot.reply(message, "The machine is not responding");
+                        return;
+                    }
+                    console.log("textMach: ", textMach);
+                    bot.reply(message, textMach + "%");
+
+                })
+
+
+
+                askForFurtherLines(plant, param, mpattern, controller, bot, message);
+
+
 
             };
 
@@ -72,11 +72,11 @@ module.exports = function(controller) {
     });
 }
 
-function askForFurtherLines(plant,param, mpattern, controller, bot, message) {
-        bot.startConversation(message, function(err, convo) {
+function askForFurtherLines(plant, param, mpattern, controller, bot, message) {
+    bot.startConversation(message, function(err, convo) {
 
         var help = "Which line are you interested of? Please, type:<br>";
-        help += "**line 'machine' "+param+"**<br>";
+        help += "**line 'machine' " + param + "**<br>";
         help += "Choose machine the name from the following list: <br>";
         help += mpattern;
 
@@ -92,7 +92,7 @@ function askForFurtherLines(plant,param, mpattern, controller, bot, message) {
         }, 'bad_response');
 
 
-        convo.ask("Are you interested on monitoring the "+param+" value about an other further line? (yes/**no**/cancel)", [{
+        convo.ask("Are you interested on monitoring the " + param + " value about an other further line? (yes/**no**/cancel)", [{
                 pattern: "yes|yeh|sure|oui|si",
                 callback: function(response, convo) {
                     convo.gotoThread('ask-other');
