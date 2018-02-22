@@ -25,14 +25,15 @@ module.exports = function(controller) {
 
                     for (var i = 0; i < num; i++) {
                         var mex = "The availability values are:<br>";
+                        
                         //Fetch availability value for every machine
-                        Events.fetchMachDetails(events.machine[i].machine, function(errMach, events, textMach) {
+                        Events.fetchMachDetails(plant.machine[i].machine, function(errMach, events, textMach) {
                             if (errMach) {
                                 bot.reply(message, "*sorry, could not contact the organizers :-(*");
                                 return;
                             }
 
-                            if (events.length == 0) {
+                            if (plant.length == 0) {
                                 bot.reply(message, textMach + "\n\n_Type next for upcoming events_");
                                 return;
                             }
