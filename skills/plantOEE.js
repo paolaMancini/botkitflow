@@ -60,7 +60,7 @@ module.exports = function(controller) {
                         }, 'bad_response');
 
 
-                        convo.say("The OEE data is:" + oees);
+                        convo.say("The OEE values are:" + oees);
                         convo.ask("<br>Do you want furhter more details? (yes/**no**/cancel)<br>", [{
                                 pattern: "yes|yeh|sure|oui|si",
                                 callback: function(response, convo) {
