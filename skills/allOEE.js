@@ -2,7 +2,7 @@ var request = require('request');
 var Events = require("./events");
 module.exports = function(controller) {
    
-    controller.hears([/oee data about all machines/i], 'direct_message,direct_mention',
+    controller.hears([/all oee/i], 'direct_message,direct_mention',
         function(bot, message) {
 
             console.log('message: ', message);
