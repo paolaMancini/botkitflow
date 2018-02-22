@@ -45,7 +45,7 @@ module.exports = function(controller) {
                             for (var i = 0; i < plant.machines.length; i++) {
                                 var current = events.machine[i];
                                 if (events.machine[i].name == "performance") {
-                                    mex += current.name + ": **" + current.value + "**%<br>";
+                                    mex += plant.machines[i].alias + ": **" + current.value + "**%<br>";
                                 }
                             }
                             console.log("text: ", mex);
