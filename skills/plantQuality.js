@@ -8,7 +8,7 @@ module.exports = function(controller) {
             console.log('message: ', message);
             var plantName = message.match[1];
             //match[1] is the (.*) group. match[0] is the entire group (open the (.*) doors).
-
+            bot.reply(message, "The quality values are:<br>");
             if (plantName == '1') {
                 Events.fetchMachines(function(err, plant, text) {
                     if (err) {
@@ -39,8 +39,8 @@ module.exports = function(controller) {
                                 bot.reply(message, "The machine is not repsonding");
                                 return;
                             }
-                            console.log("textMach: ", textMach);
-                            bot.reply(message, "The quality values are:<br>");
+                            console.log("textMach: ", textMach+"%");
+                            
                             bot.reply(message, textMach);                          
                              
                         })
