@@ -17,12 +17,12 @@ module.exports = function(controller) {
                         return;
                     }
 
-                    if (events.length == 0) {
+                    if (plant.machines.length == 0) {
                         bot.reply(message, text + "\n\nThe machine is not responding");
                         return;
                     }
 
-                    var num = events.machines.length;
+                    var num = plant.machines.length;
                     console.log("Machines number: ", num);
                     var mex = "The availability values are:<br>";
 
