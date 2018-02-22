@@ -1,7 +1,3 @@
-var request = require('request');
-var Events = require("./events");
-module.exports = function(controller) {
-
     controller.hears([/availability data about plant (.*)/i], 'direct_message,direct_mention',
         function(bot, message) {
 
