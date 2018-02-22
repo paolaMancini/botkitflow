@@ -26,7 +26,7 @@ module.exports = function(controller) {
                     for (var i = 0; i < num; i++) {
                         var mex = "The performance values are:<br>";
                         //Fetch performance value for every machine
-                        Events.fetchMachDetails(events.machine[i].name, function(errMach, events, textMach) {
+                        Events.fetchMachDetails(plant.machines[i].machine, function(errMach, events, textMach) {
                             if (errMach) {
                                 bot.reply(message, "*sorry, could not contact the organizers :-(*");
                                 return;
