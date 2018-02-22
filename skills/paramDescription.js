@@ -6,7 +6,7 @@ module.exports = function(controller) {
         function(bot, message) {
             var machine="fakeMachine0";
             console.log('message: ', message);
-            var msg ="The list of parameter descriptions is:<br>";
+            var msg ="The list of parameter descriptions is:";
             bot.reply(message,msg );       
         
              Events.fetchMachDetails(machine, function(errMach, events, textMach) {
@@ -26,6 +26,7 @@ module.exports = function(controller) {
                     if (nb == 1) {
                         msg = "No details found";
                     }
+                    msg="<br>";
                     for (var i = 0; i < nb; i++) {
                         var current = events.machine[i];
                         
