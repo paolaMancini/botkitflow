@@ -75,7 +75,7 @@ module.exports.fetchMachDetails = function(machine, cb) {
         //debug("body: ",body );
         var events = JSON.parse(body);
         //debug("fetched " + events.machine.length + " events");
-        fine(JSON.stringify(events));
+        //fine(JSON.stringify(events));
 
         if (events.machine.length == 0) {
             cb(null, events, "**Found no event currently going on.**");
