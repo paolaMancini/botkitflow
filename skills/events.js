@@ -143,7 +143,7 @@ module.exports.fetchMachDetails1 = function(machine,alias,param, cb) {
         if (nb == 1) {
             msg = "No values found";
         }else{
-            msg="<br>The ",param," values are:<br>";
+           msg="The "+param +" values are:<br>";
         }
         for (var i = 0; i < nb; i++) {
             var current = events.machine[i];
