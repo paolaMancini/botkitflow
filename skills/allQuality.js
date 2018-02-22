@@ -43,12 +43,12 @@ module.exports = function(controller) {
                                     mex += current.name + ": **" + current.value + "**%<br>";
                                 }
                             }
+                            console.log("text: ", mex);
+                            bot.reply(message, mex);
                         })
 
                     }
-
-                    console.log("text: ", mex);
-                    bot.reply(message, mex);
+  
                 });
             
 
