@@ -7,25 +7,21 @@ module.exports = function(controller) {
     controller.hears([/line (.*) timeWork/i], 'direct_message,direct_mention', function(bot, message) {
         console.log('message: ', message);
         var lineName = message.match[1];
-
-        console.log("lineName received: ", lineName);
         var param = "timeWork";
-
+        console.log("lineName received: ", lineName);
+        bot.reply(message, "The " + param + " value is:<br>");
         Events.fetchMachines(function(err, plant, text) {
             if (err) {
-                bot.reply(message, "*sorry, could not contact the organizers :-(*");
+                bot.reply(message, "The machine is not responding");
                 return;
             }
 
             if (plant.length == 0) {
-                bot.reply(message, text + "\n\n_Type next for upcoming events_");
+                bot.reply(message, "The machine is not responding");
                 return;
             }
 
             console.log("plant.lenght= " + plant.machines.length);
-
-
-
             var machineName;
             var mpattern = "<br>";
             for (var i = 0; i < plant.machines.length; i++) {
@@ -34,7 +30,7 @@ module.exports = function(controller) {
 
                     machineName = plant.machines[i].machine;
                 }
-                mpattern += "**" + plant.machines[i].alias + " min**";
+                mpattern += "**" + plant.machines[i].alias + "**";
 
             }
             console.log('mpattern: ', mpattern);
@@ -48,33 +44,27 @@ module.exports = function(controller) {
 
                 console.log('machineName: ', machineName);
 
-                Events.fetchMachDetails(machineName, function(errMach, events, textMach) {
+
+                Events.fetchMachDetails1(machineName, lineName, param, function(errMach, events, textMach) {
                     if (errMach) {
-                        bot.reply(message, "*sorry, could not contact the organizers :-(*");
+                        bot.reply(message, "The machine is not responding");
                         return;
                     }
 
-                    if (events.length == 0) {
-                        bot.reply(message, textMach + "\n\n_Type next for upcoming events_");
+                    if (plant.length == 0) {
+                        bot.reply(message, "The machine is not responding");
                         return;
                     }
-                    var mex;
-                    for (var i = 0; i < events.machine.length; i++) {
-                        var current = events.machine[i];
+                    console.log("textMach: ", textMach);
+                    bot.reply(message, textMach + " min");
 
-                        if (events.machine[i].name == "availability") {
+                })
 
-                            mex = current.name + ": **" + current.value + "**";
-                        }
-                    }
 
-                    // Store events
-                    console.log("text: ", mex);
-                    bot.reply(message, mex);
 
-                    askForFurtherLines(plant, mpattern, controller, bot, message);
+                askForFurtherLines(plant, param, mpattern, controller, bot, message);
 
-                });
+
 
             };
 
@@ -82,11 +72,11 @@ module.exports = function(controller) {
     });
 }
 
-function askForFurtherLines(plant, mpattern, controller, bot, message) {
+function askForFurtherLines(plant, param, mpattern, controller, bot, message) {
     bot.startConversation(message, function(err, convo) {
 
         var help = "Which line are you interested of? Please, type:<br>";
-        help += "**line 'machine' availability**<br>";
+        help += "**line 'machine' " + param + "**<br>";
         help += "Choose machine the name from the following list: <br>";
         help += mpattern;
 
