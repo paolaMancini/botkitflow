@@ -72,7 +72,7 @@ module.exports.fetchMachDetails = function(machine, cb) {
             return;
         }
         
-        //debug("body: ",body );
+        debug("body: ",body );
         var events = JSON.parse(body);
         //debug("fetched " + events.machine.length + " events");
         //fine(JSON.stringify(events));
