@@ -23,7 +23,7 @@ module.exports = function(controller) {
 
                     var num = plant.machines.length;
                     console.log("Machines number: ", num);
-                    var mex = "The quality values are:<br>";
+                  
                     for (var i = 0; i < num; i++) {
                        
                         //Fetch quality value for every machine
@@ -37,7 +37,7 @@ module.exports = function(controller) {
                                 bot.reply(message, textMach + "\n\n_Type next for upcoming events_");
                                 return;
                             }
-
+                            var mex = "The quality values are:<br>";
                             for (var i = 0; i < events.machine.length; i++) {
                                 var current = events.machine[i];
                                 if (events.machine[i].name == "quality") {
