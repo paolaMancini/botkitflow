@@ -126,7 +126,7 @@ module.exports.fetchMachDetails1 = function(machine,alias,param, cb) {
             return;
         }
         
-        debug("body: ",body );
+        //debug("body: ",body );
         var events = JSON.parse(body);
         //debug("fetched " + events.machine.length + " events");
         //fine(JSON.stringify(events));
@@ -136,17 +136,19 @@ module.exports.fetchMachDetails1 = function(machine,alias,param, cb) {
             return;
         }
 
+        console.log("event.js: machine= ",machine,"  alias= ",alias,"  param= ",param);
         var nb = events.machine.length;
-        var msg = "<br>Nitty-gritty of the line:<br>";
+         
         if (nb == 1) {
             msg = "No details found";
         }
         for (var i = 0; i < nb; i++) {
             var current = events.machine[i];
              if(current.name == param){
+                  msg = alias + ": **" + current.value + "**";
              }
             //msg += current.machine + " - " + current.description + +" - " +  current.machine
-            msg = alias + ": **" + current.value + "**";
+           
             //debug("msg= ", msg);
         }
         msg+="<br>";
