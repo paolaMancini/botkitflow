@@ -41,6 +41,7 @@ module.exports = function(controller) {
                                 return;
                             }
                             console.log("textMach: ", textMach);
+                            bot.reply(message, "The availabity values are:<br>")
                             bot.reply(message, textMach);                          
                              
                         })
