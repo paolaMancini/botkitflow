@@ -6,7 +6,8 @@ module.exports = function(controller) {
         function(bot, message) {
             var machine="fakeMachine0";
             console.log('message: ', message);
-            bot.reply(message, "The list of parameter descriptions is:<br>");       
+            var msg ="The list of parameter descriptions is:<br>";
+            bot.reply(message, );       
         
              Events.fetchMachDetails(machine, function(errMach, events, textMach) {
                     if (errMach) {
@@ -19,11 +20,24 @@ module.exports = function(controller) {
                         return;
                     }
 
+                 
+                    var nb = events.machine.length;
+                     
+                    if (nb == 1) {
+                        msg = "No details found";
+                    }
+                    for (var i = 0; i < nb; i++) {
+                        var current = events.machine[i];
+                        
+                        //msg += current.machine + " - " + current.description + +" - " +  current.machine;
+                        msg += "**"+current.name + ": **" + current.descriptions;
+                        //debug("msg= ", msg);
+                    }                 
                     // Store events
-                    console.log("text: ", textMach);
-                    bot.reply(message, textMach);
+                    console.log("text: ", msg);
+                    bot.reply(message, msg);
 
-                    askForFurtherLines(plant, mpattern, controller, bot, message);
+                    
 
                 });
 
