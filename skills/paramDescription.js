@@ -6,29 +6,22 @@ module.exports = function(controller) {
         function(bot, message) {
 
             console.log('message: ', message);
-            bot.reply(message, "The list of parameter description is:<br>");               
-               Events.fetchMachines(function(err, plant, text) {
-                    if (err) {
-                         bot.reply(message, "The machine is not responding");
+            bot.reply(message, "The list of parameter descriptions is:<br>");       
+        
+              Events.fetchMachDetails1(machineName, lineName, param, function(errMach, events, textMach) {
+                    if (errMach) {
+                        bot.reply(message, "The machine is not responding");
                         return;
                     }
 
                     if (plant.length == 0) {
-                         bot.reply(message, "The machine is not responding");
+                        bot.reply(message, "The machine is not responding");
                         return;
                     }
+                    console.log("textMach: ", textMach);
+                    bot.reply(message, textMach + "%");
 
-                    var num = plant.machines.length;
-                    console.log("Machines number: ", num);
-                    var msg;
-                    for (var i = 0; i < num; i++) {
-                        var mach = plant.machines[i].machine;
-                        var aliasM = plant.machines[i].alias;                  
-                        msg += "**"+aliasM+"**<br>"
-                    }             
-                    bot.reply(message,msg);
-                });
-            
+                })
 
         });
 }
