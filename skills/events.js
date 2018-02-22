@@ -18,7 +18,7 @@ module.exports.fetchMachines = function(cb) {
 
         if ((response < 200) || (response > 299)) {
             debug("1 could not retreive list of events, response: " + response);
-            //sparkCallback(new Error("Could not retreive current events, sorry [bad anwser from Events API]"), null, null);
+          
             return;
         }
 
