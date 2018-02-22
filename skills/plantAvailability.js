@@ -25,28 +25,29 @@ module.exports = function(controller) {
                     var num = plant.machines.length;
                     console.log("Machines number: ", num);
                     var mex = "The availability values are:<br>";
-                    var aliasM;  
+                    var aliasM;
                     for (var i = 0; i < num; i++) {
-                        aliasM=plant.machines[i].alias;
-                        console.log("aliasM=plant.machines[i].alias ", aliasM, " i= ",i);
+
+                        console.log("aliasM=plant.machines[i].alias ", aliasM, " i= ", i);
+
                         //Fetch availability value for every machine
                         Events.fetchMachDetails(plant.machines[i].machine, function(errMach, events, textMach) {
+
                             if (errMach) {
-                                bot.reply(message, "*sorry, could not contact the organizers :-(*");
+                                bot.reply(message, "The machine is not responding");
                                 return;
                             }
-
                             if (events.length == 0) {
-                                bot.reply(message, textMach + "\n\n_Type next for upcoming events_");
+                                bot.reply(message, "The machine is not responding");
                                 return;
                             }
 
-                        
-                            for (var i = 0; i < events.machine.length; i++) {
+
+                            for (var j = 0; j < events.machine.length; i++) {
                                 var current = events.machine[i];
 
-                                if (events.machine[i].name == "availability") {
-                                    mex= aliasM+ ": **" + current.value + "**";
+                                if (events.machine[j].name == "availability") {
+                                    mex = aliasM + ": **" + current.value + "**";
                                 }
                             }
                             console.log("text: ", mex);
@@ -55,7 +56,7 @@ module.exports = function(controller) {
 
                     }
 
-                    
+
                 });
             } else {
                 bot.reply(message, 'I\'m sorry. I don\'t know this plant.');
