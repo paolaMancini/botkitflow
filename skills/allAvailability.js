@@ -28,7 +28,7 @@ module.exports = function(controller) {
                         
                         aliasM= plant.machines[i].alias;
                         //Fetch availability value for every machine
-                        Events.fetchMachDetails(plant.machines[i].machine, function(errMach, events, textMach) {
+                        Events.fetchMachDetails1(plant.machines[i].machine,plant.machines[i].alias,"availability",function(errMach, events, textMach) {
                             if (errMach) {
                                 bot.reply(message, "*sorry, could not contact the organizers :-(*");
                                 return;
@@ -38,16 +38,9 @@ module.exports = function(controller) {
                                 bot.reply(message, textMach + "\n\n_Type next for upcoming events_");
                                 return;
                             }
-                           
-                            for (var i = 0; i < events.machine.length; i++) {
-                                var current = events.machine[i];
-                                 
-                                if (current.name == "availability") {
-                                    mex = aliasM+ ": **" + current.value + "**%<br>";
-                                    console.log("mex: ", mex);
-                                    bot.reply(message, mex);                          
-                                }
-                            }
+                            console.log("textMach: ", textMach);
+                            bot.reply(message, textMach);                          
+                            
                             
                             
 
