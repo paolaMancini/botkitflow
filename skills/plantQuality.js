@@ -23,9 +23,9 @@ module.exports = function(controller) {
 
                     var num = plant.machines.length;
                     console.log("Machines number: ", num);
-                  
+                    var aliasM;
                     for (var i = 0; i < num; i++) {
-                       var aliasM=plant.machines[i].alias;
+                        aliasM=plant.machines[i].alias;
                         //Fetch quality value for every machine
                         Events.fetchMachDetails(plant.machines[i].machine, function(errMach, events, textMach) {
                             if (errMach) {
