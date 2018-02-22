@@ -2,7 +2,7 @@ var request = require('request');
 var Events = require("./events");
 module.exports = function(controller) {
 
-    controller.hears([/quality data about all machines/i], 'direct_message,direct_mention',
+    controller.hears([/all quality/i], 'direct_message,direct_mention',
         function(bot, message) {
 
             console.log('message: ', message);
@@ -20,10 +20,10 @@ module.exports = function(controller) {
 
                     var num = plant.machines.length;
                     console.log("Machines number: ", num);
-
+                    var mex = "The quality values are:<br>";
 
                     for (var i = 0; i < num; i++) {
-                        var mex = "The quality values are:<br>";
+                       
                         //Fetch quality value for every machine
                         Events.fetchMachDetails(plant.machines[i].machine, function(errMach, events, textMach) {
                             if (errMach) {
@@ -40,7 +40,7 @@ module.exports = function(controller) {
                                 var current = events.machine[i];
                                 console.log("current.name: ", current.name);
                                 if (events.machine[i].name == "quality") {
-                                    mex += current.name + ": **" + current.value + "**%<br>";
+                                    mex += plant.machines[i].alias + ": **" + current.value + "**%<br>";
                                 }
                             }
                             console.log("text: ", mex);
