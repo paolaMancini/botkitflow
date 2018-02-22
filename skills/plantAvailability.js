@@ -46,7 +46,7 @@ module.exports = function(controller) {
 
                                 if (events.machine[i].name == "availability") {
 
-                                    mex=current.description + ": **" + current.value + "**";
+                                    mex=plant.machines[i].alias + ": **" + current.value + "**";
                                 }
                             }
                             console.log("text: ", mex);
