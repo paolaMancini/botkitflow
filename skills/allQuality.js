@@ -21,9 +21,10 @@ module.exports = function(controller) {
                     var num = plant.machines.length;
                     console.log("Machines number: ", num);
                     var mex = "The quality values are:<br>";
+                    var aliasM;
 
                     for (var i = 0; i < num; i++) {
-                       
+                       aliasM=plant.machines[i].alias;
                         //Fetch quality value for every machine
                         Events.fetchMachDetails(plant.machines[i].machine, function(errMach, events, textMach) {
                             if (errMach) {
@@ -40,7 +41,7 @@ module.exports = function(controller) {
                                 var current = events.machine[i];
                                 console.log("current.name: ", current.name);
                                 if (events.machine[i].name == "quality") {
-                                    mex += plant.machines[i].alias + ": **" + current.value + "**%<br>";
+                                    mex +=  aliasM+ ": **" + current.value + "**%<br>";
                                 }
                             }
                             console.log("text: ", mex);
