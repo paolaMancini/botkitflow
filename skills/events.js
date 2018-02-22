@@ -105,3 +105,4 @@ module.exports.fetchMachDetails = function(machine, cb) {
         cb(null, events, msg);
     });
 }
+ 
