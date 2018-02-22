@@ -25,7 +25,7 @@ module.exports = function(controller) {
                     var num = plant.machines.length;
 
                     console.log("Machines number: ", num);
-                    var mex = "The performance values are:<br>";
+              
 
                     for (var i = 0; i < num; i++) {
 
@@ -41,7 +41,7 @@ module.exports = function(controller) {
                                 return;
                             }
 
-
+                            var mex = "The performance values are:<br>";
                             for (var i = 0; i < plant.machines.length; i++) {
                                 var current = events.machine[i];
                                 if (events.machine[i].name == "performance") {
