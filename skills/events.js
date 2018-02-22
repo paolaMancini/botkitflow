@@ -22,22 +22,22 @@ module.exports.fetchMachines = function(cb) {
             return;
         }
 
-        var events = JSON.parse(body);
-        debug("fetched " + events.machines.length + " events");
-        fine(JSON.stringify(events));
+        var plants = JSON.parse(body);
+        //debug("fetched " + events.machines.length + " events");
+        //fine(JSON.stringify(events));
 
         if (events.length == 0) {
-            cb(null, events, "**Found no event currently going on.**");
+            cb(null, plants, "**Found no event currently going on.**");
             return;
         }
 
-        var nb = events.length;
+        var nb = plants.machines.length;
         var msg = "**" + nb + " events are running now:**";
         if (nb == 1) {
             msg = "**only one event is running now:**";
         }
         for (var i = 0; i < nb; i++) {
-            var current = events[i];
+            var current = plants[i];
             //msg += "\n:small_blue_diamond: "
             msg += "\n" + (i + 1) + ". ";
             msg += current.machine + " - " + current.description + +" - " + current.value;
@@ -46,7 +46,7 @@ module.exports.fetchMachines = function(cb) {
 
 
 
-        cb(null, events, msg);
+        cb(null, plants, msg);
       
     });
 }
