@@ -6,7 +6,7 @@ module.exports = function(controller) {
         function(bot, message) {
 
             console.log('message: ', message);
-             
+              bot.reply(message, "The quality values are:<br>");
                 Events.fetchMachines(function(err, plant, text) {
                     if (err) {
                         bot.reply(message, "The machine is not responding");
@@ -39,7 +39,6 @@ module.exports = function(controller) {
                                 return;
                             }
                             console.log("textMach: ", textMach);
-                            bot.reply(message, "The quality values are:<br>")
                             bot.reply(message, textMach);                          
                              
                         })
