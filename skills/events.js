@@ -37,7 +37,7 @@ module.exports.fetchMachines = function(cb) {
             msg = "**only one event is running now:**";
         }
         for (var i = 0; i < nb; i++) {
-            var current = plants[i];
+            var current = plants[i].machines;
             //msg += "\n:small_blue_diamond: "
             msg += "\n" + (i + 1) + ". ";
             msg += current.machine + " - " + current.description + +" - " + current.value;
