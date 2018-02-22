@@ -34,7 +34,7 @@ module.exports = function(controller) {
                         
                         //Fetch availability value for every machine
                         Events.fetchMachDetails(plant.machines[i].machine, function(errMach, events, textMach) {
-                        console.log("plant.machines[i].name "+plant.machines[i].name);
+                        console.log("plant.machines[i].machine "+plant.machines[i].machine);
                             if (errMac);
                             if (errMach) {
                                 bot.reply(message, "The machine is not responding");
