@@ -51,6 +51,8 @@ module.exports = function(controller) {
                         })
 
                     }
+                   console.log("text: ", mex);
+                   bot.reply(message, mex);
 
                 });
             
