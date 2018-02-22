@@ -23,29 +23,25 @@ module.exports = function(controller) {
 
                     var num = plant.machines.length;
                     console.log("Machines number: ", num);
-                    var aliasM;
                     for (var i = 0; i < num; i++) {
-                        aliasM=plant.machines[i].alias;
-                        //Fetch quality value for every machine
-                        Events.fetchMachDetails(plant.machines[i].machine, function(errMach, events, textMach) {
+                        var mach = plant.machines[i].machine;
+
+                        var aliasM = plant.machines[i].alias;
+                    
+                        //Fetch availability value for every machine
+                        Events.fetchMachDetails1(mach,aliasM,"quality",function(errMach, events, textMach) {
                             if (errMach) {
-                                bot.reply(message, "*sorry, could not contact the organizers :-(*");
+                                bot.reply(message, "The machine is not repsonding");
                                 return;
                             }
 
-                            if (events.length == 0) {
-                                bot.reply(message, textMach + "\n\n_Type next for upcoming events_");
+                            if (plant.length == 0) {
+                                bot.reply(message, "The machine is not repsonding");
                                 return;
                             }
-                            var mex = "The quality values are:<br>";
-                            for (var i = 0; i < events.machine.length; i++) {
-                                var current = events.machine[i];
-                                if (events.machine[i].name == "quality") {
-                                    mex +=  aliasM+ ": **" + current.value + "**%<br>";
-                                }
-                            }
-                            console.log("text: ", mex);
-                            bot.reply(message, mex);
+                            console.log("textMach: ", textMach);
+                            bot.reply(message, textMach);                          
+                             
                         })
 
                     }
