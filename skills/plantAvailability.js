@@ -31,9 +31,11 @@ module.exports = function(controller) {
                        
                         aliasM=plant.machines[i].alias;
                         console.log("plant.machines[i].alias "+ aliasM+ " i= "+ i);
+                        
                         //Fetch availability value for every machine
                         Events.fetchMachDetails(plant.machines[i].machine, function(errMach, events, textMach) {
-
+                        console.log("plant.machines[i].name "+plant.machines[i].name);
+                            if (errMac);
                             if (errMach) {
                                 bot.reply(message, "The machine is not responding");
                                 return;
