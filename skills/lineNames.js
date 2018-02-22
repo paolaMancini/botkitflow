@@ -24,7 +24,7 @@ module.exports = function(controller) {
                     for (var i = 0; i < num; i++) {
                         var mach = plant.machines[i].machine;
                         var aliasM = plant.machines[i].alias;                  
-                        msg += "**aliasM**<br>"
+                        msg += "**"+aliasM+"**<br>"
                     }             
                     bot.reply(message,msg);
                 });
