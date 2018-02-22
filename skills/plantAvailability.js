@@ -28,6 +28,7 @@ module.exports = function(controller) {
                     var aliasM;  
                     for (var i = 0; i < num; i++) {
                         aliasM=plant.machines[i].alias;
+                        console.log("aliasM=plant.machines[i].alias ", aliasM, " i= ",i);
                         //Fetch availability value for every machine
                         Events.fetchMachDetails(plant.machines[i].machine, function(errMach, events, textMach) {
                             if (errMach) {
