@@ -22,7 +22,7 @@ module.exports = function(controller) {
 
                     console.log("Machines number: ", num);
 
-
+                    var mex = "The availability values are:<br>";
                     for (var i = 0; i < num; i++) {
                         
                         
@@ -37,11 +37,11 @@ module.exports = function(controller) {
                                 bot.reply(message, textMach + "\n\n_Type next for upcoming events_");
                                 return;
                             }
-                            var mex = "The availability values are:<br>";
+                           
                             for (var i = 0; i < events.machine.length; i++) {
                                 var current = events.machine[i];
                                 if (events.machine[i].name == "performance") {
-                                    mex += current.name + ": **" + current.value + "**%<br>";
+                                    mex += plant.machines[i].alias + ": **" + current.value + "**%<br>";
                                 }
                             }
                             console.log("text: ", mex);
