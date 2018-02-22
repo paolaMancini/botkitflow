@@ -23,11 +23,12 @@ module.exports = function(controller) {
                     console.log("Machines number: ", num);
 
                     var mex = "The availability values are:<br>";
-                    var aliasM;
-                   var mach;
+                    
                     for (var i = 0; i < num; i++) {
-                        mach=plant.machines[i].machine;
-                        aliasM= plant.machines[i].alias;
+                        var mach = plant.machines[i].machine;
+
+                        var aliasM = plant.machines[i].alias;
+                    
                         //Fetch availability value for every machine
                         Events.fetchMachDetails1(mach,aliasM,"availability",function(errMach, events, textMach) {
                             if (errMach) {
