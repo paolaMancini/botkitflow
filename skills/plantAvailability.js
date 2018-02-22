@@ -40,18 +40,22 @@ module.exports = function(controller) {
                                 return;
                             }
 
+                            var mex;
                             for (var i = 0; i < events.machine.length; i++) {
                                 var current = events.machine[i];
+
                                 if (events.machine[i].name == "availability") {
-                                    mex += current.name + ": **" + current.value + "**%<br>";
+
+                                    mex=current.description + ": **" + current.value + "**";
                                 }
                             }
+                            console.log("text: ", mex);
+                            bot.reply(message, mex);
                         })
 
                     }
 
-                    console.log("text: ", mex);
-                    bot.reply(message, mex);
+                    
                 });
             } else {
                 bot.reply(message, 'I\'m sorry. I don\'t know this plant.');
