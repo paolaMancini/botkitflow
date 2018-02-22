@@ -7,18 +7,19 @@ module.exports = function(controller) {
 
             console.log('message: ', message);
              
-                Events.fetchMachines(function(err, events, text) {
+                Events.fetchMachines(function(err, plant, text) {
                     if (err) {
                         bot.reply(message, "*sorry, could not contact the organizers :-(*");
                         return;
                     }
 
-                    if (events.length == 0) {
+                    if (plant.length == 0) {
                         bot.reply(message, text + "\n\n_Type next for upcoming events_");
                         return;
                     }
 
-                    var num = events.machines.length;
+                    var num = plant.machines.length;
+                    console.log("Machines number: ", num);
 
 
                     for (var i = 0; i < num; i++) {
