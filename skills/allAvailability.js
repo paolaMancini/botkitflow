@@ -28,7 +28,7 @@ module.exports = function(controller) {
                         var mach = plant.machines[i].machine;
 
                         var aliasM = plant.machines[i].alias;
-                    
+                        bot.reply(message, "The availabity values are:<br>");
                         //Fetch availability value for every machine
                         Events.fetchMachDetails1(mach,aliasM,"availability",function(errMach, events, textMach) {
                             if (errMach) {
@@ -41,7 +41,6 @@ module.exports = function(controller) {
                                 return;
                             }
                             console.log("textMach: ", textMach);
-                            bot.reply(message, "The availabity values are:<br>");
                             bot.reply(message, textMach);                          
                              
                         })
