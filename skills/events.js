@@ -139,7 +139,7 @@ module.exports.fetchMachDetails1 = function(machine,alias,param, cb) {
         console.log("event.js: machine= ",machine,"  alias= ",alias,"  param= ",param);
         var nb = events.machine.length;
          
-        var msg="The ",param," values are:<br>";
+        var msg="The "+param+" values are:<br>";
         if (nb == 1) {
             msg = "No values found";
         }else{
