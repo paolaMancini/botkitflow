@@ -42,7 +42,7 @@ module.exports = function(controller) {
                                 return;
                             }
                             console.log("textMach: ", textMach);
-                            bot.reply(message, "The availability values are:<br>")
+                            bot.reply(message, "The availability values are:<br>");
                             bot.reply(message, textMach);                          
                              
                         })
