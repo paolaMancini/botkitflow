@@ -4,24 +4,28 @@ module.exports = function(controller) {
 
     controller.hears([/param descriptions/i], 'direct_message,direct_mention',
         function(bot, message) {
-
+            var machine="fakeMachine0";
             console.log('message: ', message);
             bot.reply(message, "The list of parameter descriptions is:<br>");       
         
-              Events.fetchMachDetails1(machineName, lineName, param, function(errMach, events, textMach) {
+             Events.fetchMachDetails(machine, function(errMach, events, textMach) {
                     if (errMach) {
-                        bot.reply(message, "The machine is not responding");
+                        bot.reply(message, "*sorry, could not contact the organizers :-(*");
                         return;
                     }
 
-                    if (plant.length == 0) {
-                        bot.reply(message, "The machine is not responding");
+                    if (events.length == 0) {
+                        bot.reply(message, textMach + "\n\n_Type next for upcoming events_");
                         return;
                     }
-                    console.log("textMach: ", textMach);
-                    bot.reply(message, textMach + "%");
 
-                })
+                    // Store events
+                    console.log("text: ", textMach);
+                    bot.reply(message, textMach);
+
+                    askForFurtherLines(plant, mpattern, controller, bot, message);
+
+                });
 
         });
 }
