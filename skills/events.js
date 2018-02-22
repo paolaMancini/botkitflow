@@ -105,7 +105,7 @@ module.exports.fetchMachDetails = function(machine, cb) {
         cb(null, events, msg);
     });
 }
-module.exports.fetchMachDetails1 = function(machine,alias, cb) {
+module.exports.fetchMachDetails1 = function(machine,alias,param, cb) {
     var request = require("request");
     // Get list of upcoming events
     var options = {
@@ -143,19 +143,13 @@ module.exports.fetchMachDetails1 = function(machine,alias, cb) {
         }
         for (var i = 0; i < nb; i++) {
             var current = events.machine[i];
-            //msg += "\n:small_blue_diamond: "
-            //msg += "\n" + (i + 1) + ". ";
-            if (i > 0) {
-                msg += "<br>";
-            }
-            //msg += current.machine + " - " + current.description + +" - " +  current.machine;
-            msg += current.name + ": **" + current.value + "**";
+             if(current.name == param){
+             }
+            //msg += current.machine + " - " + current.description + +" - " +  current.machine
+            msg = alias + ": **" + current.value + "**";
             //debug("msg= ", msg);
         }
         msg+="<br>";
-
-
-
         cb(null, events, msg);
     });
 }
