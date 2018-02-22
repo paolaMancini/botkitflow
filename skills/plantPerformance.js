@@ -9,8 +9,8 @@ module.exports = function(controller) {
             var plantName = message.match[1];
             //match[1] is the (.*) group. match[0] is the entire group (open the (.*) doors).
 
-            if (plantName === '1') {
-
+            if (plantName == 'plant1') {
+                bot.reply(message, "The performance values are:<br>");
                 Events.fetchMachines(function(err, plant, text) {
                     if (err) {
                         bot.reply(message, "*sorry, could not contact the organizers :-(*");
@@ -42,7 +42,7 @@ module.exports = function(controller) {
                                 return;
                             }
                             console.log("textMach: ", textMach);
-                            bot.reply(message, "The performance values are:<br>");
+                            
                             bot.reply(message, textMach);                          
                              
                         })
