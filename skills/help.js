@@ -3,7 +3,7 @@
 //
 module.exports = function (controller) {
 
-    controller.hears([/^help/], 'direct_message,direct_mention', function (bot, message) {
+    controller.hears([/help/], 'direct_message,direct_mention', function (bot, message) {
         var text = "Here are my skills:";
         text += "\n- " + bot.appendMention(message, "performance data about plant <plant name>| all performance values") + ": Ask to know the performance values about every line in the plant ";
         text += "\n- " + bot.appendMention(message, "OEE data about plant <plant name>| all OEE values") + ": Ask to know the oee values about every line in the plant ";
