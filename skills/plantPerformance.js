@@ -11,35 +11,38 @@ module.exports = function(controller) {
 
             if (plantName === '1') {
 
-                Events.fetchMachines(function(err, events, text) {
+                Events.fetchMachines(function(err, plant, text) {
                     if (err) {
                         bot.reply(message, "*sorry, could not contact the organizers :-(*");
                         return;
                     }
 
-                    if (events.length == 0) {
+                    if (plant.length == 0) {
                         bot.reply(message, text + "\n\n_Type next for upcoming events_");
                         return;
                     }
 
-                    var num = events.machines.length;
+                    var num = plant.machines.length;
 
+                    console.log("Machines number: ", num);
+                    var mex = "The performance values are:<br>";
 
                     for (var i = 0; i < num; i++) {
-                        var mex = "The performance values are:<br>";
+
                         //Fetch performance value for every machine
-                        Events.fetchMachDetails(events.machines[i].name, function(errMach, events, textMach) {
+                        Events.fetchMachDetails(plant.machines[i].machine, function(errMach, events, textMach) {
                             if (errMach) {
                                 bot.reply(message, "*sorry, could not contact the organizers :-(*");
                                 return;
                             }
 
-                            if (events.length == 0) {
-                                bot.reply(message, textMach + "\n\n_Type next for upcoming events_");
+                            if (events.machine.length == 0) {
+                                bot.reply(message, textMach + "\n\nThe manchine is not responding");
                                 return;
                             }
 
-                            for (var i = 0; i < events.machine.length; i++) {
+
+                            for (var i = 0; i < pmant.machines.length; i++) {
                                 var current = events.machine[i];
                                 if (events.machine[i].name == "performance") {
                                     mex += current.name + ": **" + current.value + "**%<br>";
