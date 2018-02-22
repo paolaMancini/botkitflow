@@ -20,7 +20,7 @@ module.exports = function(controller) {
 
                     var num = plant.machines.length;
                     console.log("Machines number: ", num);
-                    var msg;
+                    var msg="<br>";
                     for (var i = 0; i < num; i++) {
                         var mach = plant.machines[i].machine;
                         var aliasM = plant.machines[i].alias;                  
