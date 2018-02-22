@@ -26,34 +26,27 @@ module.exports = function(controller) {
 
                     console.log("Machines number: ", num);
               
-                    var aliasM;
                     for (var i = 0; i < num; i++) {
-                        aliasM= plant.machines[i].alias;
-                        //Fetch performance value for every machine
-                        Events.fetchMachDetails(plant.machines[i].machine, function(errMach, events, textMach) {
+                        var mach = plant.machines[i].machine;
+                        var aliasM = plant.machines[i].alias;
+                    
+                        //Fetch availability value for every machine
+                        Events.fetchMachDetails1(mach,aliasM,"performance",function(errMach, events, textMach) {
                             if (errMach) {
-                                bot.reply(message, "*sorry, could not contact the organizers :-(*");
+                                bot.reply(message, "The machine is not repsonding");
                                 return;
                             }
 
-                            if (events.machine.length == 0) {
-                                bot.reply(message, textMach + "\n\nThe manchine is not responding");
+                            if (plant.length == 0) {
+                                bot.reply(message, "The machine is not repsonding");
                                 return;
                             }
-
-                            var mex = "The performance values are:<br>";
-                            for (var i = 0; i < plant.machines.length; i++) {
-                                var current = events.machine[i];
-                                if (events.machine[i].name == "performance") {
-                                    mex += aliasM+ ": **" + current.value + "**%<br>";
-                                }
-                            }
-                            console.log("text: ", mex);
-                            bot.reply(message, mex);
+                            console.log("textMach: ", textMach);
+                            bot.reply(message, textMach);                          
+                             
                         })
 
                     }
-
                    
                 });
             } else {
