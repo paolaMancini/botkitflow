@@ -38,9 +38,10 @@ module.exports = function(controller) {
                         oees += alias + ": **" + oee + "%**;<br>";
                         detailMsg += alias + ": **line" + i + "** or **" + machine + " details**;<br>";
                     }
+                    bot.reply("The OEE values are:" + oees);
                     //mpattern.join(" ");
                      
-                    bot.startConversation(message, function(err, convo) {
+                    /**bot.startConversation(message, function(err, convo) {
                         // create a path for when a user says YES
                         var help = "Which line are you interested of? Please, type:<br>";
                         help += "**'machine' details**. ";
@@ -60,9 +61,9 @@ module.exports = function(controller) {
                         }, 'bad_response');
 
 
-                        convo.say("The OEE values are:" + oees);
-                        convo.ask("<br>Do you want furhter more details? (yes/**no**/cancel)<br>", [{
-                                pattern: "yes|yeh|sure|oui|si",
+                        convo.say("The OEE values are:" + oees);**/
+                        //convo.ask("<br>Do you want furhter more details? (yes/**no**/cancel)<br>", [{
+                         /**       pattern: "yes|yeh|sure|oui|si",
                                 callback: function(response, convo) {
                                     convo.gotoThread('ask-details');
                                 },
@@ -93,7 +94,7 @@ module.exports = function(controller) {
                         ]);
 
 
-                    });
+                    });**/
                 });
             } else {
                 bot.reply(message, 'I\'m sorry. I don\'t know this plant.');
