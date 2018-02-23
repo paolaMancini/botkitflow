@@ -31,7 +31,7 @@ module.exports = function(controller) {
                         var current = events.machine[i];
                         
                         //msg += current.machine + " - " + current.description + +" - " +  current.machine;
-                        msg += "**"+current.name + ": **" + current.descriptions;
+                        msg += "**"+current.name + ": **" + current.description;
                         //debug("msg= ", msg);
                     }                 
                     // Store events
