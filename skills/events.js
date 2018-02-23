@@ -90,12 +90,10 @@ module.exports.fetchMachDetails = function(machine, cb) {
         for (var i = 0; i < nb; i++) {
             var current = events.machine[i];
                 
-            msg += current.machine + ": **" + current.value + "**";
+            msg += current.name + ": **" + current.value + "**";
             //debug("msg= ", msg);
         }
         msg+="<br>";
-
-
 
         cb(null, events, msg);
     });
