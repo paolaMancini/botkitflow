@@ -64,7 +64,7 @@ module.exports = function(controller) {
                     console.log("text: ", textMach);
                     bot.reply(message, textMach);
 
-                    askForFurtherLines(plant, mpattern, controller, bot, message);
+                    //askForFurtherLines(plant, mpattern, controller, bot, message);
 
                 });
 
