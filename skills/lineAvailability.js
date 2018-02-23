@@ -24,17 +24,17 @@ module.exports = function(controller) {
             console.log("plant.lenght= " + plant.machines.length);
             var machineName;
             var mpattern = "<br>";
+            var found=false;
             for (var i = 0; i < plant.machines.length; i++) {
-
-                if (plant.machines[i].alias == lineName) {
-
+                if ((plant.machines[i].alias == lineName) || ( lineName.includes(plant.machines[i].alias)==true)) {
                     machineName = plant.machines[i].machine;
+                    found=true;
                 }
-                mpattern += "**" + plant.machines[i].alias + "**";
+                mpattern += "**" + plant.machines[i].alias + "**<br>";
 
             }
             console.log('mpattern: ', mpattern);
-            if (typeof machineName == undefined) {
+           if ((typeof machineName == undefined) || (found==false) ) {
                 text = "Sorry, I don't know this line. Please, type:<br>";
                 text += "**'machine' details**<br>";
                 text += "Choose machine the name from the following list: <br>";
@@ -62,7 +62,7 @@ module.exports = function(controller) {
 
 
 
-                askForFurtherLines(plant, param, mpattern, controller, bot, message);
+                //askForFurtherLines(plant, param, mpattern, controller, bot, message);
 
 
 
