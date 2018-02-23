@@ -14,12 +14,12 @@ module.exports = function(controller) {
         //var help = "Which line are you interested of? Please, type<br>" + mpattern;
         Events.fetchMachines(function(err, plant, text) {
             if (err) {
-                bot.reply(message, "*sorry, could not contact the organizers :-(*");
+                bot.reply(message, "The machine is not repsonding");
                 return;
             }
 
             if (plant.length == 0) {
-                bot.reply(message, text + "\n\n_Type next for upcoming events_");
+                bot.reply(message, text + "The machine is not repsonding");
                 return;
             }
 
@@ -51,12 +51,12 @@ module.exports = function(controller) {
 
                 Events.fetchMachDetails(machineName, function(errMach, events, textMach) {
                     if (errMach) {
-                        bot.reply(message, "*sorry, could not contact the organizers :-(*");
+                        bot.reply(message, "The machine is not repsonding");
                         return;
                     }
 
                     if (events.length == 0) {
-                        bot.reply(message, textMach + "\n\n_Type next for upcoming events_");
+                        bot.reply(message, "The machine is not repsonding");
                         return;
                     }
 
