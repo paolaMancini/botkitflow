@@ -34,7 +34,7 @@ module.exports = function(controller) {
 
                 if (plant.machines[i].alias == lineName) {
                     machineName = plant.machines[i].machine;
-                    found=false;
+                    found=true;
                 }
                 mpattern += "**" + plant.machines[i].alias + "**<br>";
 
