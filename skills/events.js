@@ -32,7 +32,7 @@ module.exports.fetchMachines = function(cb) {
         }
 
         var nb = plants.machines.length;
-        var msg = "**" + nb + " events are running now:**";
+        var msg = "<br>";
         if (nb == 1) {
             msg = "**only one event is running now:**";
         }
