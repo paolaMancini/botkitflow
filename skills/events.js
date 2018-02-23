@@ -89,12 +89,7 @@ module.exports.fetchMachDetails = function(machine, cb) {
         }
         for (var i = 0; i < nb; i++) {
             var current = events.machine[i];
-            //msg += "\n:small_blue_diamond: "
-            //msg += "\n" + (i + 1) + ". ";
-            if (i > 0) {
-                msg += "<br>";
-            }
-            //msg += current.machine + " - " + current.description + +" - " +  current.machine;
+                
             msg += current.machine + ": **" + current.value + "**";
             //debug("msg= ", msg);
         }
