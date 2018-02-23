@@ -13,8 +13,8 @@ module.exports = function (controller) {
         text += "\n- " + bot.appendMention(message, "line <line_name> quality|availability|oee|okCounter|koCounter|goal|timeWork|performance|availability|oee|quality|timeActive|timeStop|okLastMinute|isStopped") + ": ask to know the specified value about a specific line<br>";
         text += "\n- " + bot.appendMention(message, "plants monitored") + ": ask to know details about the plant names monitored<br>";
         text += "\n- " + bot.appendMention(message, "web portal") + ": ask to have view link for visiting the web portal";
-        text += "\n- " + bot.appendMention(message, "chart pieces done last minute") + ": ask to upload the chart abot the pieces done in the last minute";
-        text += "\n- " + bot.appendMention(message, "chart pieces done last TC") + ": ask to upload the chart abot the pieces done in the last time cicle";
+        text += "\n- " + bot.appendMention(message, "chart of pieces done last minute") + ": ask to upload the chart about the pieces done in the last minute";
+        text += "\n- " + bot.appendMention(message, "chart of pieces done last TC") + ": ask to upload the chart about the pieces done in the last time cicle";
         text += "\n- " + bot.appendMention(message, "param descriptions") + ": ask to know details about the values<br>";
         text += "\n- " + bot.appendMention(message, "help") + ": spreads the word about my skills";
         bot.reply(message, text);
