@@ -83,14 +83,14 @@ module.exports.fetchMachDetails = function(machine, cb) {
         }
 
         var nb = events.machine.length;
-        var msg = "<br>Nitty-gritty of the line:<br>";
+        var msg = "<br>Nitty-gritty of the line: "+machine+"<br>";
         if (nb == 1) {
             msg = "No details found";
         }
         for (var i = 0; i < nb; i++) {
             var current = events.machine[i];
                 
-            msg += current.name + ": **" + current.value + "**";
+            msg += current.name + ": **" + current.value + "**<br>";
             //debug("msg= ", msg);
         }
         msg+="<br>";
