@@ -19,7 +19,7 @@ module.exports = function(controller) {
             }
 
             if (plant.length == 0) {
-                bot.reply(message, text + "The machine is not repsonding");
+                bot.reply(message, text + "The machine is not responding");
                 return;
             }
 
@@ -32,7 +32,7 @@ module.exports = function(controller) {
             var found=false;
             for (var i = 0; i < plant.machines.length; i++) {
 
-                if (plant.machines[i].alias == lineName) {
+                if ((plant.machines[i].alias == lineName) || ( lineName.includes(plant.machines[i].alias)) {
                     machineName = plant.machines[i].machine;
                     found=true;
                 }
@@ -40,10 +40,10 @@ module.exports = function(controller) {
 
             }
             console.log('mpattern: ', mpattern);
-            if ((typeof machineName == undefined) || (found==false)) {
+            if ((typeof machineName == undefined) || (found==false) ) {
                 text = "Sorry, I don't know this line. Please, type:<br>";
                 text += "**'machine' details**<br>";
-                text += "Choose machine the name from the following list: <br>";
+                text += "Choose machine the name from the following list:";
                 text += "**" + mpattern + "**";
                 bot.reply(message, text);
             } else {
