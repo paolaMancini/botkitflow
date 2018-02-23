@@ -32,7 +32,7 @@ module.exports = function(controller) {
             var found=false;
             for (var i = 0; i < plant.machines.length; i++) {
 
-                if ((plant.machines[i].alias == lineName) || ( lineName.includes(plant.machines[i].alias)) {
+                if ((plant.machines[i].alias == lineName) || ( lineName.includes(plant.machines[i].alias)==true)) {
                     machineName = plant.machines[i].machine;
                     found=true;
                 }
