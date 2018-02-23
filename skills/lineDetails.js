@@ -29,17 +29,18 @@ module.exports = function(controller) {
 
             var machineName;
             var mpattern = "<br>";
+            var found=false;
             for (var i = 0; i < plant.machines.length; i++) {
 
                 if (plant.machines[i].alias == lineName) {
-
                     machineName = plant.machines[i].machine;
+                    found=false;
                 }
                 mpattern += "**" + plant.machines[i].alias + "**<br>";
 
             }
             console.log('mpattern: ', mpattern);
-            if (typeof machineName == undefined) {
+            if ((typeof machineName == undefined) || (found==false)) {
                 text = "Sorry, I don't know this line. Please, type:<br>";
                 text += "**'machine' details**<br>";
                 text += "Choose machine the name from the following list: <br>";
