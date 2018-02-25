@@ -9,7 +9,7 @@ module.exports = function(controller) {
         var markdown4='[machine_4](http://194.79.57.109:8080/SFnotify/chart?machine=fakeMachine4&graph=2&graphPage=0)';
         var markdown5='[machine_5](http://194.79.57.109:8080/SFnotify/chart?machine=fakeMachine5&graph=2&graphPage=0)';
         var markdown="\n- "+markdown0+"\n- "+markdown1+"\n- "+markdown2+"\n- "+markdown3+"\n- "+markdown4+"\n- "+markdown5;
-       var chosen_message = "Pieces done in in the last Time cicle:"+markdown;
+       var chosen_message = "Click on the following machines to obtain the requested data:"+markdown;
       
         bot.reply(message, chosen_message);
         bot.reply();
