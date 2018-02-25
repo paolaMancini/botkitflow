@@ -9,7 +9,7 @@ module.exports = function (controller) {
             
         //bot.reply(message, mardown);
         
-        controller.hears([/how are you/i], ['direct_message', 'direct_mention', 'mention'], function(bot, message) {
+        
         var message_options = [
             "Sorry, I did not understand.<br/>Try "
             + bot.appendMention(message, "help"),
