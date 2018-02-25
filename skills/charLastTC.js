@@ -9,7 +9,7 @@ module.exports = function(controller) {
         var markdown3='![machine_3](http://194.79.57.109:8080/SFnotify/chart?machine=fakeMachine3&graph=2&graphPage=0)';
         var markdown4='![machine_4](http://194.79.57.109:8080/SFnotify/chart?machine=fakeMachine4&graph=2&graphPage=0)';
         var markdown5='![machine_5](http://194.79.57.109:8080/SFnotify/chart?machine=fakeMachine5&graph=2&graphPage=0)';
-        var markdown="* "+markdown0+"<br>* "+markdown1+"<br>* "+markdown2+"<br>* "+markdown3+"<br>* "+markdown4+"<br>* "+markdown5;
+        var markdown="\n- "+markdown0+"\n- "+markdown1+"\n- "+markdown2+"\n- "+markdown3+"\n- "+markdown4+"\n- "+markdown5;
        var chosen_message = "Pieces done in in the last Time cicle:<br> "+markdown;
       
         bot.reply(message, chosen_message);
