@@ -1,7 +1,6 @@
 module.exports = function(controller) {
 
     controller.hears([/last tc/i], ['direct_message', 'direct_mention', 'mention'], function(bot, message) {
-        bot.say("roomId= "+message.raw_message.roomId);
         
         var markdown0='[machine_0!](http://194.79.57.109:8080/SFnotify/chart?machine=fakeMachine0&graph=2&graphPage=0)';
         var markdown1='[machine_1](http://194.79.57.109:8080/SFnotify/chart?machine=fakeMachine1&graph=2&graphPage=0)';
