@@ -10,8 +10,8 @@ module.exports = function(controller) {
         console.log('message: ', message);
         var lineName = message.match[1];
         console.log("lineName received: ", lineName);
-        var macchina=Events.fromAliasToName (lineName);
-         console.log("macchina: ", macchina);
+        //var macchina=Events.fromAliasToName (lineName);
+         //console.log("macchina: ", macchina);
 
         
         //var help = "Which line are you interested of? Please, type<br>" + mpattern;
