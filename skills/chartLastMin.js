@@ -1,6 +1,6 @@
 module.exports = function(controller) {
 controller.hears(['last minute'], ['direct_message', 'direct_mention', 'mention'], function(bot, message) {
-        var markdown='[Chart](http://194.79.57.109:8080/SFnoify/mainChart)';
+        var markdown='[Chart](http://194.79.57.109:8080/SFnotify/mainChart)';
         var chosen_message = "Click on "+markdown+" to view and download the chart";
         console.log (message);
         bot.reply(message, chosen_message);
