@@ -1,5 +1,5 @@
 module.exports = function(controller) {
-controller.hears(['web portal'], ['direct_message', 'direct_mention', 'mention'], function(bot, message) {
+controller.hears(['last minute'], ['direct_message', 'direct_mention', 'mention'], function(bot, message) {
         var markdown='[ROLD SmartFab Chart!](http://194.79.57.109:8080/SFnoify/mainChart)';
         var chosen_message = "Go to "+markdown+" to view the pieces done in the plant  in the last miute "+markdown;
         console.log (message);
