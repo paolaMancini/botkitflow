@@ -1,12 +1,7 @@
  
 var request = require("request");  
- 
-
-var url = require('url');
-
-
-var parsedUrl = url.parse(urlValue, true, true);
- module.exports = function(controller) {
+var url = require("url");
+module.exports = function(controller) {
 
      controller.hears([/last minute/i], ['direct_message', 'direct_mention', 'mention'], function(bot, message) {
   
