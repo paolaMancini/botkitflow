@@ -146,4 +146,20 @@ module.exports.fetchMachDetails1 = function(machine,alias,param, cb) {
         cb(null, events, msg);
     });
 }
- 
+
+module.exports.fromAliasToName = function getMachineName(alias) {
+    if (alias=="machine_0"){
+    	return "fakeMachine0";
+    }else if (alias=="machine_1"){
+   		 return "fakeMachine1";
+    }else if (alias=="machine_2"){
+    	return "fakeMachine2";
+    }else if (alias=="machine_3"){
+    	return "fakeMachine3";
+    }else if (alias=="machine_4"){
+   		 return "fakeMachine4";
+    }else{
+    	//alias=="machine_4"
+        return "fakeMachine5";
+    }                
+}
