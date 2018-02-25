@@ -159,7 +159,7 @@ module.exports.fromAliasToName = function getMachineName(alias) {
     }else if (alias=="machine_4"){
    		 return "fakeMachine4";
     }else if (alias=="machine_5"){
-   		 return "fakeMachine5";{
+   		 return "fakeMachine5";
     }else
         return "unsupported";
     }                
