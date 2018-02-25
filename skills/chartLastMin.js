@@ -6,7 +6,7 @@
 
      controller.hears([/last minute/i], ['direct_message', 'direct_mention', 'mention'], function(bot, message) {
 
-         var adr = decodeURI("http: //194.79.57.109:8080/SFnotify/mainChart");
+         var adr = decodeURI("http://194.79.57.109:8080/SFnotify/mainChart");
 
          var options = {
              method: 'POST',
