@@ -16,7 +16,7 @@
                  'content-type': 'multipart/form-data'
              },
              formData: {
-                 roomId: 'Y2lzY29zcGFyazovL3VzL1JPT00vMzI3ZThhMjAtMTYxOC0xMWU4LTlhODEtYzFhMjhlNzQzYjQz',
+                 roomId: 'Y2lzY29zcGFyazovL3VzL1JPT00vNzljY2QyMTAtMDQ5My0xMWU4LTlhZjktZTczYzkzNDQyNGNk',
                  text: 'This is a message with file attachment',
                  files: adr
              }
