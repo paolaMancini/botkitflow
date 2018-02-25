@@ -1,3 +1,4 @@
+<script>
 var debug = require("debug")("samples");
 var fine = require("debug")("samples:fine");
 
@@ -160,7 +161,7 @@ module.exports.fromAliasToName = function getMachineName(alias) {
    		 return "fakeMachine4";
     }else if (alias=="machine_5"){
    		 return "fakeMachine5";
-    }else
+    }else{
         return "unsupported";
     }                
 }
