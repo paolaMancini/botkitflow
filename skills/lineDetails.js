@@ -5,7 +5,7 @@ module.exports = function(controller) {
 
     // controller.hears(['cheese'], 'direct_message,direct_mention',
     // function (bot, message) {
-    controller.hears([/details (.*) details/i], 'direct_message,direct_mention', function(bot, message) {
+    controller.hears([/(.*) details/i], 'direct_message,direct_mention', function(bot, message) {
 
         console.log('message: ', message);
         var lineName = message.match[1];
