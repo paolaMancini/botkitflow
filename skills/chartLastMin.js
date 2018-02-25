@@ -1,7 +1,7 @@
 module.exports = function(controller) {
 controller.hears(['last minute'], ['direct_message', 'direct_mention', 'mention'], function(bot, message) {
-        var markdown='[ROLD SmartFab Chart!](http://194.79.57.109:8080/SFnoify/mainChart)';
-        var chosen_message = "Go to "+markdown+" to view the pieces done in the plant  in the last miute "+markdown;
+        var markdown='[Chart](http://194.79.57.109:8080/SFnoify/mainChart)';
+        var chosen_message = "Click on "+markdown+" to view and download the chart";
         console.log (message);
         bot.reply(message, chosen_message);
         bot.reply();
