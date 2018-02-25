@@ -45,7 +45,7 @@ module.exports = function(controller) {
                  'content-type': 'multipart/form-data'
              },
              formData: {
-                 roomId: 'Y2lzY29zcGFyazovL3VzL1JPT00vNzljY2QyMTAtMDQ5My0xMWU4LTlhZjktZTczYzkzNDQyNGNk',
+                 roomId:  message.raw_message.data.roomId,
                  text: 'This is a message with file attachment',
                  files: parsedUrl
              }
