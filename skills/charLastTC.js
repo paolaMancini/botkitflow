@@ -10,7 +10,7 @@ module.exports = function(controller) {
                     pattern: "^blue|green|pink|red|yellow$",
                     callback: function (response, convo) {
                         var machineName =  getMachineName ('{{responses.answer}}');
-                        var markdown="[Chart!](http://194.79.57.109:8080/SFnotify/chart?machine="+machineName+"&graph=2&graphPage=0)';
+                        var markdown="[Chart!](http://194.79.57.109:8080/SFnotify/chart?${machine}="+machineName+"&graph=2&graphPage=0)';
 
                         convo.gotoThread("success");
                     },
@@ -28,12 +28,11 @@ module.exports = function(controller) {
             var markdown='[Chart!](http://194.79.57.109:8080/SFnotify/chart?machine=fakeMachine0&graph=2&graphPage=0)';
             convo.addMessage(
                 
-                "Click on "+${{markdown}}+" to voew the chart",
+                "Click on "+${markdown}+" to view the chart",
                 "success");
         });
         
-        var chosen_message = "Please, click on the " +markdown+ "to view the data";
-      
+        
         bot.reply(message, chosen_message);
         bot.reply();
      });
