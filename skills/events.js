@@ -1,4 +1,4 @@
-<script>
+ 
 var debug = require("debug")("samples");
 var fine = require("debug")("samples:fine");
 
