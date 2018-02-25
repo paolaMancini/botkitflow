@@ -4,9 +4,7 @@ controller.hears(['last minute'], ['direct_message', 'direct_mention', 'mention'
         var chosen_message = "Click on "+markdown+" to view and download the chart";
         console.log (message);
         bot.reply(message, chosen_message);
-        bot.reply();
-
-    });
+     });
  }
 /**var request = require("request");  
 var url = require("url");
