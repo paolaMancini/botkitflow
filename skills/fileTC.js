@@ -44,7 +44,8 @@ function showMachine(machine, bot, message) {
         let urlBegin = 'http://194.79.57.109:8080/SFnotify/chart?machine=5&graph=2&graphPage=0';
         let urlEnd = '5&graph=2&graphPage=0';
 
-        var s2 = new String(urlBegin + machine + urlEnd)
+        var link = new String(urlBegin + machine + urlEnd);
+        console.log('link: ',link);
 
         bot.reply(message, { text: 'Here is your file!', files: [link] });
     }
