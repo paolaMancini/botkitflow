@@ -1,4 +1,4 @@
-/
+//
 // Displays the code of the specified skill
 //
 module.exports = function (controller) {
