@@ -42,7 +42,7 @@ function showMachine(machine, bot, message) {
 
         //Query string is now: 'foo=1&bar=2&foo=4'
         let urlBegin = 'http://194.79.57.109:8080/SFnotify/chart?machine=';
-        let urlEnd = '5&graph=2&graphPage=0';
+        let urlEnd = '&graph=2&graphPage=0';
 
         var link = new String(urlBegin + machine + urlEnd);
         console.log('link: ',link);
