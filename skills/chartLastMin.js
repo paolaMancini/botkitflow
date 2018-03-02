@@ -8,7 +8,7 @@ controller.hears(['last minute'], ['direct_message', 'direct_mention', 'mention'
         //var urlValue = 'http://194.79.57.109:8080/SFnotify/mainChart';
         var urlValue = 'http://cloudapps.italtel.com/December.jpg';
         var parsedUrl = url.parse(urlValue, true, true);
-        bot.reply(message,{text: 'I made this file for you.', files:['http://cloudapps.italtel.com/December.jpg'
+       // bot.reply(message,{text: 'I made this file for you.', files:['http://cloudapps.italtel.com/December.jpg'
 ]});
      });
  }
