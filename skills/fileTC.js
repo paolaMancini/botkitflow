@@ -48,7 +48,7 @@ function showMachine(machine, bot, message) {
         
         console.log('link: ',link);
 
-        bot.reply(message, { text: '', files: [eval(link)] });
+        bot.reply(message, { text: '', files: [link] });
     }
 };
 
