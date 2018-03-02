@@ -39,15 +39,16 @@ function showMachine(machine, bot, message) {
         bot.reply(message, "Sorry, this machine is not correct.");
     } else {
         bot.reply(message, "In the chart the requested data");
-
-        //Query string is now: 'foo=1&bar=2&foo=4'
-        let urlBegin = 'http://194.79.57.109:8080/SFnotify/chart?machine=';
-        let urlEnd = '&graph=2&graphPage=0';
-
-        var link = new String(urlBegin + machine + urlEnd);
+ 
+        
+        var link = 'http://194.79.57.109:8080/SFnotify/chart?machine=';
+		link +=machine;
+		link+='&graph=2&graphPage=0';
+ 
+        
         console.log('link: ',link);
 
-        bot.reply(message, { text: '', files: [link] });
+        bot.reply(message, { text: '', files: [eval(link)] });
     }
 };
 
