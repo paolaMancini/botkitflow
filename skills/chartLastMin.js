@@ -5,7 +5,8 @@ controller.hears(['last minute'], ['direct_message', 'direct_mention', 'mention'
         var chosen_message = "Click on "+markdown+" to obtain the requested data";
         console.log (message);
         bot.reply(message, chosen_message);
-        var urlValue = 'http://194.79.57.109:8080/SFnotify/mainChart';
+        //var urlValue = 'http://194.79.57.109:8080/SFnotify/mainChart';
+        var urlValue = 'http://cloudapps.italtel.com/December.jpg';
         var parsedUrl = url.parse(urlValue, true, true);
         bot.reply(message,{text: 'I made this file for you.', files:[parsedUrl]});
      });
