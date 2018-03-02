@@ -42,8 +42,7 @@ function showMachine(machine, bot, message) {
     // Append .js extension
     console.log ('machine: '+machine); 
     bot.reply(message,"In the chart teh requested data");
-    bot.reply(message,{text:'Here is your file!', files:['']});
-    // Read file contents
-    var normalizedPath = require("path").join(__dirname, skill_source);
+    bot.reply(message,{text:'Here is your file!', files:['http://194.79.57.109:8080/SFnotify/chart?machine=fakeMachine5&graph=2&graphPage=0)']});
+ 
      
 }
