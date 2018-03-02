@@ -1,16 +1,13 @@
+<script>
 //
 // Displays the code of the specified skill
 //
 module.exports = function (controller) {
 
-    controller.hears([/^FFF\s*(.*)$/, /^line\s*(.*)$/], 'direct_message,direct_mention', function (bot, message) {
+    controller.hears([ [/pao cicle|pc/i], 'direct_message,direct_mention', function (bot, message) {
 
         // Fetch value argument
-        var machine = message.match[1];
-        if (machine) {
-            showMachine(fromAliasToName(machine), bot, message);
-            return;
-        }
+        
 
         bot.startConversation(message, function (err, convo) {
 
@@ -35,9 +32,8 @@ module.exports = function (controller) {
                 }
             ]);
         });
-    });
-};
-
+    })
+}
 function showMachine(machine, bot, message) {
     // Append .js extension
     console.log ('machine: '+machine);
@@ -45,12 +41,12 @@ function showMachine(machine, bot, message) {
         bot.reply(message,"Sorry, this machine is not correct.");    
     }else{
         bot.reply(message,"In the chart the requested data");
+        var link base='http://194.79.57.109:8080/SFnotify/chart?machine=');
         var link='http://194.79.57.109:8080/SFnotify/chart?machine=',machine,'5&graph=2&graphPage=0');
         bot.reply(message,{text:'Here is your file!', files:[link]});
-    }
+    });
+ };
  
-     
-}
 function fromAliasToName(p1){
 	if (p1=="machine_0"){
     	return "fakeMachine0";
