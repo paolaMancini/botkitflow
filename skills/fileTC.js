@@ -47,7 +47,7 @@ function showMachine(machine, bot, message) {
         var link = new String(urlBegin + machine + urlEnd);
         console.log('link: ',link);
 
-        bot.reply(message, { text: '', files: [eval(link] });
+        bot.reply(message, { text: '', files: [eval(link)] });
     }
 };
 
