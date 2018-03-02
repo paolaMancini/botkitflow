@@ -3,7 +3,7 @@
 //
 module.exports = function (controller) {
 
-    controller.hears([/^tc\s*(.*)$/, /^line\s*(.*)$/], 'direct_message,direct_mention', function (bot, message) {
+    controller.hears([/^FFF\s*(.*)$/, /^line\s*(.*)$/], 'direct_message,direct_mention', function (bot, message) {
 
         // Fetch value argument
         var machine = message.match[1];
