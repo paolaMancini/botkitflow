@@ -41,13 +41,13 @@ function showMachine(machine, bot, message) {
         bot.reply(message, "In the chart the requested data");
 
         //Query string is now: 'foo=1&bar=2&foo=4'
-        let urlBegin = 'http://194.79.57.109:8080/SFnotify/chart?machine=5&graph=2&graphPage=0';
+        let urlBegin = 'http://194.79.57.109:8080/SFnotify/chart?machine=';
         let urlEnd = '5&graph=2&graphPage=0';
 
         var link = new String(urlBegin + machine + urlEnd);
         console.log('link: ',link);
 
-        bot.reply(message, { text: 'Here is your file!', files: [link] });
+        bot.reply(message, { text: '', files: [eval(link] });
     }
 };
 
