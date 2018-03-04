@@ -46,7 +46,7 @@ function showMachine(machine, bot, message) {
 		link+='&graph=2&graphPage=0';
  
         
-        console.log('link: ',link);
+        console.log('link: ',`${link}`);
 
         bot.reply(message, { text: '', files: [link] });
     }
