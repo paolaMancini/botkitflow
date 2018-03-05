@@ -41,7 +41,7 @@ function showMachine(machine, bot, message) {
         bot.reply(message, "In the chart the requested data");
  
         
-        var link = `http://194.79.57.109:8080/SFnotify/chart?machine=${machine}&graph=2&graphPage=0`;
+        var link = `'http://194.79.57.109:8080/SFnotify/chart?machine=${machine}&graph=2&graphPage=0'`;
  	var array=[];
 	array.push(link);
         
