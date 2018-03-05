@@ -61,7 +61,7 @@ function fromAliasToName(p1) {
         return "fakeMachine1";
     } else if (p1 == "machine_2") {
         return "fakeMachine2";
-    } else if (p1 == "machine3") {
+    } else if (p1 == "machine_3") {
         return "fakeMachine3";
     } else if (p1 == "machine_4") {
         return "fakeMachine4";
