@@ -40,29 +40,31 @@ function showMachine(machine, bot, message) {
         bot.reply(message, "Sorry, this machine is not correct.");
     } else {
         bot.reply(message, "In the chart the requested data");
- 
-        
-        var link = `http://194.79.57.109:8080/SFnotify/chart?machine=${machine}&graph=2&graphPage=0`;
- 	 
-	   // bot.reply(message,{text: '', files:['http://194.79.57.109:8080/SFnotify/mainChart']});
-	 //bot.reply(message, { text: '', files:   [link]});
-	    var reply_with_attachments = {
-		    'username': 'My bot' ,
-		    'text': 'This is a pre-text',
-		    'attachments': [
-		      {
-			'fallback': 'To be useful, I need you to invite me in a channel.',
-			'title': 'How can I help you?',
-			'text': 'To be useful, I need you to invite me in a channel ',
-			'color': '#7CD197'
-		      }
-		    ],
-		    'icon_url': link
-		    }
 
-  bot.reply(message, reply_with_attachments);
-	    
-    }
+
+        var link = `http://194.79.57.109:8080/SFnotify/chart?machine=${machine}&graph=2&graphPage=0`;
+
+        // bot.reply(message,{text: '', files:['http://194.79.57.109:8080/SFnotify/mainChart']});
+        //bot.reply(message, { text: '', files:   [link]});
+
+
+
+        bot.reply(message, {
+                attachment: {
+                    'type': 'template',
+                    'payload': {
+                        'template_type': 'generic',
+                        'elements': [{
+                            'type': 'web_url',
+                            'url': link,
+                            'title': 'Buy Item'
+                        }]
+                    }
+                }
+            }
+        });
+
+}
 };
 
 
