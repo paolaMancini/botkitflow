@@ -45,10 +45,10 @@ function showMachine(machine, bot, message) {
         var link = `http://194.79.57.109:8080/SFnotify/chart?machine=${machine}&graph=2&graphPage=0`;
  	 
         
-        console.log('link: ',array);
+       // console.log('link: ',array);
 
         //bot.reply(message, { text: '', files: array });
-	    bot.reply(message,{text: '', files:['http://194.79.57.109:8080/SFnotify/mainChart']});
+	   // bot.reply(message,{text: '', files:['http://194.79.57.109:8080/SFnotify/mainChart']});
 	  bot.reply(message, { text: '', files:   [fs.createReadStream(link)]});
     }
 };
