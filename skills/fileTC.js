@@ -57,7 +57,7 @@ function showMachine(machine, bot, message) {
 			'color': '#7CD197'
 		      }
 		    ],
-		    'icon_url': 'http://lorempixel.com/48/48'
+		    'icon_url': link
 		    }
 
   bot.reply(message, reply_with_attachments);
