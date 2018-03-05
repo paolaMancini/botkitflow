@@ -45,7 +45,7 @@ function showMachine(machine, bot, message) {
  	var array=[];
 	array.push(link);
         
-        console.log('link: ',`${link}`);
+        console.log('link: ',link);
 
         bot.reply(message, { text: '', files: link });
     }
