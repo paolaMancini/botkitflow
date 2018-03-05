@@ -61,11 +61,11 @@ function showMachine(machine, bot, message) {
                         }]
                     }
                 }
-            }
-        });
+            })
+        };
 
 }
-};
+ 
 
 
 function fromAliasToName(p1) {
@@ -83,5 +83,3 @@ function fromAliasToName(p1) {
         return "fakeMachine5";
     }
 }
-
-
