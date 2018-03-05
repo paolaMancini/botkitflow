@@ -49,7 +49,11 @@ function showMachine(machine, bot, message) {
 
         //bot.reply(message, { text: '', files: array });
 	   // bot.reply(message,{text: '', files:['http://194.79.57.109:8080/SFnotify/mainChart']});
-	  bot.reply(message, { text: '', files:   [link]});
+	  //bot.reply(message, { text: '', files:   [link]});
+	    bot.reply(message, { text: '', files:   [{
+	    contentType: 'image/png',
+                contentUrl: link,
+                name: 'file.png'}]});
     }
 };
 
@@ -69,3 +73,5 @@ function fromAliasToName(p1) {
         return "fakeMachine5";
     }
 }
+
+
