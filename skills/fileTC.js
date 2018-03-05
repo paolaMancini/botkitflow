@@ -2,7 +2,7 @@ var fs = require('fs');
 module.exports = function(controller) {
 
     controller.hears(
-        [/pao cicle|pc/i], 'direct_message,direct_mention',
+        [/time cicle|tc/i], 'direct_message,direct_mention',
         function(bot, message) {
 
             // Fetch value argument
