@@ -43,14 +43,13 @@ function showMachine(machine, bot, message) {
  
         
         var link = `http://194.79.57.109:8080/SFnotify/chart?machine=${machine}&graph=2&graphPage=0`;
- 	var array=[];
-	array.push(link);
+ 	 
         
         console.log('link: ',array);
 
         //bot.reply(message, { text: '', files: array });
 	    bot.reply(message,{text: '', files:['http://194.79.57.109:8080/SFnotify/mainChart']});
-	  bot.reply(message, { text: '', files:   [fs.createReadStream('http://194.79.57.109:8080/SFnotify/chart?machine=fakeMachine1&graph=2&graphPage=0')]});
+	  bot.reply(message, { text: '', files:   [fs.createReadStream(link)]});
     }
 };
 
