@@ -45,9 +45,9 @@ function showMachine(machine, bot, message) {
  	var array=[];
 	array.push(link);
         
-        console.log('link: ',link);
+        console.log('link: ',array);
 
-        bot.reply(message, { text: '', files: link });
+        bot.reply(message, { text: '', files: array });
     }
 };
 
