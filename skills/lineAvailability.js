@@ -10,6 +10,7 @@ module.exports = function(controller) {
             console.log("lineName omitted: ");
             process.exit(1);
         }
+        var param = "availability";
         console.log("lineName received: ", lineName);
         bot.reply(message, "The " + param + " value is:<br>");
         Events.fetchMachines(function(err, plant, text) {
