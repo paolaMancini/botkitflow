@@ -8,8 +8,9 @@ module.exports = function(controller) {
         console.log('message: ', message);
         var lineName = message.match[1];
         if (lineName == null || lineName==''){
-             console.log("lineName omitted: ");           
-        }else{
+            console.log("lineName omitted: ");
+            process.exit(1);
+        }
         var param = "availability";
         console.log("lineName received: ", lineName);
         bot.reply(message, "The " + param + " value is:<br>");
@@ -73,7 +74,7 @@ module.exports = function(controller) {
 
         });
     });
-    }
+   
 }
 
 function askForFurtherLines(plant, param, mpattern, controller, bot, message) {
