@@ -57,6 +57,40 @@ module.exports = function(controller) {
                     }
                     console.log("textMach: ", textMach);
                     bot.reply(message, textMach + "%");
+                    Events.fetchMachDetails(machine, function(errMach, events, textMach) {
+                    if (errMach) {
+                        bot.reply(message, "*sorry, could not contact the organizers :-(*");
+                        return;
+                    }
+
+                    if (events.length == 0) {
+                        bot.reply(message, textMach + "\n\n_Type next for upcoming events_");
+                        return;
+                    }
+
+                 
+                    var nb = events.machine.length;
+                     
+                    if (nb == 1) {
+                        msg = "No details found";
+                    }
+                    msg="<br>";
+                    for (var i = 0; i < nb; i++) {
+                        var current = events.machine[i];
+                        
+                        //msg += current.machine + " - " + current.description + +" - " +  current.machine;
+                        msg += "**"+current.name + ": **" + current.description+"<br>";
+                        //debug("msg= ", msg);
+                    }                 
+                    // Store events
+                    console.log("text: ", msg);
+                    bot.reply(message, msg);
+
+                    
+
+                });
+
+        });
 
                 })
 
