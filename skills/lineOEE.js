@@ -91,10 +91,7 @@ module.exports = function(controller) {
                 });
 
         });
-
-                })
-
-
+ 
 
                // askForFurtherLines(plant, param, mpattern, controller, bot, message);
 
