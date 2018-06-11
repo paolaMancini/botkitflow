@@ -20,7 +20,8 @@ module.exports = function(controller) {
                 lineNew=lineName;
             }
         }else {
-             console.log("Invalid Name");
+           console.log("Invalid Name");
+           lineNew=lineName; 
         }
         var param = "oee";
         console.log("lineName received: ", lineName,"lineNew= ",lineNew);
