@@ -4,7 +4,7 @@ var Events = require("./events");
 module.exports = function(controller) {
 
     //controller.hears([/availability value about line (.*)/i], 'direct_message,direct_mention', function(bot, message) {
-    controller.hears([/line (.*) oee/i], 'direct_message,direct_mention', function(bot, message) {
+    controller.hears([/oee  value for (.*)/i], 'direct_message,direct_mention', function(bot, message) {
         console.log('message: ', message);
         var lineName = message.match[1];
         var param = "oee";
