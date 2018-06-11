@@ -43,7 +43,7 @@ module.exports = function(controller) {
             } else {
 
                 console.log('machineName: ', machineName);
-                 bot.reply(message, "Below the requested data about **" + lineName + "** line:");
+               
 
                 Events.fetchOEEDetails(machineName, lineName, param, function(errMach, events, textMach) {
                     if (errMach) {
@@ -55,6 +55,7 @@ module.exports = function(controller) {
                         bot.reply(message, "The machine is not responding");
                         return;
                     }
+                     bot.reply(message, "Below the requested data about **" + lineName + "** line:");
                     console.log("textMach: ", textMach);
                     bot.reply(message, textMach);
 
