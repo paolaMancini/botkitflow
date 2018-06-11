@@ -202,8 +202,8 @@ module.exports.fetchMachDetails1 = function(machine,alias,param, cb) {
                   perf = "Performance value: **"+ current.value + "%**";
              }
         }
-       msg = msg + "\n"+"Details:"+"\n"+aval+"\n"+ qual+'\n'+perf;
-        //msg.concat(aval, qual, perf);
+       msg = msg + "\r\n"+"Details:"+"\r\n"+aval+"\n"+ qual+'\n'+perf;
+     
         cb(null, events, msg);
     });
 }
