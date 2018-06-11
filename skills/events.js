@@ -181,16 +181,28 @@ module.exports.fetchMachDetails1 = function(machine,alias,param, cb) {
         var nb = events.machine.length;
          
         var msg;
+        var aval;
+        var qual;
+        var perf;
         if (nb == 1) {
             msg = "No values found";
         }
         for (var i = 0; i < nb; i++) {
             var current = events.machine[i];
              if(current.name == param){
-                  msg = alias + ": **" + current.value + "**";
+                  msg = "OEE value: **" + current.value + "**\n";
+             }
+            if(current.name == 'availability'){
+                  aval ="Availability value: **"+ current.value + "**\n";
+             }
+            if(current.name == 'quality'){
+                  qual = "Quality value: **E" + current.value + "**\n";
+             }
+            if(current.name == 'performance'){
+                  perf = "Performance value: **"+ current.value + "**";
              }
         }
-        
+        msg = msg + aval + qual+perf;
         cb(null, events, msg);
     });
 }
