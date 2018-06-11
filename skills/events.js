@@ -193,16 +193,16 @@ module.exports.fetchMachDetails1 = function(machine,alias,param, cb) {
                   msg = "OEE value: **" + current.value + "**";
              }
             if(current.name == 'availability'){
-                  aval ="Availability value: **"+ current.value + "%**\n";
+                  aval ="Availability value: **"+ current.value + "%**";
              }
             if(current.name == 'quality'){
-                  qual = "Quality value: **E" + current.value + "%**\n";
+                  qual = "Quality value: **E" + current.value + "%**";
              }
             if(current.name == 'performance'){
                   perf = "Performance value: **"+ current.value + "%**";
              }
         }
-       msg = msg + '\n'+aval+'\n'+ qual+"\n"+perf;
+       msg = msg + "\nDetails:\n"+aval+"\n"+ qual+"\n"+perf;
         //msg.concat(aval, qual, perf);
         cb(null, events, msg);
     });
