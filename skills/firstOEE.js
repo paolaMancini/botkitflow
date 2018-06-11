@@ -91,7 +91,6 @@ function askForFurtherLines(plant, param, mpattern, controller, bot, message) {
             action: 'default',
         }, 'bad_response');
 
-
         convo.ask("Are you interested on monitoring the " + param + " value about an other further line? (yes/**no**/cancel)", [{
                 pattern: "yes|yeh|sure|oui|si",
                 callback: function(response, convo) {
