@@ -53,7 +53,7 @@ module.exports = function(controller) {
                         return;
                     }
                     console.log("textMach: ", textMach);
-                    bot.reply(message, "Below the requested data about **" + lineName + "** line:"+<br>"+textMach);
+                    bot.reply(message, "Below the requested data about **" + lineName + "** line:"+"<br>"+textMach);
                    
                     //bot.reply(message, textMach);
 
