@@ -9,7 +9,7 @@ module.exports = function(controller) {
         var lineName = message.match[1];
         var param = "oee";
         console.log("lineName received: ", lineName);
-        bot.reply(message, "Below the requested data about line:" + lineName + ":<br>");
+        bot.reply(message, "Below the requested data about " + lineName + " <br>line:<br>");
         Events.fetchMachines(function(err, plant, text) {
             if (err) {
                 bot.reply(message, "The machine is not responding");
