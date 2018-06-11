@@ -9,7 +9,7 @@ module.exports = function(controller) {
         var lineName = message.match[1];
         var param = "oee";
         console.log("lineName received: ", lineName);
-        bot.reply(message, "The " + param + " value is:<br>");
+        bot.reply(message, "Below the requested data about line:" + lineName + ":<br>");
         Events.fetchMachines(function(err, plant, text) {
             if (err) {
                 bot.reply(message, "The machine is not responding");
@@ -45,7 +45,7 @@ module.exports = function(controller) {
                 console.log('machineName: ', machineName);
 
 
-                Events.fetchMachDetails1(machineName, lineName, param, function(errMach, events, textMach) {
+                Events.fetchOEEDetails(machineName, lineName, param, function(errMach, events, textMach) {
                     if (errMach) {
                         bot.reply(message, "The machine is not responding");
                         return;
