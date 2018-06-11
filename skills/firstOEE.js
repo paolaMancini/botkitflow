@@ -52,9 +52,10 @@ module.exports = function(controller) {
                         bot.reply(message, "The machine is not responding");
                         return;
                     }
-                     bot.reply(message, "Below the requested data about **" + lineName + "** line:");
                     console.log("textMach: ", textMach);
-                    bot.reply(message, textMach);
+                    bot.reply(message, "Below the requested data about **" + lineName + "** line:"+<br>"+textMach);
+                   
+                    //bot.reply(message, textMach);
 
                 })
 
