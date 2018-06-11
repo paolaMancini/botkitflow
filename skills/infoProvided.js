@@ -5,10 +5,10 @@ module.exports = function (controller) {
 
     controller.hears([/info/], 'direct_message,direct_mention', function (bot, message) {
         var text = "Here are my skills:";
-        text += "\n- " + bot.appendMention(message, "all performance values") + ": Ask to know the performance values about every line in the plant ";
+        text += "\n- " + bot.appendMention(message, "performances") + ": Ask to know the performance values about every line in the plant ";
         text += "\n- " + bot.appendMention(message, "all oee values") + ": Ask to know the oee values about every line in the plant ";
-        text += "\n- " + bot.appendMention(message, "all quality values") + ": Ask to know the quality values about every line in the plant ";
-        text += "\n- " + bot.appendMention(message, "all availability values") + ": Ask to know the availability values about every line in the plant ";
+        text += "\n- " + bot.appendMention(message, "qualities") + ": Ask to know the quality values about every line in the plant ";
+        text += "\n- " + bot.appendMention(message, "availabilities") + ": Ask to know the availability values about every line in the plant ";
         //text += "\n- " + bot.appendMention(message, "performance data about plant <plant name>| all performance values") + ": Ask to know the performance values about every line in the plant ";
         //text += "\n- " + bot.appendMention(message, "OEE data about plant <plant name>| all OEE values") + ": Ask to know the oee values about every line in the plant ";
         //text += "\n- " + bot.appendMention(message, "quality data about plant <plant name>| all values") + ": Ask to know the quality values about every line in the plant ";
