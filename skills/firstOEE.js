@@ -22,7 +22,7 @@ module.exports = function(controller) {
             }
 
             console.log("plant.lenght= " + plant.machines.length);
-            var machineName;
+            var machineName="notFound";
             var mpattern = "<br>";
             for (var i = 0; i < plant.machines.length; i++) {
 
@@ -34,7 +34,7 @@ module.exports = function(controller) {
 
             }
             console.log('mpattern: ', mpattern);
-            if (typeof machineName == undefined) {
+            if ((typeof machineName == undefined) || (machineName == "notFound")) {
                 text = "Sorry, I don't know this line. Please, type:<br>";
                 text += "**'machine' details**<br>";
                 text += "Choose machine the name from the following list: <br>";
