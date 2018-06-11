@@ -190,19 +190,20 @@ module.exports.fetchMachDetails1 = function(machine,alias,param, cb) {
         for (var i = 0; i < nb; i++) {
             var current = events.machine[i];
              if(current.name == param){
-                  msg = "OEE value: **" + current.value + "**\n";
+                  msg = "OEE value: **" + current.value + "**";
              }
             if(current.name == 'availability'){
-                  aval ="Availability value: **"+ current.value + "**\n";
+                  aval ="Availability value: **"+ current.value + "%**\n";
              }
             if(current.name == 'quality'){
-                  qual = "Quality value: **E" + current.value + "**\n";
+                  qual = "Quality value: **E" + current.value + "%**\n";
              }
             if(current.name == 'performance'){
-                  perf = "Performance value: **"+ current.value + "**";
+                  perf = "Performance value: **"+ current.value + "%**";
              }
         }
-        msg = msg + aval + qual+perf;
+       //msg = msg + aval + qual+perf;
+        msg.concat(aval, qual, perf);
         cb(null, events, msg);
     });
 }
