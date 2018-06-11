@@ -202,7 +202,7 @@ module.exports.fetchMachDetails1 = function(machine,alias,param, cb) {
                   perf = "Performance value: **"+ current.value + "%**";
              }
         }
-       msg = msg + "/r/n"+"Details:"+"/r/n"+aval+"\n"+ qual+'\n'+perf;
+       msg = msg + '</br>'+"Details:"+'</br>'+aval+'</br>'+ qual+'</br>'+perf;
      
         cb(null, events, msg);
     });
