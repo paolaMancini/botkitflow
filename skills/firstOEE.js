@@ -7,8 +7,30 @@ module.exports = function(controller) {
     controller.hears([/oee of (.*)/i], 'direct_message,direct_mention', function(bot, message) {
         console.log('message: ', message);
         var lineName = message.match[1];
+        var lineNew;
+         
+        if  (lineName.includes('achine')){
+            if  (!lineName.includes('_')){
+                var res = lineName.split("achine");
+                lineNew= res[0]+"achine_"+res[1];
+                console.log(lineNew);
+               //for (var item in res) {console.log(res[item])}
+            }else{
+                console.log("_ present");
+                lineNew=lineName;
+            }
+        }else {
+             console.log("Invalid Name");
+        }
         var param = "oee";
-        console.log("lineName received: ", lineName);
+        console.log("lineName received: ", lineName,"lineNew= ",lineNew);
+        
+        if ("machine1".indexOf("_") + 1 ){
+             console.log('contains _');
+        }else {
+            console.log('does not contain _');
+            
+        }
        
         Events.fetchMachines(function(err, plant, text) {
             if (err) {
@@ -26,7 +48,8 @@ module.exports = function(controller) {
             var mpattern = "<br>";
             for (var i = 0; i < plant.machines.length; i++) {
 
-                if (plant.machines[i].alias == lineName) {
+                if (plant.machines[i].alias == lineNew) {
+                //if (plant.machines[i].alias == lineName) {
 
                     machineName = plant.machines[i].machine;
                 }
@@ -41,8 +64,8 @@ module.exports = function(controller) {
 
                 console.log('machineName: ', machineName);
                
-
-                Events.fetchOEEDetails(machineName, lineName, param, function(errMach, events, textMach) {
+                //Events.fetchOEEDetails(machineName, lineName, param, function(errMach, events, textMach) {
+                Events.fetchOEEDetails(machineName, lineNew, param, function(errMach, events, textMach) {
                     if (errMach) {
                         bot.reply(message, "The machine is not responding");
                         return;
@@ -53,7 +76,8 @@ module.exports = function(controller) {
                         return;
                     }
                     console.log("textMach: ", textMach);
-                    bot.reply(message, "Below the requested data about **" + lineName + "** line:"+"<br>"+textMach);
+                    //bot.reply(message, "Below the requested data about **" + lineName + "** line:"+"<br>"+textMach);
+                    bot.reply(message, "Below the requested data about **" + lineNew + "** line:"+"<br>"+textMach);
                    
                     //bot.reply(message, textMach);
 
