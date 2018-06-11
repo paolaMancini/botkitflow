@@ -8,6 +8,7 @@ module.exports = function (controller) {
         
         text += "\n- " + bot.appendMention(message, "oee of <line_name>") + ": Ask to know the oee value with details about a specific line ";
         text += "\n- " + bot.appendMention(message, "performances") + ": Ask to know the performance values about every line in the plant ";
+        text += "\n- " + bot.appendMention(message, "availabilities") + ": Ask to know the availability values about every line in the plant ";
         text += "\n- " + bot.appendMention(message, "all oee values") + ": Ask to know the oee values about every line in the plant ";
         text += "\n- " + bot.appendMention(message, "qualities") + ": Ask to know the quality values about every line in the plant ";
         text += "\n- " + bot.appendMention(message, "<machine name> details") + ": Ask to know all the values available for the spcific line<br>";
