@@ -48,6 +48,7 @@ if (!public_url) {
 
 var Botkit = require('botkit');
 
+
 var env = process.env.NODE_ENV || "development";
 var controller = Botkit.sparkbot({
     log: true,
@@ -56,10 +57,14 @@ var controller = Botkit.sparkbot({
     secret: process.env.SECRET, // this is a RECOMMENDED security setting that checks of incoming payloads originate from Cisco Spark
     webhook_name: process.env.WEBHOOK_NAME || ('built with BotKit (' + env + ')')
 });
-
+var options = {
+    token: process.env.dialogflow,
+};
+var dialogflowMiddleware = require('botkit-middleware-dialogflow')(options);
 var bot = controller.spawn({
 });
-
+controller.middleware.receive.use(dialogflowMiddleware.receive);
+//bot.startRTM();
 
 //
 // Launch bot
