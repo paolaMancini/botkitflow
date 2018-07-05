@@ -7,7 +7,7 @@ module.exports.createPublicIdentityUser = function(username,fname,uTagId, fromTi
     // Get list of upcoming events
     var options = {
         method: 'POST',
-        url: "https://api-cisco-otello-mi.jago.cloud/api/v1.1/users,
+        url: "https://api-cisco-otello-mi.jago.cloud/api/v1.1/users",
         "headers": {
             "accept": "application/json",
             "content-type": "application/json",
