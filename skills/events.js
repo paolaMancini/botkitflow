@@ -1,26 +1,7 @@
 var debug = require("debug")("samples");
 var fine = require("debug")("samples:fine");
 var uuid = require('node-uuid');
-{
-  "email": "string",
-  "firstname": "italtel-user",
-  "lastname": "italtel-user",
-  "password": "ita123",
-  "phone": "string",
-  "publicUser": true,
-  "role": "ROLE_GUEST",
-  "userTagIds": [],
-  "userTagIdsWithTime": [
-    {
-      "id": 3513,
-      "interval": {
-        "from": 1530796020000,
-        "to": 1530835140000
-      }
-    }
-  ],
-  "username": "italtelUser1"
-}
+ 
 module.exports.createPublicIdentityUser = function(username,fname,uTagId, fromTime, toTime) {
     var request = require("request");
     // Get list of upcoming events
