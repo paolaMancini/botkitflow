@@ -1,149 +1,70 @@
 var debug = require("debug")("samples");
 var fine = require("debug")("samples:fine");
-
-module.exports.fetchMachines = function(cb) {
+var uuid = require('node-uuid');
+{
+  "email": "string",
+  "firstname": "italtel-user",
+  "lastname": "italtel-user",
+  "password": "ita123",
+  "phone": "string",
+  "publicUser": true,
+  "role": "ROLE_GUEST",
+  "userTagIds": [],
+  "userTagIdsWithTime": [
+    {
+      "id": 3513,
+      "interval": {
+        "from": 1530796020000,
+        "to": 1530835140000
+      }
+    }
+  ],
+  "username": "italtelUser1"
+}
+module.exports.createPublicIdentityUser = function(username,fname,uTagId, fromTime, toTime) {
     var request = require("request");
     // Get list of upcoming events
     var options = {
-        method: 'GET',
-        url: "http://194.79.57.109:8080//SFapi/machines"
+        method: 'POST',
+        url: "https://api-cisco-otello-mi.jago.cloud/api/v1.1/users,
+        "headers": {
+            "accept": "application/json",
+            "content-type": "application/json",
+            "authorization": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJyb2xlIjoiUk9MRV9NQU5BR0VSIiwidXNlcl9uYW1lIjoibWFuYWdlckBjaXNjby5jb20iLCJzY29wZSI6WyJvdGVsbG9fcmVhZCIsIm90ZWxsb193cml0ZSJdLCJ1c2VySWQiOjM2MjQsImF1dGhvcml0aWVzIjpbIlJPTEVfTUFOQUdFUiJdLCJqdGkiOiI1NTUxYzQ0Zi0yYmRmLTQyZGYtOTM4Zi01MmVjMTlhZDgyNTciLCJjbGllbnRfaWQiOiJhcHAifQ.P_hbCZrvmbGc9MKpOKU_XTbiaPrRIJ01R9ZwEcJrRQY",
+          }
+        };   
     };
 
-    request(options, function(error, response, body) {
-        if (error) {
-            debug("1 could not retreive list of events, error: " + error);
-            cb(new Error("Could not retreive current events, sorry [Backend Events API not responding]"), null, null);
-            return;
-        }
+     
 
-        if ((response < 200) || (response > 299)) {
-            debug("1 could not retreive list of events, response: " + response);
-          
-            return;
-        }
+        var req = http.request(options, function (res) {
+          var chunks = [];
 
-        var plants = JSON.parse(body);
-        //debug("fetched " + events.machines.length + " events");
-        //fine(JSON.stringify(events));
+          res.on("data", function (chunk) {
+            chunks.push(chunk);
+          });
 
-        if (plants.machines.length == 0) {
-            cb(null, plants, "**Found no event currently going on.**");
-            return;
-        }
+          res.on("end", function () {
+            var body = Buffer.concat(chunks);
+            console.log(body.toString());
+          });
+        });
 
-        var nb = plants.machines.length;
-        var msg = "<br>";
-        if (nb == 1) {
-            msg = "**only one event is running now:**";
-        }
-        for (var i = 0; i < nb; i++) {
-            var current = plants.machines[i];
-            //msg += "\n:small_blue_diamond: "
-            msg += "\n" + (i + 1) + ". ";
-            msg += current.machine + " - " + current.description +" - " + current.value;
-            debug("msg= ", msg);
-        }
-
-
-
-        cb(null, plants, msg);
-      
-    });
+        req.write(JSON.stringify({ email: 'u1',
+          firstname: 'u1',
+          lastname: 'u1',
+          password: 'ita123',
+          phone: 'string',
+          publicUser: true,
+          role: 'ROLE_GUEST',
+          userTagIds: [],
+          userTagIdsWithTime: 
+           [ { id: 3513,
+               interval: { from: 1530796020000, to: 1530835140000 } } ],
+          username: 'u1' }));
+        req.end();
 }
 
-module.exports.fetchMachDetails = function(machine, cb) {
-    var request = require("request");
-    // Get list of upcoming events
-    var options = {
-        method: 'GET',
-        url: "http://194.79.57.109:8080/SFapi/status?machine=" + machine
-    };
-
-    request(options, function(error, response, body) {
-        if (error) {
-            debug("1 could not retreive list of events, error: " + error);
-            cb(new Error("Could not retreive current events, sorry [Backend Events API not responding]"), null, null);
-            return;
-        }
-
-        if ((response < 200) || (response > 299)) {
-            debug("1 could not retreive list of events, response: " + response);
-            //sparkCallback(new Error("Could not retreive current events, sorry [bad anwser from Events API]"), null, null);
-            return;
-        }
-        
-        debug("body: ",body );
-        var events = JSON.parse(body);
-        //debug("fetched " + events.machine.length + " events");
-        //fine(JSON.stringify(events));
-
-        if (events.machine.length == 0) {
-            cb(null, events, "**Found no event currently going on.**");
-            return;
-        }
-
-        var nb = events.machine.length;
-        var msg = "<br>Nitty-gritty of the line:<br>";
-        if (nb == 1) {
-            msg = "No details found";
-        }
-        for (var i = 0; i < nb; i++) {
-            var current = events.machine[i];
-                
-            msg += current.name + ": **" + current.value + "**<br>";
-            //debug("msg= ", msg);
-        }
-        msg+="<br>";
-
-        cb(null, events, msg);
-    });
-}
-module.exports.fetchMachDetails1 = function(machine,alias,param, cb) {
-    var request = require("request");
-    // Get list of upcoming events
-    var options = {
-        method: 'GET',
-        url: "http://194.79.57.109:8080/SFapi/status?machine=" + machine
-    };
-
-    request(options, function(error, response, body) {
-        if (error) {
-            debug("1 could not retreive list of events, error: " + error);
-            //cb(new Error("Could not retreive current events, sorry [Events API not responding]"), null, null);
-            return;
-        }
-
-        if ((response < 200) || (response > 299)) {
-            debug("1 could not retreive list of events, response: " + response);
-            //sparkCallback(new Error("Could not retreive current events, sorry [bad anwser from Events API]"), null, null);
-            return;
-        }
-        
-        //debug("body: ",body );
-        var events = JSON.parse(body);
-        //debug("fetched " + events.machine.length + " events");
-        //fine(JSON.stringify(events));
-
-        if (events.machine.length == 0) {
-            cb(null, events, "**Found no event currently going on.**");
-            return;
-        }
-
-        console.log("event.js: machine= ",machine,"  alias= ",alias,"  param= ",param);
-        var nb = events.machine.length;
-         
-        var msg;
-        if (nb == 1) {
-            msg = "No values found";
-        }
-        for (var i = 0; i < nb; i++) {
-            var current = events.machine[i];
-             if(current.name == param){
-                  msg = alias + ": **" + current.value + "**";
-             }
-        }
-        
-        cb(null, events, msg);
-    });
+ 
 }
  
